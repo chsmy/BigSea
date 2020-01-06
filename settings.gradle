@@ -1,0 +1,2 @@
+include ':app', ':lib_core', ':lib_common_ui', ':module_wan'
+rootProject.name='BigSea'

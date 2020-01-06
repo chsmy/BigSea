@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/wanFragment"
+        android:icon="@drawable/ic_android_black_24dp"
+        android:title="@string/menu_wan" />
+    <item
+        android:id="@+id/ganFragment"
+        android:icon="@drawable/ic_child_care_black_24dp"
+        android:title="@string/menu_gan" />
+    <item
+        android:id="@+id/mineFragment"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="@string/menu_mine" />
+</menu>

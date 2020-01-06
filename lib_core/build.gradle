@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    def depLibs = rootProject.deplibs
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api depLibs.appcompact
+    api depLibs.multidex
+    api depLibs.ktx
+    api depLibs.glide
+    api depLibs.retrofit
+    api depLibs.retrofit_converter
+    api depLibs.gson
+    api depLibs.coroutines_android
+    api depLibs.httploging
+    api depLibs.lifecycle_viewmodel_ktx
+    api depLibs.lifecycle_ext
+    api depLibs.koin_androidx_viewmodel
+    api depLibs.koin_androidx_scope
+    api depLibs.koin_android
+    api depLibs.navigation_fragment
+    api depLibs.navigation
+
+
+    testImplementation depLibs.junit
+    androidTestImplementation depLibs.junit_ext
+    androidTestImplementation depLibs.espresso
+}

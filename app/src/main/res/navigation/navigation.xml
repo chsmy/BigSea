@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/wanFragment">
+
+    <fragment
+        android:id="@+id/wanFragment"
+        android:name="com.chs.bigsea.an.AnFragment"
+        android:label="安"
+        tools:layout="@layout/wan_fragment" />
+    <fragment
+        android:id="@+id/ganFragment"
+        android:name="com.chs.bigsea.gan.GanFragment"
+        android:label="中"
+        tools:layout="@layout/gan_fragment" />
+    <fragment
+        android:id="@+id/mineFragment"
+        android:name="com.chs.bigsea.mine.MineFragment"
+        android:label="我"
+        tools:layout="@layout/mine_fragment" />
+</navigation>

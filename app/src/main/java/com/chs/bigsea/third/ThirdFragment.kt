@@ -1,4 +1,4 @@
-package com.chs.bigsea.mine
+package com.chs.bigsea.third
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,24 +9,24 @@ import androidx.lifecycle.ViewModelProviders
 import com.chs.bigsea.R
 
 
-class MineFragment : Fragment() {
+class ThirdFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MineFragment()
+        fun newInstance() = ThirdFragment()
     }
 
-    private lateinit var viewModel: MineViewModel
+    private lateinit var viewModel: ThirdViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_mine, container, false)
+        return inflater.inflate(R.layout.fragment_third, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MineViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ThirdViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

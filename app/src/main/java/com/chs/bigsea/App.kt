@@ -11,6 +11,8 @@ import org.koin.core.context.startKoin
  */
 class App : BaseApp() {
 
+
+
     override fun onCreate() {
         super.onCreate()
 

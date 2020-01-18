@@ -12,6 +12,11 @@ android {
         versionCode rootProject.android.versionCode
         versionName rootProject.android.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // 将svg图片生成 指定维度的png图片
+        vectorDrawables.generatedDensities('xhdpi','xxhdpi')
+        // 使用support-v7兼容5.0以上
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -24,5 +29,4 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':module_wan')
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }

@@ -1,33 +1,29 @@
 package com.chs.bigsea.gan
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.chs.bigsea.R
+import com.chs.lib_core.base.BaseFragment
+import com.chs.lib_core.imageloader.ImageLoader
+import kotlinx.android.synthetic.main.fragment_gan.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
+class GanFragment : BaseFragment<GanViewModel>() {
 
-class GanFragment : Fragment() {
+    private val mViewModel:GanViewModel by viewModel()
 
     companion object {
         fun newInstance() = GanFragment()
     }
 
-    private lateinit var viewModel: GanViewModel
+    override fun layoutId(): Int = R.layout.fragment_gan
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.gan_fragment, container, false)
+    override fun initView() {
+        ImageLoader.url("https://www.wanandroid.com/blogimgs/74a84e45-7f93-476d-bc85-446e1d118b6f.png").into(image)
+        Glide.with(requireActivity()).asBitmap().load("https://www.wanandroid.com/blogimgs/74a84e45-7f93-476d-bc85-446e1d118b6f.png").into(image)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(GanViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun initData() {
+
     }
 
 }

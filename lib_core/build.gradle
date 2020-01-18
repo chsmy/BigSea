@@ -43,8 +43,6 @@ dependencies {
     api depLibs.koin_androidx_viewmodel
     api depLibs.koin_androidx_scope
     api depLibs.koin_android
-    api depLibs.navigation_fragment
-    api depLibs.navigation
 
 
     testImplementation depLibs.junit

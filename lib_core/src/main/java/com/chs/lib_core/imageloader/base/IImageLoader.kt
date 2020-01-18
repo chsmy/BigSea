@@ -9,4 +9,6 @@ interface IImageLoader{
 
     fun loadImage(imageConfig: ImageConfig)
 
+    fun loadBlurry(imageConfig: ImageConfig)
+
 }

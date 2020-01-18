@@ -3,6 +3,7 @@ package com.chs.lib_core.imageloader.glide
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.chs.lib_core.imageloader.base.IImageLoader
 import com.chs.lib_core.imageloader.base.ImageConfig
@@ -30,4 +31,15 @@ class GlideImageLoader : IImageLoader{
               .apply(options)
               .into(imageConfig.imageview)
     }
+
+    override fun loadBlurry(imageConfig: ImageConfig) {
+        Glide.with(imageConfig.imageview.context)
+            .load(imageConfig.url)
+            .placeholder(imageConfig.placeholder)
+            .error(imageConfig.errorPic)
+            .apply(options)
+            .transition( DrawableTransitionOptions().crossFade())
+            .into(imageConfig.imageview)
+    }
+
 }

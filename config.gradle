@@ -37,7 +37,12 @@ ext{
             koin_androidx_scope    :"org.koin:koin-androidx-scope:2.0.1",
             koin_android           :"org.koin:koin-android:2.0.1",
 
-            navigation_fragment    :"androidx.navigation:navigation-fragment-ktx:2.1.0",
-            navigation             :"androidx.navigation:navigation-ui-ktx:2.1.0"
+            immersionbar           :"com.gyf.immersionbar:immersionbar:3.0.0",
+            immersionbar_ktx       :"com.gyf.immersionbar:immersionbar-ktx:3.0.0",
+            SmartRefreshLayout     :"com.scwang.smartrefresh:SmartRefreshLayout:1.1.0",
+            recycleradapter        :"com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.0-beta11",
+            banner                 :"com.github.zhpanvip:BannerViewPager:2.6.5",
+            viewpager2             :"androidx.viewpager2:viewpager2:1.0.0"
+
     ]
 }

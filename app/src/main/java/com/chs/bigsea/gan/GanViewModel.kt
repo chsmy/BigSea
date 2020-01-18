@@ -1,7 +1,7 @@
 package com.chs.bigsea.gan
 
-import androidx.lifecycle.ViewModel
+import com.chs.lib_core.base.BaseViewModel
 
-class GanViewModel : ViewModel() {
+class GanViewModel : BaseViewModel() {
     // TODO: Implement the ViewModel
 }

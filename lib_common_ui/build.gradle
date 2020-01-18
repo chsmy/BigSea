@@ -14,6 +14,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+
+        // 将svg图片生成 指定维度的png图片
+        vectorDrawables.generatedDensities('xhdpi','xxhdpi')
+        // 使用support-v7兼容5.0以上
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -34,4 +39,12 @@ dependencies {
     api depLibs.design
     api depLibs.recyclerview
     api depLibs.constraint
+    //沉浸栏
+    api depLibs.immersionbar
+    api depLibs.immersionbar_ktx
+    //refresh
+    api depLibs.SmartRefreshLayout
+    api depLibs.recycleradapter
+    api depLibs.banner
+    api depLibs.viewpager2
 }

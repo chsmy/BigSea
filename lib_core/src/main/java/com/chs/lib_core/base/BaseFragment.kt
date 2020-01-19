@@ -28,6 +28,7 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         initView()
         initData()
+        initListener()
     }
 
     override fun onResume() {
@@ -55,4 +56,5 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(){
 
     abstract fun initData()
 
+    open fun initListener(){}
 }

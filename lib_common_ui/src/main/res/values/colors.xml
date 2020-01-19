@@ -5,4 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="line_gray">#888</color>
     <color name="home_item_bg">#F0F2F5</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="search_gray">#F0F5E5</color>
 </resources>

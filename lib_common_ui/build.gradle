@@ -42,6 +42,7 @@ dependencies {
     //沉浸栏
     api depLibs.immersionbar
     api depLibs.immersionbar_ktx
+    api depLibs.mmersionbar_components
     //refresh
     api depLibs.SmartRefreshLayout
     api depLibs.recycleradapter

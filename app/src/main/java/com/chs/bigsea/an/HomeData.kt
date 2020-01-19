@@ -1,6 +1,7 @@
 package com.chs.bigsea.an
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.chs.module_wan.model.DataX
 
 /**
  *  @author chs
@@ -10,15 +11,16 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 class HomeData : MultiItemEntity{
 
     companion object{
-        const val HEADER = 1
+        const val LIST_ITEM = 1
     }
 
     var title:String = ""
 
 
 
-    constructor(itemType: Int){
+    constructor(itemType: Int,title:String){
         this.itemType = itemType
+        this.title = title
     }
     override var itemType: Int
 }

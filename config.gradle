@@ -39,7 +39,6 @@ ext{
 
             immersionbar           :"com.gyf.immersionbar:immersionbar:3.0.0",
             immersionbar_ktx       :"com.gyf.immersionbar:immersionbar-ktx:3.0.0",
-            mmersionbar_components :"com.gyf.immersionbar:immersionbar-components:3.0.0",
             SmartRefreshLayout     :"com.scwang.smartrefresh:SmartRefreshLayout:1.1.0",
             recycleradapter        :"com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.0-beta11",
             banner                 :"com.github.zhpanvip:BannerViewPager:2.6.5",

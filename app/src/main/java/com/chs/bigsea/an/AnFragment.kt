@@ -1,26 +1,19 @@
 package com.chs.bigsea.an
 
-import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.chs.bigsea.R
 import com.chs.lib_core.base.BaseFragment
 import com.gyf.immersionbar.ImmersionBar
-import com.gyf.immersionbar.components.SimpleImmersionOwner
 import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.constants.IndicatorSlideMode
 import com.zhpan.bannerview.constants.PageStyle
 import kotlinx.android.synthetic.main.fragment_wan.*
-import kotlinx.android.synthetic.main.title_bar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AnFragment : BaseFragment<AnViewModel>(), SimpleImmersionOwner{
+class AnFragment : BaseFragment<AnViewModel>(){
 
     private val mViewModel:AnViewModel by viewModel()
     private val mAdapter:HomeAdapter by lazy { HomeAdapter(mViewModel.mHomeRecyclerData.value) }
@@ -31,7 +24,6 @@ class AnFragment : BaseFragment<AnViewModel>(), SimpleImmersionOwner{
         fun newInstance() = AnFragment()
     }
 
-
     override fun layoutId(): Int {
         return R.layout.fragment_wan
     }
@@ -41,39 +33,22 @@ class AnFragment : BaseFragment<AnViewModel>(), SimpleImmersionOwner{
         recyclerview.adapter = mAdapter
         mAdapter.setNewData(ArrayList())
         addBannerView()
-        initImmersionBar()
+        ImmersionBar.with(this)
+            .statusBarColor(R.color.colorPrimary)
+            .keyboardEnable(false)
+            .init()
     }
 
     override fun initListener() {
         super.initListener()
-        recyclerview.addOnScrollListener(object :RecyclerView.OnScrollListener(){
-            private var totalDy = 0
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                totalDy += dy
-                if (totalDy <= bannerHeight) {
-                    val alpha = totalDy.toFloat()  / bannerHeight
-                    toolbar.setBackgroundColor(
-                        ColorUtils.blendARGB(
-                            Color.TRANSPARENT
-                            , ContextCompat.getColor(requireContext(), R.color.colorPrimary), alpha
-                        )
-                    )
-                } else {
-                    toolbar.setBackgroundColor(
-                        ColorUtils.blendARGB(
-                            Color.TRANSPARENT
-                            , ContextCompat.getColor(requireActivity(), R.color.colorPrimary), 1f
-                        )
-                    )
-                }
-            }
-        })
+        refreshview.setOnRefreshListener {
+             refreshview.finishRefresh()
+        }
     }
 
     private fun addBannerView() {
         val bannerView = LayoutInflater.from(requireContext()).inflate(R.layout.header_home,recyclerview,false)
-        bannerViewPager = bannerView.findViewById<BannerViewPager<HomeBanner,NetViewHolder>>(R.id.banner)
+        bannerViewPager = bannerView.findViewById(R.id.banner)
         val list = getList<HomeBanner>()
         bannerViewPager.setCanLoop(true)
             .setIndicatorSlideMode(IndicatorSlideMode.NORMAL)
@@ -85,11 +60,6 @@ class AnFragment : BaseFragment<AnViewModel>(), SimpleImmersionOwner{
             .create(list)
         bannerViewPager.startLoop()
         mAdapter.addHeaderView(bannerView)
-        val bannerParams: ViewGroup.LayoutParams = bannerViewPager.layoutParams
-        val titleBarParams: ViewGroup.LayoutParams = toolbar.layoutParams
-        bannerHeight =
-            bannerParams.height - titleBarParams.height - ImmersionBar.getStatusBarHeight(requireActivity())
-
     }
 
     override fun onPause() {
@@ -112,17 +82,4 @@ class AnFragment : BaseFragment<AnViewModel>(), SimpleImmersionOwner{
             mAdapter.addData(it)
         })
     }
-
-    override fun immersionBarEnabled(): Boolean {
-        return true
-    }
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).keyboardEnable(true).init()
-        ImmersionBar.with(this).statusBarColorTransformEnable(false)
-            .keyboardEnable(false)
-            .navigationBarColor(R.color.colorPrimary)
-            .init()
-    }
-
 }

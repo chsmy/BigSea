@@ -18,7 +18,6 @@ class AnFragment : BaseFragment<AnViewModel>(){
     private val mViewModel:AnViewModel by viewModel()
     private val mAdapter:HomeAdapter by lazy { HomeAdapter(mViewModel.mHomeRecyclerData.value) }
     private lateinit var bannerViewPager:BannerViewPager<HomeBanner,NetViewHolder>
-    private var bannerHeight = 0
 
     companion object {
         fun newInstance() = AnFragment()

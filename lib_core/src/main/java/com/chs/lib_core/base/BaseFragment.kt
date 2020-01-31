@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import com.gyf.immersionbar.components.SimpleImmersionOwner
 
 /**
  *  @author chs
  *  date: 2020-01-04 16:38
  *  des:
  */
-abstract class BaseFragment<VM : BaseViewModel> : Fragment(){
+abstract class BaseFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionOwner {
 
     private var hasLoaded = false
 

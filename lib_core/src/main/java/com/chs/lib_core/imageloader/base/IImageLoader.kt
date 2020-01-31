@@ -9,6 +9,6 @@ interface IImageLoader{
 
     fun loadImage(imageConfig: ImageConfig)
 
-    fun loadBlurry(imageConfig: ImageConfig)
+    fun loadBg(imageConfig: ImageConfig)
 
 }

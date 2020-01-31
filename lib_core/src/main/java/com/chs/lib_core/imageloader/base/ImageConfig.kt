@@ -1,5 +1,6 @@
 package com.chs.lib_core.imageloader.base
 
+import android.view.View
 import android.widget.ImageView
 import com.chs.lib_core.imageloader.glide.GlideImageLoader
 
@@ -12,6 +13,7 @@ class ImageConfig(builder: Builder) {
 
     var url: String
     var imageview:ImageView
+    var bgView: View
     var placeholder = 0
     var errorPic = 0
     var imageloader:IImageLoader? = null
@@ -20,6 +22,7 @@ class ImageConfig(builder: Builder) {
         imageview = builder.imageView
         placeholder = builder.placeholder
         errorPic = builder.errorPic
+        bgView = builder.bgView
     }
 
     fun getImageLoader():IImageLoader{
@@ -30,12 +33,16 @@ class ImageConfig(builder: Builder) {
     }
 
     fun show(){
-      getImageLoader().loadImage(this)
+            getImageLoader().loadImage(this)
+    }
+    fun showBg(){
+            getImageLoader().loadBg(this)
     }
 
     object Builder{
          lateinit var url: String
          lateinit var imageView:ImageView
+         lateinit var bgView: View
          var placeholder = 0
          var errorPic = 0
 
@@ -55,6 +62,11 @@ class ImageConfig(builder: Builder) {
         fun into(imageView: ImageView){
             this.imageView = imageView
             ImageConfig(this).show()
+        }
+        fun intoBg(imageView: ImageView,bgView:View){
+            this.imageView = imageView
+            this.bgView = bgView
+            ImageConfig(this).showBg()
         }
 
     }

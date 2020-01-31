@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleObserver
 import androidx.viewpager2.widget.ViewPager2
 import com.chs.bigsea.an.AdapterFragmentPager
+import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), LifecycleObserver {
@@ -12,6 +13,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        ImmersionBar.with(this).transparentStatusBar().init()
         vp_fragment.adapter =  AdapterFragmentPager(this)
         vp_fragment.offscreenPageLimit = 3
         vp_fragment.isUserInputEnabled = false

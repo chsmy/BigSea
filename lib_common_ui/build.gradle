@@ -39,9 +39,6 @@ dependencies {
     api depLibs.design
     api depLibs.recyclerview
     api depLibs.constraint
-    //沉浸栏
-    api depLibs.immersionbar
-    api depLibs.immersionbar_ktx
     //refresh
     api depLibs.SmartRefreshLayout
     api depLibs.recycleradapter

@@ -33,6 +33,7 @@ dependencies {
     api depLibs.multidex
     api depLibs.ktx
     api depLibs.glide
+    api depLibs.palette
     api depLibs.retrofit
     api depLibs.retrofit_converter
     api depLibs.gson
@@ -43,7 +44,10 @@ dependencies {
     api depLibs.koin_androidx_viewmodel
     api depLibs.koin_androidx_scope
     api depLibs.koin_android
-
+    //沉浸栏
+    api depLibs.immersionbar
+    api depLibs.immersionbar_ktx
+    api depLibs.immersionbar_components
 
     testImplementation depLibs.junit
     androidTestImplementation depLibs.junit_ext

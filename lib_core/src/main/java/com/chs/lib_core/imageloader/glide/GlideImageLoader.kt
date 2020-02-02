@@ -60,7 +60,7 @@ class GlideImageLoader : IImageLoader{
     val targets = listOf<Target>(Target.LIGHT_VIBRANT, Target.DARK_MUTED, Target.DARK_VIBRANT,
         Target.LIGHT_MUTED, Target.MUTED, Target.VIBRANT)
 
-    fun setBgColor(bitmap:Bitmap,view: View){
+    fun setBgColor(bitmap:Bitmap,view: View?){
         Palette.from(bitmap).maximumColorCount(10)
             .generate(object : Palette.PaletteAsyncListener{
                 override fun onGenerated(palette: Palette?) {
@@ -73,7 +73,7 @@ class GlideImageLoader : IImageLoader{
                     if(null == vibrantSwatch){
                         return
                     }
-                    view.setBackgroundColor(vibrantSwatch!!.rgb)
+                    view?.setBackgroundColor(vibrantSwatch!!.rgb)
                 }
             })
     }

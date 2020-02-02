@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.Observer
@@ -61,7 +62,7 @@ class AnFragment : BaseFragment<AnViewModel>(){
             override fun onHeaderMoving(
                 header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
                 super.onHeaderMoving(header, isDragging, percent, offset, headerHeight, maxDragHeight)
-                if(isDragging&&toolbar.visibility==View.VISIBLE){
+                if(isDragging&&toolbar.visibility==View.VISIBLE&&offset>100){
                     toolbar.visibility = View.GONE
                 }
                 if(offset == 0 && toolbar.visibility==View.GONE){
@@ -102,11 +103,11 @@ class AnFragment : BaseFragment<AnViewModel>(){
         val bannerView = LayoutInflater.from(requireContext()).inflate(R.layout.header_home,recyclerview,false)
         bannerViewPager = bannerView.findViewById(R.id.banner)
         val ivBanner = bannerView.findViewById<ImageView>(R.id.iv_banner)
-        val flHeaderBg = bannerView.findViewById<FrameLayout>(R.id.fl_header_bg)
+        val flHeaderBg = bannerView.findViewById<LinearLayout>(R.id.fl_header_bg)
 //        ImmersionBar.setTitleBarMarginTop(this, bannerViewPager)
 
         val list = getList<HomeBanner>()
-        loadHeaderBg(list[0].url,ivBanner,flHeaderBg)
+//        loadHeaderBg(list[0].url,ivBanner,flHeaderBg)
         bannerViewPager.setCanLoop(true)
             .setIndicatorSlideMode(IndicatorSlideMode.NORMAL)
             .setPageMargin(resources.getDimensionPixelOffset(R.dimen.dp_10))
@@ -117,7 +118,7 @@ class AnFragment : BaseFragment<AnViewModel>(){
             .setOnPageChangeListener(object : OnPageChangeListenerAdapter(){
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    loadHeaderBg(list[position].url,ivBanner,flHeaderBg)
+//                    loadHeaderBg(list[position].url,ivBanner,flHeaderBg)
                 }
             })
             .create(list)

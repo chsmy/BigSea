@@ -13,7 +13,7 @@ class ImageConfig(builder: Builder) {
 
     var url: String
     var imageview:ImageView
-    var bgView: View
+    var bgView: View? = null
     var placeholder = 0
     var errorPic = 0
     var imageloader:IImageLoader? = null
@@ -42,7 +42,7 @@ class ImageConfig(builder: Builder) {
     object Builder{
          lateinit var url: String
          lateinit var imageView:ImageView
-         lateinit var bgView: View
+         var bgView: View? = null
          var placeholder = 0
          var errorPic = 0
 

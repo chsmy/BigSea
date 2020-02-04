@@ -34,6 +34,7 @@ class AnFragment : BaseFragment<AnViewModel>(){
 
     private val mViewModel:AnViewModel by viewModel()
     private val mAdapter:HomeAdapter by lazy { HomeAdapter(mViewModel.mHomeRecyclerData.value) }
+    private val mWanAdapter:WanAdapter by lazy { WanAdapter() }
     private lateinit var bannerViewPager:BannerViewPager<HomeBanner,NetViewHolder>
     private var bannerHeight:Int = 0
     companion object {
@@ -46,7 +47,7 @@ class AnFragment : BaseFragment<AnViewModel>(){
 
     override fun initView() {
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.adapter = mAdapter
+        recyclerview.adapter = mWanAdapter
         mAdapter.setNewData(ArrayList())
         addBannerView()
         ImmersionBar.with(requireActivity()).transparentStatusBar().init()

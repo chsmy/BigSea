@@ -17,7 +17,7 @@ class HomeData : MultiItemEntity{
     override var itemType: Int
     var title:String = ""
     var opts: ArrayList<HomeOpt>? = null
-
+    var id:Int = 0
     constructor(itemType: Int,title:String){
         this.itemType = itemType
         this.title = title
@@ -25,6 +25,12 @@ class HomeData : MultiItemEntity{
     constructor(itemType: Int,opts:ArrayList<HomeOpt>){
         this.itemType = itemType
         this.opts = opts
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if(other == null) return false
+        val oth =  other as HomeData
+        return oth.id == id && oth.title == title
     }
 
 }

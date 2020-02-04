@@ -44,4 +44,5 @@ dependencies {
     api depLibs.recycleradapter
     api depLibs.banner
     api depLibs.viewpager2
+    api depLibs.paging
 }

@@ -1,18 +1,20 @@
 package com.chs.lib_common_ui
 
 import android.util.SparseArray
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.chs.lib_common_ui.base.BaseViewHolder
 
 /**
  * @author：chs
  * date：2020/2/4
  * des：可以添加header footer 并且可以分页加载的adapter
  */
-abstract class AbsPageListAdapter<T,VH: RecyclerView.ViewHolder>(diffCallback: DiffUtil.ItemCallback<T>) :
+abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUtil.ItemCallback<T>) :
     PagedListAdapter<T, VH>(diffCallback) {
 
     private var BASE_ITEM_HEADER_TYPE = 10000
@@ -22,14 +24,14 @@ abstract class AbsPageListAdapter<T,VH: RecyclerView.ViewHolder>(diffCallback: D
     private val mFooters = SparseArray<View>()
 
 
-    fun addHeader(view:View){
+    fun addHeaderView(view:View){
         if(mHeaders.indexOfValue(view)<0){
             mHeaders.append(BASE_ITEM_HEADER_TYPE++,view)
             notifyDataSetChanged()
         }
     }
 
-    fun addFooter(view:View){
+    fun addFooterView(view:View){
         if(mFooters.indexOfValue(view)<0){
             mFooters.append(BASE_ITEM_FOOTER_TYPE++,view)
         }
@@ -89,30 +91,37 @@ abstract class AbsPageListAdapter<T,VH: RecyclerView.ViewHolder>(diffCallback: D
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        if(mHeaders.indexOfKey(viewType)>0){
+        if(mHeaders.indexOfKey(viewType)>=0){
             val view = mHeaders.get(viewType)
-            return object : RecyclerView.ViewHolder(view){} as VH
+            return object : BaseViewHolder<T>(view){
+                override fun setContent(item: T) {}
+            } as VH
         }
-        if(mFooters.indexOfKey(viewType)>0){
+        if(mFooters.indexOfKey(viewType)>=0){
             val view = mFooters.get(viewType)
-            return object : RecyclerView.ViewHolder(view){} as VH
+            return object : BaseViewHolder<T>(view){
+                override fun setContent(item: T) {}
+            } as VH
         }
-        return onCreateViewHolder2(parent,viewType)
+        val view = LayoutInflater.from(parent.context).inflate(getLayoutId(),parent,false)
+        return createCurrentViewHolder(view,viewType)
     }
 
-    abstract fun onCreateViewHolder2(parent: ViewGroup, viewType: Int): VH
+    abstract fun createCurrentViewHolder(view: View, viewType: Int): VH
+
+    abstract fun getLayoutId(): Int
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         if (isHeaderPosition(position) || isFooterPosition(position)>=0) return
-        //列表中正常的item的位置 需要减去头部的数量
+//        //列表中正常的item的位置 需要减去头部的数量
         var contentPosition = position - mHeaders.size()
-        onBindViewHolder2(holder,contentPosition)
+        getItem(contentPosition)?.let {
+            holder.setContent(it)
+        }
     }
 
-    abstract fun onBindViewHolder2(holder: VH, contentPosition: Int)
-
     override fun registerAdapterDataObserver(observer: RecyclerView.AdapterDataObserver) {
-        super.registerAdapterDataObserver(AdapterDataObserverProxy(observer,mHeaders.size()))
+        super.registerAdapterDataObserver(AdapterDataObserverProxy(observer,this))
     }
 
     override fun onViewAttachedToWindow(holder: VH) {
@@ -135,30 +144,30 @@ abstract class AbsPageListAdapter<T,VH: RecyclerView.ViewHolder>(diffCallback: D
  * 所以只会定位到数据的第一位 不会定位到header的第一位
  * 解决办法 重写registerAdapterDataObserver 传入一个包装好的RecyclerView.AdapterDataObserver，在其内部加上header的数量
  */
-class AdapterDataObserverProxy(private val observer: RecyclerView.AdapterDataObserver,
-                               private val headerSize: Int)
+class AdapterDataObserverProxy<T,VH: BaseViewHolder<T>>(private val observer: RecyclerView.AdapterDataObserver,
+                               private val adapter: AbsPageListAdapter<T,VH>)
     : RecyclerView.AdapterDataObserver(){
     override fun onChanged() {
         observer.onChanged()
     }
 
     override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-        observer.onItemRangeRemoved(positionStart + headerSize,itemCount)
+        observer.onItemRangeRemoved(positionStart + adapter.getHeaderCount(),itemCount)
     }
 
     override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-        observer.onItemRangeMoved(fromPosition + headerSize, toPosition + headerSize, itemCount)
+        observer.onItemRangeMoved(fromPosition +  adapter.getHeaderCount(), toPosition +  adapter.getHeaderCount(), itemCount)
     }
 
     override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-        observer.onItemRangeInserted(positionStart + headerSize, itemCount)
+        observer.onItemRangeInserted(positionStart +  adapter.getHeaderCount(), itemCount)
     }
 
     override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
-        observer.onItemRangeChanged(positionStart + headerSize, itemCount)
+        observer.onItemRangeChanged(positionStart +  adapter.getHeaderCount(), itemCount)
     }
 
     override fun onItemRangeChanged(positionStart: Int, itemCount: Int, payload: Any?) {
-        observer.onItemRangeChanged(positionStart + headerSize, itemCount, payload)
+        observer.onItemRangeChanged(positionStart +  adapter.getHeaderCount(), itemCount, payload)
     }
 }

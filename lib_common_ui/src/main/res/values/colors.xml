@@ -8,4 +8,6 @@
 
     <color name="transparent">#00000000</color>
     <color name="search_gray">#F0F5E5</color>
+    <color name="text_gray">#888888</color>
+    <color name="text_black">#333333</color>
 </resources>

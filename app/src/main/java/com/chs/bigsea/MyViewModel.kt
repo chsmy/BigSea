@@ -30,7 +30,7 @@ class MyViewModel :BaseViewModel(){
 
     fun loadDatas() {
         launch{
-           val resben =  WanRetrofitClient.service.getHomeList()
+           val resben =  WanRetrofitClient.service.getHomeList(0)
             Log.i("resben",resben.toString())
         }
     }

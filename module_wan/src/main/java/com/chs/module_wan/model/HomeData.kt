@@ -12,7 +12,7 @@ data class Data(
     @SerializedName("curPage")
     val curPage: Int = 0,
     @SerializedName("datas")
-    val datas: List<DataX> = listOf(),
+    val datas: List<DataX> = mutableListOf(),
     @SerializedName("offset")
     val offset: Int = 0,
     @SerializedName("over")

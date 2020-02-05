@@ -36,6 +36,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    compileOnly depLibs.appcompact
 //    compileOnly depLibs.ktx
+    api project(':lib_core')
     api depLibs.design
     api depLibs.recyclerview
     api depLibs.constraint

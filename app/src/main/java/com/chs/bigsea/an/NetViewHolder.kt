@@ -10,7 +10,7 @@ import com.zhpan.bannerview.holder.ViewHolder
 /**
  *  @author chs
  *  date: 2020-01-18 15:59
- *  des:
+ *  des:  banner 使用
  */
 class NetViewHolder : ViewHolder<HomeBanner> {
 

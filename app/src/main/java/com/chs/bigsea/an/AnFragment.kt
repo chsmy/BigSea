@@ -1,25 +1,25 @@
 package com.chs.bigsea.an
 
-import android.app.Activity
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.chs.bigsea.R
 import com.chs.lib_core.base.BaseFragment
 import com.chs.lib_core.imageloader.ImageLoader
+import com.chs.module_wan.model.DataX
 import com.gyf.immersionbar.ImmersionBar
 import com.scwang.smartrefresh.layout.api.RefreshHeader
-import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.adapter.OnPageChangeListenerAdapter
@@ -30,10 +30,9 @@ import kotlinx.android.synthetic.main.title_bar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AnFragment : BaseFragment<AnViewModel>(){
+class AnFragment : BaseFragment<WanViewModel>(){
 
-    private val mViewModel:AnViewModel by viewModel()
-    private val mAdapter:HomeAdapter by lazy { HomeAdapter(mViewModel.mHomeRecyclerData.value) }
+    private val mWanViewModel:WanViewModel by lazy {WanViewModel()}
     private val mWanAdapter:WanAdapter by lazy { WanAdapter() }
     private lateinit var bannerViewPager:BannerViewPager<HomeBanner,NetViewHolder>
     private var bannerHeight:Int = 0
@@ -48,10 +47,23 @@ class AnFragment : BaseFragment<AnViewModel>(){
     override fun initView() {
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
         recyclerview.adapter = mWanAdapter
-        mAdapter.setNewData(ArrayList())
         addBannerView()
+        addOptionsView()
         ImmersionBar.with(requireActivity()).transparentStatusBar().init()
         ImmersionBar.setTitleBar(this, toolbar)
+    }
+
+    private fun addOptionsView() {
+        val optRootView = LayoutInflater.from(requireContext()).inflate(R.layout.item_option,recyclerview,false)
+        val optList = ArrayList<HomeOpt>()
+        optList.add(HomeOpt("体系", R.mipmap.home_opt_1,""))
+        optList.add(HomeOpt("导航", R.mipmap.home_opt_2,""))
+        optList.add(HomeOpt("项目", R.mipmap.home_opt_3,""))
+        optList.add(HomeOpt("公众号", R.mipmap.home_opt_4,""))
+        val rvOpt = optRootView.findViewById<RecyclerView>(R.id.rv_opt)
+        rvOpt.layoutManager = GridLayoutManager(context,4)
+        rvOpt.adapter = WanOptAdapter(optList)
+        mWanAdapter.addHeaderView(optRootView)
     }
 
     override fun initListener() {
@@ -105,7 +117,6 @@ class AnFragment : BaseFragment<AnViewModel>(){
         bannerViewPager = bannerView.findViewById(R.id.banner)
         val ivBanner = bannerView.findViewById<ImageView>(R.id.iv_banner)
         val flHeaderBg = bannerView.findViewById<LinearLayout>(R.id.fl_header_bg)
-//        ImmersionBar.setTitleBarMarginTop(this, bannerViewPager)
 
         val list = getList<HomeBanner>()
 //        loadHeaderBg(list[0].url,ivBanner,flHeaderBg)
@@ -124,7 +135,7 @@ class AnFragment : BaseFragment<AnViewModel>(){
             })
             .create(list)
         bannerViewPager.startLoop()
-        mAdapter.addHeaderView(bannerView)
+        mWanAdapter.addHeaderView(bannerView)
         val bannerParams = bannerViewPager.layoutParams
         val titleBarParams = toolbar.layoutParams
         bannerHeight =
@@ -162,10 +173,10 @@ class AnFragment : BaseFragment<AnViewModel>(){
     }
 
     override fun initData() {
-        mViewModel.getBannerData()
-        mViewModel.getHomeListData()
-        mViewModel.mHomeRecyclerData.observe(this, Observer {
-            mAdapter.addData(it)
+        mWanViewModel.pageData.observe(this,object : Observer<PagedList<DataX>> {
+            override fun onChanged(t: PagedList<DataX>) {
+                mWanAdapter.submitList(t)
+            }
         })
     }
 }

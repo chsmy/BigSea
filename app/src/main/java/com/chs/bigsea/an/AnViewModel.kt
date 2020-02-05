@@ -33,7 +33,7 @@ class AnViewModel : BaseViewModel() {
     }
     fun getHomeListData(){
            launch {
-               val homeList = WanRetrofitClient.service.getHomeList()
+               val homeList = WanRetrofitClient.service.getHomeList(0)
                mHomeList.value = homeList.data.datas
                val homeData  = mutableListOf<HomeData>()
                homeList.data.datas.forEach{

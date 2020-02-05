@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.chs.bigsea.R
 import com.chs.lib_common_ui.AbsPageListAdapter
-import kotlinx.android.extensions.LayoutContainer
+import com.chs.lib_common_ui.base.BaseViewHolder
+import com.chs.module_wan.model.DataX
 import kotlinx.android.synthetic.main.item_home_list.*
 
 /**
@@ -15,36 +15,30 @@ import kotlinx.android.synthetic.main.item_home_list.*
  * date：2020/2/4
  * des：
  */
-class WanAdapter : AbsPageListAdapter<HomeData,WanViewHolder>{
+class WanAdapter : AbsPageListAdapter<DataX,WanViewHolder>{
 
-    constructor():super(object : DiffUtil.ItemCallback<HomeData>(){
-        override fun areItemsTheSame(oldItem: HomeData, newItem: HomeData): Boolean {
+    constructor():super(object : DiffUtil.ItemCallback<DataX>(){
+        override fun areItemsTheSame(oldItem: DataX, newItem: DataX): Boolean {
             return oldItem.id == newItem.id
          }
-
-        override fun areContentsTheSame(oldItem: HomeData, newItem: HomeData): Boolean {
+        override fun areContentsTheSame(oldItem: DataX, newItem: DataX): Boolean {
             return oldItem == newItem
         }
-
     })
 
-    override fun onCreateViewHolder2(parent: ViewGroup, viewType: Int): WanViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_home_list,parent,false)
+    override fun createCurrentViewHolder(view: View, viewType: Int): WanViewHolder {
         return WanViewHolder(view)
     }
 
-    override fun onBindViewHolder2(holder: WanViewHolder, contentPosition: Int) {
-        getItem(holder.adapterPosition)?.let { holder.setContent(it) }
-    }
+    override fun getLayoutId(): Int = R.layout.item_home_list
 
 }
 
-class WanViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) , LayoutContainer {
-    override val containerView: View?
-        get() = itemView
-
-    fun setContent(data:HomeData){
-        tv_item.text = data.title
+class WanViewHolder(itemView: View) : BaseViewHolder<DataX>(itemView){
+    override fun setContent(item: DataX) {
+        tv_share_user.text = item.shareUser
+        tv_publish_time.text = item.niceShareDate
+        tv_title.text = item.title
+        tv_classify.text = String.format("%1s / %2s",item.superChapterName,item.chapterName)
     }
-
 }

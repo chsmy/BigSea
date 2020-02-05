@@ -4,6 +4,7 @@ import com.chs.lib_core.http.WanBaseResponse
 import com.chs.module_wan.model.Banner
 import com.chs.module_wan.model.Data
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 /**
  *  @author chs
@@ -19,7 +20,7 @@ interface WanService{
     @GET("banner/json")
     suspend fun getBanner():WanBaseResponse<List<Banner>>
 
-    @GET("article/list/1/json")
-    suspend fun getHomeList() : WanBaseResponse<Data>
+    @GET("article/list/{page}/json")
+    suspend fun getHomeList(@Path("page")page:Int) : WanBaseResponse<Data>
 
 }

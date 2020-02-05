@@ -10,7 +10,7 @@ import kotlinx.coroutines.*
  *  date: 2020-01-03 17:55
  *  des:
  */
-open class BaseViewModel : ViewModel(){
+abstract class BaseViewModel : ViewModel(){
 
     val mException: SingleLiveEvent<Throwable> = SingleLiveEvent()
 
@@ -26,7 +26,7 @@ open class BaseViewModel : ViewModel(){
     }
 
 
-    fun launch(block: suspend CoroutineScope.() -> Unit){
+     fun launch(block: suspend CoroutineScope.() -> Unit){
           launchOnUI{
               handleException(
                   withContext(Dispatchers.IO){block},

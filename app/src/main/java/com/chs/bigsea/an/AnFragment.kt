@@ -12,9 +12,8 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.chs.bigsea.R
+import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_core.base.BaseFragment
 import com.chs.lib_core.imageloader.ImageLoader
 import com.chs.module_wan.model.DataX
@@ -27,9 +26,8 @@ import com.zhpan.bannerview.constants.IndicatorSlideMode
 import com.zhpan.bannerview.constants.PageStyle
 import kotlinx.android.synthetic.main.fragment_wan.*
 import kotlinx.android.synthetic.main.title_bar.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
+@FragmentDestination(pageUrl = "main/tabs/home", asStarter = true)
 class AnFragment : BaseFragment<WanViewModel>(){
 
     private val mWanViewModel:WanViewModel by lazy {WanViewModel()}

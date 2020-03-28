@@ -49,6 +49,9 @@ dependencies {
     api depLibs.immersionbar_ktx
     api depLibs.immersionbar_components
 
+    api depLibs.navigation
+    api depLibs.navigation_ui
+
     testImplementation depLibs.junit
     androidTestImplementation depLibs.junit_ext
     androidTestImplementation depLibs.espresso

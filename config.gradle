@@ -45,7 +45,9 @@ ext{
             recycleradapter        :"com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.0-beta11",
             banner                 :"com.github.zhpanvip:BannerViewPager:2.6.5",
             viewpager2             :"androidx.viewpager2:viewpager2:1.0.0",
-            paging                 :"androidx.paging:paging-runtime:2.1.0"
+            paging                 :"androidx.paging:paging-runtime:2.1.0",
+            navigation             :"androidx.navigation:navigation-fragment:2.2.1",
+            navigation_ui          :"androidx.navigation:navigation-ui:2.2.1",
 
     ]
 }

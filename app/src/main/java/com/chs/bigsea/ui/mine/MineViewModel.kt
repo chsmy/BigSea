@@ -1,4 +1,4 @@
-package com.chs.bigsea.mine
+package com.chs.bigsea.ui.mine
 
 import androidx.lifecycle.ViewModel
 

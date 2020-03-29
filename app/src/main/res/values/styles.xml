@@ -10,4 +10,10 @@
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
+    <style name="splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/loading</item>
+    </style>
+
 </resources>

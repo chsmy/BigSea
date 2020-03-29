@@ -1,4 +1,4 @@
-package com.chs.bigsea.mine
+package com.chs.bigsea.ui.mine
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.chs.bigsea.R
+import com.chs.lib_annotation.FragmentDestination
 
-
+@FragmentDestination(pageUrl = "main/tabs/MineFragment")
 class MineFragment : Fragment() {
 
     companion object {

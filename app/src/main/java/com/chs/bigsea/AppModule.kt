@@ -1,7 +1,5 @@
 package com.chs.bigsea
 
-import com.chs.bigsea.an.AnViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 /**
@@ -11,7 +9,7 @@ import org.koin.dsl.module
  */
 
 val appViewModel = module {
-    viewModel { AnViewModel() }
+//    viewModel {  }
 }
 
 

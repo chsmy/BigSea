@@ -70,7 +70,6 @@ public class NavProcessor extends AbstractProcessor {
             try {
                 //filer.createResource方法用来生成源文件
                 //StandardLocation.CLASS_OUTPUT java文件生成class文件的位置，/build/intermediates/javac/debug/classes/目录下
-                //StandardLocation.SOURCE_OUTPUT：java文件的位置，一般在/app/build/generated/source/apt/目录下
                 FileObject resource = filer.createResource(StandardLocation.SOURCE_OUTPUT, "", OUTPUT_FILE_NAME);
                 String resourcePath = resource.toUri().getPath();
                 messager.printMessage(Diagnostic.Kind.NOTE,"resourcePath:"+resourcePath);

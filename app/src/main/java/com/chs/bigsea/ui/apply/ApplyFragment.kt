@@ -1,19 +1,20 @@
-package com.chs.bigsea.gan
+package com.chs.bigsea.ui.apply
 
 import com.bumptech.glide.Glide
 import com.chs.bigsea.R
+import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_core.base.BaseFragment
 import com.chs.lib_core.imageloader.ImageLoader
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.fragment_gan.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+@FragmentDestination(pageUrl = "main/tabs/ApplyFragment")
+class ApplyFragment : BaseFragment<ApplyViewModel>() {
 
-class GanFragment : BaseFragment<GanViewModel>() {
-
-    private val mViewModel:GanViewModel by viewModel()
+    private val mViewModel:ApplyViewModel by viewModel()
 
     companion object {
-        fun newInstance() = GanFragment()
+        fun newInstance() = ApplyFragment()
     }
 
     override fun layoutId(): Int = R.layout.fragment_gan

@@ -1,0 +1,35 @@
+{
+  "activeColor": "#333333",
+  "inActiveColor": "#666666",
+  "selectTab": 0,
+  "tabs": [
+    {
+      "size": 24,
+      "enable": true,
+      "index": 0,
+      "pageUrl": "main/tabs/HomeFragment",
+      "title": "首页"
+    },
+    {
+      "size": 24,
+      "enable": true,
+      "index": 1,
+      "pageUrl": "main/tabs/ApplyFragment",
+      "title": "应用"
+    },
+    {
+      "size": 24,
+      "enable": true,
+      "index": 2,
+      "pageUrl": "main/tabs/FindFragment",
+      "title": "发现"
+    },
+    {
+      "size": 24,
+      "enable": true,
+      "index": 3,
+      "pageUrl": "main/tabs/MineFragment",
+      "title": "我的"
+    }
+  ]
+}

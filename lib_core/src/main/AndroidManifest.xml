@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chs.lib_core" />
+    package="com.chs.lib_core" >
+
+    <application>
+        <activity android:name="com.chs.lib_common_ui.webview.BrowserActivity" />
+    </application>
+</manifest>

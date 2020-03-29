@@ -1,4 +1,4 @@
-package com.chs.bigsea.third
+package com.chs.bigsea.ui.find
 
 import androidx.lifecycle.ViewModel
 

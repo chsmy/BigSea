@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_80"
         android:scaleType="centerCrop"
-        android:src="@mipmap/home_header_bg"
+        android:src="@drawable/home_header_bg"
         />
     <com.zhpan.bannerview.BannerViewPager
         android:id="@+id/banner"

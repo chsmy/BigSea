@@ -1,8 +1,6 @@
-package com.chs.bigsea.an
+package com.chs.bigsea.ui.home
 
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.chs.bigsea.R
 import com.chs.lib_common_ui.AbsPageListAdapter

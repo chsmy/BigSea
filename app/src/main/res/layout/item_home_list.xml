@@ -58,7 +58,7 @@
         android:padding="@dimen/dp_5"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        android:background="@mipmap/icon_collect"
+        android:background="@drawable/icon_collect"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

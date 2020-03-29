@@ -1,35 +1,28 @@
 package com.chs.bigsea
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LifecycleObserver
-import androidx.viewpager2.widget.ViewPager2
-import com.chs.bigsea.an.AdapterFragmentPager
+import androidx.navigation.Navigation
+import com.chs.lib_core.base.BaseActivity
+import com.chs.lib_core.navigation.NavGraphBuilder
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), LifecycleObserver {
+class MainActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.activity_main
+
+    override fun initView() {
         ImmersionBar.with(this).transparentStatusBar().init()
-        vp_fragment.adapter =  AdapterFragmentPager(this)
-        vp_fragment.offscreenPageLimit = 3
-        vp_fragment.isUserInputEnabled = false
-        vp_fragment.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-//                rg_tab?.check(getCheckedId(position))
-            }
-        })
-        bottomNavigationView.setOnBottomClickListener {
-            when (it) {
-               0 -> vp_fragment.setCurrentItem(it, false)
-                1 -> vp_fragment.setCurrentItem(it, false)
-               2 -> vp_fragment.setCurrentItem(it, false)
-                3 -> vp_fragment.setCurrentItem(it, false)
-            }
-        }
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        NavGraphBuilder.build(navController,this,R.id.nav_host_fragment)
+        nav_view.setNavController(navController)
+    }
+
+    override fun initListener() {
+    }
+
+    override fun initData() {
     }
 }

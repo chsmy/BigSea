@@ -44,6 +44,8 @@ dependencies {
     api depLibs.koin_androidx_viewmodel
     api depLibs.koin_androidx_scope
     api depLibs.koin_android
+    api depLibs.utils
+    api depLibs.webview
     //沉浸栏
     api depLibs.immersionbar
     api depLibs.immersionbar_ktx

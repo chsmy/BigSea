@@ -48,6 +48,8 @@ ext{
             paging                 :"androidx.paging:paging-runtime:2.1.0",
             navigation             :"androidx.navigation:navigation-fragment:2.2.1",
             navigation_ui          :"androidx.navigation:navigation-ui:2.2.1",
+            utils                  :"com.blankj:utilcodex:1.26.0",
+            webview                :"com.tencent.sonic:sdk:3.1.0"
 
     ]
 }

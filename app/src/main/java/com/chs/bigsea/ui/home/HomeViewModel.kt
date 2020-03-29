@@ -1,9 +1,12 @@
-package com.chs.bigsea.an
+package com.chs.bigsea.ui.home
 
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.chs.lib_common_ui.base.BaseListViewModel
 import com.chs.module_wan.api.WanRetrofitClient
+import com.chs.module_wan.model.Banner
 import com.chs.module_wan.model.DataX
 
 /**
@@ -13,8 +16,18 @@ import com.chs.module_wan.model.DataX
  */
 class WanViewModel : BaseListViewModel<DataX>(){
 
+    val mBanner: MutableLiveData<List<Banner>> = MutableLiveData()
+
     override fun createDataSource(): DataSource<Int, DataX> {
           return WanDataSource(this)
+    }
+
+    fun getBannerData(){
+        launch {
+            val banner = WanRetrofitClient.service.getBanner()
+            mBanner.value = banner.data
+            Log.i("banner",mBanner.value.toString())
+        }
     }
 }
 

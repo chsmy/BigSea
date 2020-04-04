@@ -1,4 +1,4 @@
-package com.chs.module_wan;
+package com.chs.module_wan.ui;
 
 /**
  * @author chs

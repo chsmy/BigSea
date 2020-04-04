@@ -1,7 +1,5 @@
 package com.chs.bigsea
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.Navigation
 import com.chs.lib_core.base.BaseActivity
@@ -12,6 +10,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity() {
 
     override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.activity_main
+
+    override fun setContentView(layoutResID: Int) {
+        //由于 启动时style中设置了 windowBackground属性，所以要在进入主页后,把窗口背景清理掉
+        setTheme(R.style.AppTheme)
+        super.setContentView(layoutResID)
+    }
 
     override fun initView() {
         ImmersionBar.with(this).transparentStatusBar().init()

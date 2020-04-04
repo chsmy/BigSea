@@ -23,6 +23,7 @@ import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedOptions;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -40,10 +41,11 @@ import javax.tools.StandardLocation;
 @AutoService(Processor.class)
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedAnnotationTypes({"com.chs.lib_annotation.ActivityDestination","com.chs.lib_annotation.FragmentDestination"})
+@SupportedOptions("moduleName")
 public class NavProcessor extends AbstractProcessor {
-    private static final String OUTPUT_FILE_NAME = "destination.json";
     private Messager messager;
     private Filer filer;
+    private String outFileName;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -52,6 +54,9 @@ public class NavProcessor extends AbstractProcessor {
         messager = processingEnv.getMessager();
         //文件处理工具
         filer = processingEnv.getFiler();
+        //获取gradle中配置的内容作为生成文件的名字
+        outFileName = processingEnv.getOptions().get("moduleName") + "_nav.json";
+        messager.printMessage(Diagnostic.Kind.NOTE,"moduleName:"+outFileName);
     }
 
     @Override
@@ -70,7 +75,7 @@ public class NavProcessor extends AbstractProcessor {
             try {
                 //filer.createResource方法用来生成源文件
                 //StandardLocation.CLASS_OUTPUT java文件生成class文件的位置，/build/intermediates/javac/debug/classes/目录下
-                FileObject resource = filer.createResource(StandardLocation.SOURCE_OUTPUT, "", OUTPUT_FILE_NAME);
+                FileObject resource = filer.createResource(StandardLocation.CLASS_OUTPUT, "", outFileName);
                 String resourcePath = resource.toUri().getPath();
                 messager.printMessage(Diagnostic.Kind.NOTE,"resourcePath:"+resourcePath);
 
@@ -81,7 +86,7 @@ public class NavProcessor extends AbstractProcessor {
                 if(!assetDir.exists()){
                     assetDir.mkdir();
                 }
-                File assetFile = new File(assetDir,OUTPUT_FILE_NAME);
+                File assetFile = new File(assetDir,outFileName);
                 if(assetFile.exists()){
                     assetFile.delete();
                 }

@@ -1,7 +1,7 @@
 package com.chs.module_wan.api
 
 import com.chs.lib_core.http.WanBaseResponse
-import com.chs.module_wan.model.Banner
+import com.chs.lib_common_ui.model.Banner
 import com.chs.module_wan.model.Data
 import retrofit2.http.GET
 import retrofit2.http.Path

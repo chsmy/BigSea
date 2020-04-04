@@ -1,4 +1,4 @@
-package com.chs.bigsea.ui.home
+package com.chs.module_wan.ui.home
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.chs.lib_common_ui.base.BaseListViewModel
 import com.chs.module_wan.api.WanRetrofitClient
-import com.chs.module_wan.model.Banner
+import com.chs.lib_common_ui.model.Banner
 import com.chs.module_wan.model.DataX
 
 /**

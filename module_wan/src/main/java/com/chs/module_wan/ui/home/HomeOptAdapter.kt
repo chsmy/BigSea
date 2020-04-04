@@ -1,12 +1,11 @@
-package com.chs.bigsea.ui.home
+package com.chs.module_wan.ui.home
 
 import android.view.View
-import com.chs.bigsea.R
-import com.chs.bigsea.model.HomeOpt
 import com.chs.lib_common_ui.base.BaseAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
+import com.chs.module_wan.R
+import com.chs.module_wan.model.HomeOpt
 import kotlinx.android.synthetic.main.item_opt_sub.*
-
 /**
  * @author：chs
  * date：2020/2/5

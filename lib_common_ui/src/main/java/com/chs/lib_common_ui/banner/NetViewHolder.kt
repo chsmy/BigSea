@@ -1,10 +1,10 @@
-package com.chs.bigsea.ui
+package com.chs.lib_common_ui.banner
 
 import android.view.View
 import android.widget.ImageView
-import com.chs.bigsea.R
+import com.chs.lib_common_ui.R
+import com.chs.lib_common_ui.model.Banner
 import com.chs.lib_core.imageloader.ImageLoader
-import com.chs.module_wan.model.Banner
 import com.zhpan.bannerview.holder.ViewHolder
 
 

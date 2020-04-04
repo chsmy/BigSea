@@ -21,7 +21,7 @@
             android:layout_marginBottom="2dp"
             android:layout_marginStart="@dimen/dp_10"
             android:layout_gravity="center_vertical"
-            android:src="@mipmap/scan" />
+            android:src="@drawable/scan" />
 
         <EditText
             android:layout_width="0dp"
@@ -34,13 +34,11 @@
             android:background="@drawable/shape_search"
             android:cursorVisible="false"
             android:drawablePadding="@dimen/dp_10"
-            android:drawableStart="@mipmap/search"
-            android:hint="搜一搜"
+            android:drawableStart="@drawable/search"
+            android:hint="@string/ui_search"
             android:padding="@dimen/dp_10"
             android:textColor="@color/search_gray"
             android:textColorHint="@color/search_gray"
             android:textSize="12sp" />
-
-
     </LinearLayout>
 </androidx.appcompat.widget.Toolbar>

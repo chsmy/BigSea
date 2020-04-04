@@ -29,7 +29,10 @@ android {
     }
 
 }
-
+//adapter中使用kotlinx.android.extensions
+androidExtensions {
+    experimental = true
+}
 dependencies {
     def depLibs = rootProject.deplibs
     implementation fileTree(dir: 'libs', include: ['*.jar'])

@@ -1,10 +1,10 @@
-package com.chs.bigsea.ui.home
+package com.chs.module_wan.ui.home
 
 import android.view.View
 import androidx.recyclerview.widget.DiffUtil
-import com.chs.bigsea.R
 import com.chs.lib_common_ui.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
+import com.chs.module_wan.R
 import com.chs.module_wan.model.DataX
 import kotlinx.android.synthetic.main.item_home_list.*
 

@@ -1,4 +1,4 @@
-package com.chs.bigsea.ui.home
+package com.chs.module_wan.ui.home
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.BarUtils
-import com.chs.bigsea.R
-import com.chs.bigsea.model.HomeOpt
-import com.chs.bigsea.ui.NetViewHolder
 import com.chs.lib_annotation.FragmentDestination
+import com.chs.lib_common_ui.banner.NetViewHolder
 import com.chs.lib_core.base.BaseFragment
 import com.chs.lib_common_ui.webview.BrowserActivity
-import com.chs.module_wan.model.Banner
+import com.chs.module_wan.R
+import com.chs.lib_common_ui.model.Banner
 import com.chs.module_wan.model.DataX
+import com.chs.module_wan.model.HomeOpt
 import com.gyf.immersionbar.ImmersionBar
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener

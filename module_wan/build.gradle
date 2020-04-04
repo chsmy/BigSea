@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion rootProject.android.compileSdkVersion
     buildToolsVersion rootProject.android.buildToolsVersion
@@ -15,8 +16,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -28,10 +33,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+//adapter中使用kotlinx.android.extensions
+androidExtensions {
+    experimental = true
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':lib_common_ui')
+
     implementation project(path: ':lib_annotation')
     kapt project(path: ':lib_compiler')
 }

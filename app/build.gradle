@@ -18,6 +18,11 @@ android {
         vectorDrawables.generatedDensities('xhdpi','xxhdpi')
         // 使用support-v7兼容5.0以上
         vectorDrawables.useSupportLibrary = true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -30,6 +35,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+//adapter中使用kotlinx.android.extensions
 androidExtensions {
     experimental = true
 }

@@ -1,4 +1,4 @@
-package com.chs.bigsea.model
+package com.chs.module_wan.model
 
 /**
  *  @author chs

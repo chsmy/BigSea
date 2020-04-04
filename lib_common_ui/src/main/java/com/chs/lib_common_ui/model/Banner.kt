@@ -1,4 +1,4 @@
-package com.chs.module_wan.model
+package com.chs.lib_common_ui.model
 import com.google.gson.annotations.SerializedName
 
 

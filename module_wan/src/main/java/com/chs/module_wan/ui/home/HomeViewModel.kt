@@ -14,7 +14,7 @@ import com.chs.module_wan.model.DataX
  * date：2020/2/5
  * des：
  */
-class WanViewModel : BaseListViewModel<DataX>(){
+class HomeViewModel : BaseListViewModel<DataX>(){
 
     val mBanner: MutableLiveData<List<Banner>> = MutableLiveData()
 

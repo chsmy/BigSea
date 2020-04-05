@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.gyf.immersionbar.components.SimpleImmersionOwner
 
 /**
@@ -58,4 +61,15 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionOwn
     abstract fun initData()
 
     open fun initListener(){}
+
+    open fun <T : ViewModel?> getViewModel(clazz: Class<T>): T {
+        return ViewModelProvider(this).get(clazz)
+    }
+
+    open fun <T : ViewModel?> getViewModel(
+        owner: ViewModelStoreOwner?,
+        clazz: Class<T>
+    ): T {
+        return ViewModelProvider(owner!!).get(clazz)
+    }
 }

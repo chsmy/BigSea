@@ -1,7 +1,11 @@
 package com.chs.lib_core.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 
 /**
  * author：chs
@@ -17,6 +21,7 @@ abstract class BaseActivity : AppCompatActivity() {
         initListener()
         initData()
     }
+
     /**
      * 返回一个用于显示界面的布局id
      *
@@ -39,4 +44,21 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     abstract fun initData()
 
+    /**
+     * @param view 标题栏左侧按钮点击事件
+     */
+    open fun goBack(view: View) {
+        onBackPressed()
+    }
+
+    open fun <T : ViewModel?> getViewModel(clazz: Class<T>): T {
+        return ViewModelProvider(this).get(clazz)
+    }
+
+    open fun <T : ViewModel?> getViewModel(
+        owner: ViewModelStoreOwner?,
+        clazz: Class<T>
+    ): T {
+        return ViewModelProvider(owner!!).get(clazz)
+    }
 }

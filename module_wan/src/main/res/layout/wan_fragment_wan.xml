@@ -23,5 +23,5 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"/>
    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-   <include layout="@layout/title_bar"/>
+   <include layout="@layout/wan_title_bar"/>
 </FrameLayout>

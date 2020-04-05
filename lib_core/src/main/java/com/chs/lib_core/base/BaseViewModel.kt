@@ -52,6 +52,7 @@ abstract class BaseViewModel : ViewModel(){
                     block()
                 }catch (e:Exception){
                     mException.value = e
+                    e.printStackTrace()
                     cacheBlock()
                 }finally {
                   complete()

@@ -49,4 +49,5 @@ dependencies {
     api depLibs.banner
     api depLibs.viewpager2
     api depLibs.paging
+    api depLibs.flexbox
 }

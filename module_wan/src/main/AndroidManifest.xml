@@ -1,2 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chs.module_wan" />
+    package="com.chs.module_wan" >
+
+    <application>
+        <activity android:name=".ui.system.SystemActivity" />
+        <activity android:name=".ui.navigation.NavActivity" />
+        <activity android:name=".ui.account.AccountActivity" />
+        <activity android:name=".ui.project.ProjectActivity" />
+    </application>
+</manifest>

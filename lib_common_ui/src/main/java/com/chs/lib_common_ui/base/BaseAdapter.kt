@@ -10,11 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
  * date：2020/2/5
  * des：
  */
-abstract class BaseAdapter<T>(private var data:List<T>) : RecyclerView.Adapter<BaseViewHolder<T>>(){
+abstract class BaseAdapter<T>(var data:List<T>) : RecyclerView.Adapter<BaseViewHolder<T>>(){
+
+    var onItemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<T> {
         val view = LayoutInflater.from(parent.context).inflate(getLayoutId(),parent,false)
-        return createCurrentViewHolder(view,viewType)
+        val createCurrentViewHolder = createCurrentViewHolder(view, viewType)
+        view.setOnClickListener {
+            onItemClickListener?.onItemClick(view,createCurrentViewHolder.adapterPosition)
+        }
+        return createCurrentViewHolder
     }
 
     abstract fun getLayoutId(): Int
@@ -29,8 +35,8 @@ abstract class BaseAdapter<T>(private var data:List<T>) : RecyclerView.Adapter<B
         holder.setContent(data[position])
     }
 
-    fun getData():List<T>{
-        return data
+    fun setDataAndRefresh(data:List<T>){
+        this.data = data
+        notifyDataSetChanged()
     }
-
 }

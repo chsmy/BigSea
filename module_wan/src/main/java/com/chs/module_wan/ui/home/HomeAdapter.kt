@@ -2,18 +2,19 @@ package com.chs.module_wan.ui.home
 
 import android.view.View
 import androidx.recyclerview.widget.DiffUtil
-import com.chs.lib_common_ui.AbsPageListAdapter
+import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.module_wan.R
 import com.chs.module_wan.model.DataX
-import kotlinx.android.synthetic.main.item_home_list.*
+import kotlinx.android.synthetic.main.wan_item_home_list.*
 
 /**
  * @author：chs
  * date：2020/2/4
  * des：
  */
-class WanAdapter : AbsPageListAdapter<DataX,WanViewHolder>{
+class WanAdapter :
+    AbsPageListAdapter<DataX, WanViewHolder> {
 
     constructor():super(object : DiffUtil.ItemCallback<DataX>(){
         override fun areItemsTheSame(oldItem: DataX, newItem: DataX): Boolean {
@@ -28,7 +29,7 @@ class WanAdapter : AbsPageListAdapter<DataX,WanViewHolder>{
         return WanViewHolder(view)
     }
 
-    override fun getLayoutId(): Int = R.layout.item_home_list
+    override fun getLayoutId(): Int = R.layout.wan_item_home_list
 
 }
 

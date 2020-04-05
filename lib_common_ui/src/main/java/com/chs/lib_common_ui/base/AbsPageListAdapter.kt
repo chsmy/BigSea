@@ -1,4 +1,4 @@
-package com.chs.lib_common_ui
+package com.chs.lib_common_ui.base
 
 import android.util.SparseArray
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.chs.lib_common_ui.base.BaseViewHolder
 
 /**
  * @author：chs
@@ -17,6 +16,7 @@ import com.chs.lib_common_ui.base.BaseViewHolder
 abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUtil.ItemCallback<T>) :
     PagedListAdapter<T, VH>(diffCallback) {
 
+    var onItemClickListener: OnItemClickListener? = null
     private var BASE_ITEM_HEADER_TYPE = 10000
     private var BASE_ITEM_FOOTER_TYPE = 20000
 
@@ -104,7 +104,11 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
             } as VH
         }
         val view = LayoutInflater.from(parent.context).inflate(getLayoutId(),parent,false)
-        return createCurrentViewHolder(view,viewType)
+        val createCurrentViewHolder = createCurrentViewHolder(view, viewType)
+        view.setOnClickListener {
+            onItemClickListener?.onItemClick(view,createCurrentViewHolder.adapterPosition)
+        }
+        return createCurrentViewHolder
     }
 
     abstract fun createCurrentViewHolder(view: View, viewType: Int): VH
@@ -121,7 +125,12 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
     }
 
     override fun registerAdapterDataObserver(observer: RecyclerView.AdapterDataObserver) {
-        super.registerAdapterDataObserver(AdapterDataObserverProxy(observer,this))
+        super.registerAdapterDataObserver(
+            AdapterDataObserverProxy(
+                observer,
+                this
+            )
+        )
     }
 
     override fun onViewAttachedToWindow(holder: VH) {
@@ -145,7 +154,8 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
  * 解决办法 重写registerAdapterDataObserver 传入一个包装好的RecyclerView.AdapterDataObserver，在其内部加上header的数量
  */
 class AdapterDataObserverProxy<T,VH: BaseViewHolder<T>>(private val observer: RecyclerView.AdapterDataObserver,
-                               private val adapter: AbsPageListAdapter<T,VH>)
+                               private val adapter: AbsPageListAdapter<T, VH>
+)
     : RecyclerView.AdapterDataObserver(){
     override fun onChanged() {
         observer.onChanged()

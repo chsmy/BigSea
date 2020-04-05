@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_5"
+    android:background="@drawable/bg_flex_round_f5f5f5"
+    android:paddingStart="15dp"
+    android:paddingTop="@dimen/dp_5"
+    android:paddingEnd="@dimen/dp_15"
+    android:paddingBottom="@dimen/dp_5"
+    android:textColor="@color/text_gray"
+    android:textSize="@dimen/sp_13"
+    tools:text="flex标签" />

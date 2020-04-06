@@ -1,7 +1,10 @@
 package com.chs.module_wan.ui.navigation
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.chs.lib_core.base.BaseActivity
+import com.chs.module_wan.R
 
 /**
  * author：chs
@@ -9,19 +12,22 @@ import com.chs.lib_core.base.BaseActivity
  * des： 导航
  */
 class NavActivity : BaseActivity() {
-    override fun getContentView(savedInstanceState: Bundle?): Int {
-        TODO("Not yet implemented")
+
+    companion object{
+        fun start(content: Context){
+            val intent = Intent(content, NavActivity::class.java)
+            content.startActivity(intent)
+        }
     }
 
+    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_navigation
+
     override fun initView() {
-        TODO("Not yet implemented")
     }
 
     override fun initListener() {
-        TODO("Not yet implemented")
     }
 
     override fun initData() {
-        TODO("Not yet implemented")
     }
 }

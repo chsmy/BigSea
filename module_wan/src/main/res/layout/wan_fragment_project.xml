@@ -12,7 +12,7 @@
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_100"
-            android:background="@drawable/home_loading_header_bg" />
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"

@@ -2,10 +2,7 @@ package com.chs.module_wan.api
 
 import com.chs.lib_core.http.WanBaseResponse
 import com.chs.lib_common_ui.model.Banner
-import com.chs.module_wan.model.Data
-import com.chs.module_wan.model.ProjectData
-import com.chs.module_wan.model.ProjectListData
-import com.chs.module_wan.model.SystemData
+import com.chs.module_wan.model.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -40,5 +37,14 @@ interface WanService{
     @GET("/project/list/{page}/json")
     suspend fun getProjectListData(@Path("page")page:Int,@Query("cid")id:Int):
             WanBaseResponse<ProjectListData>
+
+    //公众号名字
+    @GET("wxarticle/chapters/json")
+    suspend fun getAccountNameData():WanBaseResponse<List<AccountNameData>>
+
+    //公众号列表
+    @GET("wxarticle/list/{id}/{page}/json")
+    suspend fun getAccountListData(@Path("id")id:Int,@Path("page")page:Int):
+            WanBaseResponse<AccountData>
 
 }

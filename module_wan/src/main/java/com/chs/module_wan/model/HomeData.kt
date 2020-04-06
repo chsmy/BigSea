@@ -85,14 +85,3 @@ data class DataX(
     @SerializedName("zan")
     val zan: Int = 0
 )
-
-data class Data1(
-    val children: List<Any>,
-    val courseId: Int,
-    val id: Int,
-    val name: String,
-    val order: Int,
-    val parentChapterId: Int,
-    val userControlSetTop: Boolean,
-    val visible: Int
-)

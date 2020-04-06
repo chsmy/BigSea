@@ -50,4 +50,6 @@ dependencies {
     api depLibs.viewpager2
     api depLibs.paging
     api depLibs.flexbox
+    api depLibs.rouneImageView
+    api depLibs.verticallayout
 }

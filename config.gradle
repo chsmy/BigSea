@@ -50,7 +50,9 @@ ext{
             navigation_ui          :"androidx.navigation:navigation-ui:2.2.1",
             utils                  :"com.blankj:utilcodex:1.26.0",
             webview                :"com.tencent.sonic:sdk:3.1.0",
-            flexbox                :"com.google.android:flexbox:2.0.1"
+            flexbox                :"com.google.android:flexbox:2.0.1",
+            rouneImageView         :"com.makeramen:roundedimageview:2.3.0",
+            verticallayout         :"q.rorbin:VerticalTabLayout:1.2.5"
 
     ]
 }

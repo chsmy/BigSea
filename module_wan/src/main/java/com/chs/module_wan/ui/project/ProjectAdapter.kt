@@ -4,11 +4,9 @@ import android.view.View
 import androidx.recyclerview.widget.DiffUtil
 import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
+import com.chs.lib_core.imageloader.ImageLoader
 import com.chs.module_wan.R
-import com.chs.module_wan.model.DataX
-import com.chs.module_wan.model.ProjectData
 import com.chs.module_wan.model.ProjectListItemData
-import kotlinx.android.synthetic.main.wan_item_home_list.*
 import kotlinx.android.synthetic.main.wan_item_project.*
 
 /**
@@ -37,5 +35,10 @@ class ProjectAdapter() :
 class ProjectHolder(itemView: View) : BaseViewHolder<ProjectListItemData>(itemView) {
     override fun setContent(item: ProjectListItemData) {
         tv_name.text = item.author
+        tv_title.text = item.title
+        tv_publish_time.text = item.niceShareDate
+        ImageLoader.url(item.envelopePic).into(iv_img)
+        tv_content.text = item.desc
+        tv_kind.text = item.superChapterName
     }
 }

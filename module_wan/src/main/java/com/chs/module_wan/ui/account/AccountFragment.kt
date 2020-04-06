@@ -1,4 +1,4 @@
-package com.chs.module_wan.ui.project
+package com.chs.module_wan.ui.account
 
 import android.os.Bundle
 import android.view.View
@@ -9,27 +9,27 @@ import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.webview.BrowserActivity
 import com.chs.lib_core.base.BaseFragment
 import com.chs.module_wan.R
-import com.chs.module_wan.model.DataX
+import com.chs.module_wan.model.AccountListData
 import com.chs.module_wan.model.ProjectListItemData
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
 
 /**
  * author：chs
- * date：2020/4/5
- * des： 项目
+ * date：2020/4/6
+ * des：
  */
-class ProjectFragment : BaseFragment<ProjectViewModel>(){
+class AccountFragment : BaseFragment<AccountViewModel>(){
 
-    private val mAdapter : ProjectAdapter by lazy { ProjectAdapter() }
-    private val mViewModel:ProjectViewModel by lazy { getViewModel(ProjectViewModel::class.java) }
-    private val projectId:Int by lazy { getIdFromArguments() }
+    private val mAdapter : AccountAdapter by lazy { AccountAdapter() }
+    private val mViewModel:AccountViewModel by lazy { getViewModel(AccountViewModel::class.java) }
+    private val accountId:Int by lazy { getIdFromArguments() }
 
     companion object{
         private const val PARAMETER_ID = "parameter_id"
-        fun newInstance(id:Int):ProjectFragment{
-             val bundle = Bundle()
+        fun newInstance(id:Int):AccountFragment{
+            val bundle = Bundle()
             bundle.putInt(PARAMETER_ID,id)
-            val projectFragment = ProjectFragment()
+            val projectFragment = AccountFragment()
             projectFragment.arguments = bundle
             return projectFragment
         }
@@ -48,7 +48,7 @@ class ProjectFragment : BaseFragment<ProjectViewModel>(){
 
     override fun initListener() {
         super.initListener()
-        mAdapter.onItemClickListener = object : OnItemClickListener{
+        mAdapter.onItemClickListener = object : OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
                 BrowserActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
             }
@@ -59,9 +59,9 @@ class ProjectFragment : BaseFragment<ProjectViewModel>(){
     }
 
     override fun initData() {
-        mViewModel.projectId = projectId
+        mViewModel.accountId = accountId
         mViewModel.pageData.observe(this,
-            Observer<PagedList<ProjectListItemData>> { t ->
+            Observer<PagedList<AccountListData>> { t ->
                 refreshview.finishRefresh()
                 mAdapter.submitList(t)
             })

@@ -20,6 +20,8 @@ import com.chs.module_wan.R
 import com.chs.lib_common_ui.model.Banner
 import com.chs.module_wan.model.DataX
 import com.chs.module_wan.model.HomeOpt
+import com.chs.module_wan.ui.account.AccountActivity
+import com.chs.module_wan.ui.navigation.NavActivity
 import com.chs.module_wan.ui.project.ProjectActivity
 import com.chs.module_wan.ui.system.SystemActivity
 import com.gyf.immersionbar.ImmersionBar
@@ -70,7 +72,9 @@ class HomeFragment : BaseFragment<HomeViewModel>(){
             override fun onItemClick(view: View, position: Int) {
                 when(position){
                     0 -> SystemActivity.start(requireContext())
-                    1 -> ProjectActivity.start(requireContext())
+                    1 -> NavActivity.start(requireContext())
+                    2 -> ProjectActivity.start(requireContext())
+                    3 -> AccountActivity.start(requireContext())
                 }
 
             }
@@ -81,7 +85,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(){
     override fun initListener() {
         super.initListener()
         refreshview.setOnRefreshListener {
-             refreshview.finishRefresh()
+             mHomeViewModel.dataSource?.invalidate()
         }
         refreshview.setOnMultiPurposeListener(object : SimpleMultiPurposeListener(){
             override fun onHeaderMoving(
@@ -169,6 +173,8 @@ class HomeFragment : BaseFragment<HomeViewModel>(){
 
     override fun initData() {
         mHomeViewModel.pageData.observe(this,
-            Observer<PagedList<DataX>> { t -> mAdapter.submitList(t) })
+            Observer<PagedList<DataX>> { t ->
+                refreshview.finishRefresh()
+                mAdapter.submitList(t) })
     }
 }

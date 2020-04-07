@@ -9,8 +9,7 @@ import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.webview.BrowserActivity
 import com.chs.lib_core.base.BaseFragment
 import com.chs.module_wan.R
-import com.chs.module_wan.model.DataX
-import com.chs.module_wan.model.ProjectListItemData
+import com.chs.module_wan.model.Article
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
 
 /**
@@ -61,7 +60,7 @@ class ProjectFragment : BaseFragment<ProjectViewModel>(){
     override fun initData() {
         mViewModel.projectId = projectId
         mViewModel.pageData.observe(this,
-            Observer<PagedList<ProjectListItemData>> { t ->
+            Observer<PagedList<Article>> { t ->
                 refreshview.finishRefresh()
                 mAdapter.submitList(t)
             })

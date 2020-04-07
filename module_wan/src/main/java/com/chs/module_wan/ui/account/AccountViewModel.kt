@@ -5,16 +5,17 @@ import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.chs.lib_common_ui.base.BaseListViewModel
 import com.chs.module_wan.api.WanRetrofitClient
-import com.chs.module_wan.model.*
+import com.chs.module_wan.model.AccountNameEntity
+import com.chs.module_wan.model.Article
 
 /**
  * author：chs
  * date：2020/4/6
  * des：
  */
-class AccountViewModel : BaseListViewModel<AccountListData>(){
+class AccountViewModel : BaseListViewModel<Article>(){
     var accountId:Int = 0
-    val mAccountName: MutableLiveData<List<AccountNameData>> = MutableLiveData<List<AccountNameData>>()
+    val mAccountName: MutableLiveData<List<AccountNameEntity>> = MutableLiveData<List<AccountNameEntity>>()
 
     fun getAccountNameData(){
         launch {
@@ -23,27 +24,27 @@ class AccountViewModel : BaseListViewModel<AccountListData>(){
         }
     }
 
-    override fun createDataSource(): DataSource<Int, AccountListData> {
+    override fun createDataSource(): DataSource<Int, Article> {
         return AccountDataSource(this,accountId)
     }
 }
 
-class AccountDataSource(private val viewModel:BaseListViewModel<AccountListData>,
-                        private val accountId:Int) : PageKeyedDataSource<Int, AccountListData>(){
+class AccountDataSource(private val viewModel:BaseListViewModel<Article>,
+                        private val accountId:Int) : PageKeyedDataSource<Int, Article>(){
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, AccountListData>) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Article>) {
         getProjectData(0,callback,null)
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, AccountListData>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
         getProjectData(params.key+1,null,callback)
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, AccountListData>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
     }
 
-    private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, AccountListData>?,
-                               callback: LoadCallback<Int, AccountListData>?){
+    private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
+                               callback: LoadCallback<Int, Article>?){
         viewModel.launch {
             val accountData =
                 WanRetrofitClient.service.getAccountListData(accountId,page)

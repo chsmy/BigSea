@@ -6,9 +6,9 @@ package com.chs.module_wan.model
  * des：
  */
 
-data class ProjectListData(
+data class ArticleEntity(
     val curPage: Int,
-    val datas: List<ProjectListItemData> = mutableListOf(),
+    val datas: List<Article> = mutableListOf(),
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,
@@ -16,7 +16,7 @@ data class ProjectListData(
     val total: Int
 )
 
-data class ProjectListItemData(
+data class Article(
     val apkLink: String,
     val audit: Int,
     val author: String,

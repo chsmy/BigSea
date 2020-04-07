@@ -14,14 +14,14 @@ import com.blankj.utilcode.util.BarUtils
 import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.banner.NetViewHolder
 import com.chs.lib_common_ui.base.OnItemClickListener
-import com.chs.lib_core.base.BaseFragment
-import com.chs.lib_common_ui.webview.BrowserActivity
-import com.chs.module_wan.R
 import com.chs.lib_common_ui.model.Banner
-import com.chs.module_wan.model.DataX
+import com.chs.lib_common_ui.webview.BrowserActivity
+import com.chs.lib_core.base.BaseFragment
+import com.chs.module_wan.R
+import com.chs.module_wan.model.Article
 import com.chs.module_wan.model.HomeOpt
 import com.chs.module_wan.ui.account.AccountActivity
-import com.chs.module_wan.ui.navigation.NavActivity
+import com.chs.module_wan.ui.navigation.NavigationActivity
 import com.chs.module_wan.ui.project.ProjectActivity
 import com.chs.module_wan.ui.system.SystemActivity
 import com.gyf.immersionbar.ImmersionBar
@@ -72,7 +72,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(){
             override fun onItemClick(view: View, position: Int) {
                 when(position){
                     0 -> SystemActivity.start(requireContext())
-                    1 -> NavActivity.start(requireContext())
+                    1 -> NavigationActivity.start(requireContext())
                     2 -> ProjectActivity.start(requireContext())
                     3 -> AccountActivity.start(requireContext())
                 }
@@ -173,7 +173,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(){
 
     override fun initData() {
         mHomeViewModel.pageData.observe(this,
-            Observer<PagedList<DataX>> { t ->
+            Observer<PagedList<Article>> { t ->
                 refreshview.finishRefresh()
                 mAdapter.submitList(t) })
     }

@@ -37,7 +37,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 初始化监听器的代码写在这个方法中
      */
-    abstract fun initListener()
+    open fun initListener(){}
 
     /**
      * 初始数据的代码写在这个方法中，用于从服务器获取数据

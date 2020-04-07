@@ -5,20 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.chs.lib_common_ui.base.BaseListViewModel
-import com.chs.module_wan.api.WanRetrofitClient
 import com.chs.lib_common_ui.model.Banner
-import com.chs.module_wan.model.DataX
+import com.chs.module_wan.api.WanRetrofitClient
+import com.chs.module_wan.model.Article
 
 /**
  * @author：chs
  * date：2020/2/5
  * des：
  */
-class HomeViewModel : BaseListViewModel<DataX>(){
+class HomeViewModel : BaseListViewModel<Article>(){
 
     val mBanner: MutableLiveData<List<Banner>> = MutableLiveData()
 
-    override fun createDataSource(): DataSource<Int, DataX> {
+    override fun createDataSource(): DataSource<Int, Article> {
           return WanDataSource(this)
     }
 
@@ -31,21 +31,21 @@ class HomeViewModel : BaseListViewModel<DataX>(){
     }
 }
 
-class WanDataSource(private val viewModel:BaseListViewModel<DataX>) : PageKeyedDataSource<Int,DataX>(){
+class WanDataSource(private val viewModel:BaseListViewModel<Article>) : PageKeyedDataSource<Int,Article>(){
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, DataX>) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Article>) {
         getHomeListData(0,callback,null)
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, DataX>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
         getHomeListData(params.key+1,null,callback)
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, DataX>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
      }
 
-    private fun getHomeListData(page:Int, iniCallback: LoadInitialCallback<Int, DataX>?,
-                                callback: LoadCallback<Int, DataX>?){
+    private fun getHomeListData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
+                                callback: LoadCallback<Int, Article>?){
         viewModel.launch {
             val homeList = WanRetrofitClient.service.getHomeList(page)
 

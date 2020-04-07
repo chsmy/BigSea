@@ -2,11 +2,11 @@ package com.chs.module_wan.model
 
 /**
  * author：chs
- * date：2020/4/6
+ * date：2020/4/5
  * des：
  */
-data class AccountNameData(
-    val children: List<Any>,
+data class ProjectEntity(
+    val children: List<ProjectEntity>,
     val courseId: Int,
     val id: Int,
     val name: String,

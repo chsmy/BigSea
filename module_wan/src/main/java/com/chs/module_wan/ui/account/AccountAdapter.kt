@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.module_wan.R
-import com.chs.module_wan.model.AccountListData
+import com.chs.module_wan.model.Article
 import kotlinx.android.synthetic.main.wan_item_account.*
 
 /**
@@ -13,12 +13,12 @@ import kotlinx.android.synthetic.main.wan_item_account.*
  * date：2020/4/6
  * des：
  */
-class AccountAdapter : AbsPageListAdapter<AccountListData,AccountHolder>(object : DiffUtil.ItemCallback<AccountListData>() {
-    override fun areItemsTheSame(oldItem: AccountListData, newItem: AccountListData): Boolean {
+class AccountAdapter : AbsPageListAdapter<Article,AccountHolder>(object : DiffUtil.ItemCallback<Article>() {
+    override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: AccountListData, newItem: AccountListData): Boolean {
+    override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
         return oldItem == newItem
     }
 }) {
@@ -30,8 +30,8 @@ class AccountAdapter : AbsPageListAdapter<AccountListData,AccountHolder>(object 
     }
 
 }
-class AccountHolder(itemView: View) : BaseViewHolder<AccountListData>(itemView) {
-    override fun setContent(item: AccountListData) {
+class AccountHolder(itemView: View) : BaseViewHolder<Article>(itemView) {
+    override fun setContent(item: Article) {
         tv_name.text = item.author
         tv_title.text = item.title
         tv_publish_time.text = item.niceShareDate

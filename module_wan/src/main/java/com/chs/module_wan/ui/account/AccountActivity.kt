@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chs.lib_core.base.BaseActivity
 import com.chs.module_wan.R
-import com.chs.module_wan.model.AccountNameData
+import com.chs.module_wan.model.AccountNameEntity
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.wan_activity_project.*
 
@@ -47,7 +47,7 @@ class AccountActivity : BaseActivity() {
         mViewModel.getAccountNameData()
     }
 
-    private fun setViewPagerAdapter(list: List<AccountNameData>) {
+    private fun setViewPagerAdapter(list: List<AccountNameEntity>) {
         viewpager.adapter = object : FragmentStateAdapter(this){
             override fun getItemCount(): Int {
                 return list.size

@@ -3,7 +3,7 @@
 
     <application>
         <activity android:name=".ui.system.SystemActivity" />
-        <activity android:name=".ui.navigation.NavActivity" />
+        <activity android:name=".ui.navigation.NavigationActivity" />
         <activity android:name=".ui.account.AccountActivity" />
         <activity android:name=".ui.project.ProjectActivity" />
     </application>

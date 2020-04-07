@@ -9,8 +9,7 @@ import com.chs.lib_core.http.RetrofitClient
  */
 object WanRetrofitClient : RetrofitClient(){
 
-    val service by lazy { getService(
-        com.chs.module_wan.api.WanService::class.java,
-        com.chs.module_wan.api.WanService.WAN_BASE_URL) }
-
+    val service by lazy {
+        getService(WanService::class.java, WanService.WAN_BASE_URL)
+    }
 }

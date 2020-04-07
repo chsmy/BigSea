@@ -6,7 +6,7 @@ import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.lib_core.imageloader.ImageLoader
 import com.chs.module_wan.R
-import com.chs.module_wan.model.ProjectListItemData
+import com.chs.module_wan.model.Article
 import kotlinx.android.synthetic.main.wan_item_project.*
 
 /**
@@ -15,12 +15,12 @@ import kotlinx.android.synthetic.main.wan_item_project.*
  * des：
  */
 class ProjectAdapter() :
-    AbsPageListAdapter<ProjectListItemData, ProjectHolder>(object : DiffUtil.ItemCallback<ProjectListItemData>() {
-        override fun areItemsTheSame(oldItem: ProjectListItemData, newItem: ProjectListItemData): Boolean {
+    AbsPageListAdapter<Article, ProjectHolder>(object : DiffUtil.ItemCallback<Article>() {
+        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: ProjectListItemData, newItem: ProjectListItemData): Boolean {
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem
         }
     }) {
@@ -32,8 +32,8 @@ class ProjectAdapter() :
     }
 }
 
-class ProjectHolder(itemView: View) : BaseViewHolder<ProjectListItemData>(itemView) {
-    override fun setContent(item: ProjectListItemData) {
+class ProjectHolder(itemView: View) : BaseViewHolder<Article>(itemView) {
+    override fun setContent(item: Article) {
         tv_name.text = item.author
         tv_title.text = item.title
         tv_publish_time.text = item.niceShareDate

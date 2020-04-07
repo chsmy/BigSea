@@ -11,8 +11,8 @@
         android:id="@+id/tab_layout"
         android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:background="#EDEDED"
-        app:indicator_color="#FFFFFF"
+        android:background="@color/color_ededed"
+        app:indicator_color="@color/white"
         app:indicator_gravity="fill"
         app:tab_height="56dp"
         app:tab_mode="scrollable" />

@@ -40,7 +40,7 @@ class SystemActivity:BaseActivity() {
     }
 
     override fun initData() {
-        mSystemViewModel.mSystemData.observe(this, Observer {
+        mSystemViewModel.mSystemEntity.observe(this, Observer {
             mAdapter.setDataAndRefresh(it)
         })
         mSystemViewModel.getSystemData()

@@ -1,10 +1,9 @@
 package com.chs.module_wan.ui.system
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.chs.lib_core.base.BaseViewModel
 import com.chs.module_wan.api.WanRetrofitClient
-import com.chs.module_wan.model.SystemData
+import com.chs.module_wan.model.SystemEntity
 
 /**
  * author：chs
@@ -13,12 +12,12 @@ import com.chs.module_wan.model.SystemData
  */
 class SystemViewModel : BaseViewModel() {
 
-    val mSystemData:MutableLiveData<List<SystemData>> = MutableLiveData<List<SystemData>>()
+    val mSystemEntity:MutableLiveData<List<SystemEntity>> = MutableLiveData<List<SystemEntity>>()
 
     fun getSystemData(){
         launch {
            val systemRes = WanRetrofitClient.service.getSystemData()
-            mSystemData.value = systemRes.data
+            mSystemEntity.value = systemRes.data
         }
     }
 

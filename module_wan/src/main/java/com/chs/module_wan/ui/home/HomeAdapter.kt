@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.module_wan.R
-import com.chs.module_wan.model.DataX
+import com.chs.module_wan.model.Article
 import kotlinx.android.synthetic.main.wan_item_home_list.*
 
 /**
@@ -14,13 +14,13 @@ import kotlinx.android.synthetic.main.wan_item_home_list.*
  * des：
  */
 class WanAdapter :
-    AbsPageListAdapter<DataX, WanViewHolder> {
+    AbsPageListAdapter<Article, WanViewHolder> {
 
-    constructor():super(object : DiffUtil.ItemCallback<DataX>(){
-        override fun areItemsTheSame(oldItem: DataX, newItem: DataX): Boolean {
+    constructor():super(object : DiffUtil.ItemCallback<Article>(){
+        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.id == newItem.id
          }
-        override fun areContentsTheSame(oldItem: DataX, newItem: DataX): Boolean {
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem
         }
     })
@@ -33,8 +33,8 @@ class WanAdapter :
 
 }
 
-class WanViewHolder(itemView: View) : BaseViewHolder<DataX>(itemView){
-    override fun setContent(item: DataX) {
+class WanViewHolder(itemView: View) : BaseViewHolder<Article>(itemView){
+    override fun setContent(item: Article) {
         tv_share_user.text = item.shareUser
         tv_publish_time.text = item.niceShareDate
         tv_title.text = item.title

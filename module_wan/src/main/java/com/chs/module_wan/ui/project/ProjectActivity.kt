@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chs.lib_core.base.BaseActivity
 import com.chs.module_wan.R
-import com.chs.module_wan.model.ProjectData
+import com.chs.module_wan.model.ProjectEntity
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.wan_activity_project.*
 
@@ -44,7 +44,7 @@ class ProjectActivity : BaseActivity() {
         mViewModel.getProjectKindData()
     }
 
-    private fun setViewPagerAdapter(list: List<ProjectData>) {
+    private fun setViewPagerAdapter(list: List<ProjectEntity>) {
         viewpager.adapter = object : FragmentStateAdapter(this){
             override fun getItemCount(): Int {
                 return list.size

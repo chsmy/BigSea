@@ -4,21 +4,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.chs.lib_common_ui.base.BaseListViewModel
-import com.chs.lib_core.base.BaseViewModel
 import com.chs.module_wan.api.WanRetrofitClient
-import com.chs.module_wan.model.DataX
-import com.chs.module_wan.model.ProjectData
-import com.chs.module_wan.model.ProjectListData
-import com.chs.module_wan.model.ProjectListItemData
+import com.chs.module_wan.model.Article
+import com.chs.module_wan.model.ProjectEntity
 
 /**
  * author：chs
  * date：2020/4/5
  * des：
  */
-class ProjectViewModel : BaseListViewModel<ProjectListItemData>() {
+class ProjectViewModel : BaseListViewModel<Article>() {
     var projectId:Int = 0
-    val mProjectKinds:MutableLiveData<List<ProjectData>> = MutableLiveData()
+    val mProjectKinds:MutableLiveData<List<ProjectEntity>> = MutableLiveData()
 
     fun getProjectKindData(){
         launch {
@@ -27,28 +24,28 @@ class ProjectViewModel : BaseListViewModel<ProjectListItemData>() {
         }
     }
 
-    override fun createDataSource(): DataSource<Int, ProjectListItemData> {
+    override fun createDataSource(): DataSource<Int, Article> {
         return ProjectDataSource(this,projectId)
     }
 
 }
 
-class ProjectDataSource(private val viewModel:BaseListViewModel<ProjectListItemData>,
-                        private val projectId:Int) : PageKeyedDataSource<Int, ProjectListItemData>(){
+class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
+                        private val projectId:Int) : PageKeyedDataSource<Int, Article>(){
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, ProjectListItemData>) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Article>) {
         getProjectData(0,callback,null)
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, ProjectListItemData>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
         getProjectData(params.key+1,null,callback)
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, ProjectListItemData>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
     }
 
-    private fun getProjectData(page:Int,iniCallback: LoadInitialCallback<Int, ProjectListItemData>?,
-                               callback: LoadCallback<Int, ProjectListItemData>?){
+    private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
+                               callback: LoadCallback<Int, Article>?){
         viewModel.launch {
             val projectData =
                 WanRetrofitClient.service.getProjectListData(page,projectId)

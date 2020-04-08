@@ -16,7 +16,7 @@ import com.chs.lib_common_ui.banner.NetViewHolder
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.model.Banner
 import com.chs.lib_common_ui.webview.BrowserActivity
-import com.chs.lib_core.base.BaseFragment
+import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import com.chs.module_wan.model.HomeOpt
@@ -172,6 +172,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(){
     }
 
     override fun initData() {
+//        mHomeViewModel.setLoadingViewWrap(refreshview)
         mHomeViewModel.pageData.observe(this,
             Observer<PagedList<Article>> { t ->
                 refreshview.finishRefresh()

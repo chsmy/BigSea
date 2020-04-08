@@ -1,4 +1,4 @@
-package com.chs.lib_core.base
+package com.chs.lib_common_ui.base
 
 import android.os.Bundle
 import android.view.View

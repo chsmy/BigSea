@@ -6,11 +6,13 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.chs.lib_core.base.BaseActivity
+import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.module_wan.R
 import com.chs.module_wan.model.AccountNameEntity
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.wan_activity_project.*
+import kotlinx.android.synthetic.main.wan_activity_system.*
+import kotlinx.android.synthetic.main.wan_include_page_title.*
 
 /**
  * author：chs
@@ -32,6 +34,7 @@ class AccountActivity : BaseActivity() {
     override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_project
 
     override fun initView() {
+        tv_title_name.text = "公众号"
     }
 
     override fun initListener() {

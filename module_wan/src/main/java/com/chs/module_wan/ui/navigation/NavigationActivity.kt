@@ -7,9 +7,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.chs.lib_core.base.BaseActivity
+import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.module_wan.R
 import kotlinx.android.synthetic.main.wan_activity_navigation.*
+import kotlinx.android.synthetic.main.wan_include_page_title.*
 import q.rorbin.verticaltablayout.VerticalTabLayout
 import q.rorbin.verticaltablayout.widget.ITabView
 import q.rorbin.verticaltablayout.widget.QTabView
@@ -37,6 +38,7 @@ class NavigationActivity : BaseActivity() {
     override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_navigation
 
     override fun initView() {
+        tv_title_name.text = "导航"
         recycler_view.layoutManager = mLayoutManager
     }
 

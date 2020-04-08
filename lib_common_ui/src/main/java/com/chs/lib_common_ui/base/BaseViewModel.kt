@@ -1,8 +1,12 @@
-package com.chs.lib_core.base
+package com.chs.lib_common_ui.base
 
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chs.lib_core.event.SingleLiveEvent
+import com.chs.lib_common_ui.loading.LoadingCallback
+import com.kingja.loadsir.core.LoadService
+import com.kingja.loadsir.core.LoadSir
 import kotlinx.coroutines.*
 
 /**
@@ -11,7 +15,7 @@ import kotlinx.coroutines.*
  *  des:
  */
 abstract class BaseViewModel : ViewModel(){
-
+    var mLoadService: LoadService<Any>? = null
     val mException: SingleLiveEvent<Throwable> = SingleLiveEvent()
 
     /**
@@ -27,6 +31,7 @@ abstract class BaseViewModel : ViewModel(){
 
 
      fun launch(block: suspend CoroutineScope.() -> Unit){
+         mLoadService?.showCallback(LoadingCallback::class.java)
           launchOnUI{
               handleException(
                   withContext(Dispatchers.IO){block},
@@ -58,6 +63,12 @@ abstract class BaseViewModel : ViewModel(){
                   complete()
                 }
           }
+    }
+
+    fun setLoadingViewWrap(view: View){
+        mLoadService =  LoadSir.getDefault().register(view) {
+//            onNetReload(it)
+        }
     }
 
 }

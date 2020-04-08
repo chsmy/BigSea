@@ -9,6 +9,7 @@
     <include layout="@layout/wan_include_page_title"/>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlEnablePureScrollMode="true">

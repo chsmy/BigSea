@@ -7,6 +7,7 @@ import com.chs.lib_common_ui.base.BaseListViewModel
 import com.chs.module_wan.api.WanRetrofitClient
 import com.chs.module_wan.model.Article
 import com.chs.module_wan.model.ProjectEntity
+import com.kingja.loadsir.core.LoadService
 
 /**
  * author：chs
@@ -25,13 +26,13 @@ class ProjectViewModel : BaseListViewModel<Article>() {
     }
 
     override fun createDataSource(): DataSource<Int, Article> {
-        return ProjectDataSource(this,projectId)
+        return ProjectDataSource(this,projectId,mLoadService)
     }
 
 }
 
 class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
-                        private val projectId:Int) : PageKeyedDataSource<Int, Article>(){
+                        private val projectId:Int,private val loadService: LoadService<Any>?) : PageKeyedDataSource<Int, Article>(){
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Article>) {
         getProjectData(0,callback,null)
@@ -54,6 +55,7 @@ class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
             }else{
                 callback?.onResult(projectData.data.datas,page)
             }
+            loadService?.showSuccess()
         }
     }
 }

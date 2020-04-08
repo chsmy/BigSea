@@ -7,7 +7,7 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.webview.BrowserActivity
-import com.chs.lib_core.base.BaseFragment
+import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
@@ -58,6 +58,7 @@ class ProjectFragment : BaseFragment<ProjectViewModel>(){
     }
 
     override fun initData() {
+        mViewModel.setLoadingViewWrap(refreshview)
         mViewModel.projectId = projectId
         mViewModel.pageData.observe(this,
             Observer<PagedList<Article>> { t ->

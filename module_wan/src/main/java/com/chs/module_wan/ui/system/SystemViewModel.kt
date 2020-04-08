@@ -1,7 +1,7 @@
 package com.chs.module_wan.ui.system
 
 import androidx.lifecycle.MutableLiveData
-import com.chs.lib_core.base.BaseViewModel
+import com.chs.lib_common_ui.base.BaseViewModel
 import com.chs.module_wan.api.WanRetrofitClient
 import com.chs.module_wan.model.SystemEntity
 
@@ -18,6 +18,7 @@ class SystemViewModel : BaseViewModel() {
         launch {
            val systemRes = WanRetrofitClient.service.getSystemData()
             mSystemEntity.value = systemRes.data
+            mLoadService?.showSuccess()
         }
     }
 

@@ -2,7 +2,7 @@ package com.chs.bigsea
 
 import android.os.Bundle
 import androidx.navigation.Navigation
-import com.chs.lib_core.base.BaseActivity
+import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.navigation.NavGraphBuilder
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.activity_main.*

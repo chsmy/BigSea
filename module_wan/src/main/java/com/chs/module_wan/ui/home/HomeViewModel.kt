@@ -8,6 +8,7 @@ import com.chs.lib_common_ui.base.BaseListViewModel
 import com.chs.lib_common_ui.model.Banner
 import com.chs.module_wan.api.WanRetrofitClient
 import com.chs.module_wan.model.Article
+import com.kingja.loadsir.core.LoadService
 
 /**
  * @author：chs
@@ -19,7 +20,7 @@ class HomeViewModel : BaseListViewModel<Article>(){
     val mBanner: MutableLiveData<List<Banner>> = MutableLiveData()
 
     override fun createDataSource(): DataSource<Int, Article> {
-          return WanDataSource(this)
+          return WanDataSource(this,mLoadService)
     }
 
     fun getBannerData(){
@@ -31,7 +32,8 @@ class HomeViewModel : BaseListViewModel<Article>(){
     }
 }
 
-class WanDataSource(private val viewModel:BaseListViewModel<Article>) : PageKeyedDataSource<Int,Article>(){
+class WanDataSource(private val viewModel:BaseListViewModel<Article>, private val loadService: LoadService<Any>?)
+    : PageKeyedDataSource<Int,Article>(){
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Article>) {
         getHomeListData(0,callback,null)
@@ -54,6 +56,7 @@ class WanDataSource(private val viewModel:BaseListViewModel<Article>) : PageKeye
             }else{
                 callback?.onResult(homeList.data.datas,page)
             }
+            loadService?.showSuccess()
         }
     }
 

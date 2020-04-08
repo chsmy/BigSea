@@ -1,4 +1,4 @@
-package com.chs.lib_core.base
+package com.chs.lib_common_ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.gyf.immersionbar.components.SimpleImmersionOwner
-import com.kingja.loadsir.callback.Callback
-import com.kingja.loadsir.core.LoadService
-import com.kingja.loadsir.core.LoadSir
 
 /**
  *  @author chs
@@ -22,45 +19,32 @@ import com.kingja.loadsir.core.LoadSir
 abstract class BaseFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionOwner {
 
     private var hasLoaded = false
-//    val mLoadService: LoadService<Any> by lazy { setLoadingViewWrap() }
-    var loadView: View? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return  inflater.inflate(layoutId(), container, false)
+        return inflater.inflate(layoutId(), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setLoadingViewWrap()
         initView()
         initData()
         initListener()
-    }
-
-    private fun setLoadingViewWrap() : LoadService<Any>? {
-        return if(loadView!=null){
-            LoadSir.getDefault().register(loadView, Callback.OnReloadListener {
-                onNetReload(it)
-            })
-        }else{
-            null
-        }
     }
 
     protected open fun onNetReload(v: View?) {}
 
     override fun onResume() {
         super.onResume()
-        if(!hasLoaded){
+        if (!hasLoaded) {
             onVisible()
         }
     }
 
-    private fun onVisible(){
-        if(lifecycle.currentState == Lifecycle.State.STARTED){
+    private fun onVisible() {
+        if (lifecycle.currentState == Lifecycle.State.STARTED) {
             lazyLoad()
             hasLoaded = true
         }
@@ -71,13 +55,13 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionOwn
      */
     open fun lazyLoad() {}
 
-    abstract fun layoutId():Int
+    abstract fun layoutId(): Int
 
     abstract fun initView()
 
     abstract fun initData()
 
-    open fun initListener(){}
+    open fun initListener() {}
 
     open fun <T : ViewModel?> getViewModel(clazz: Class<T>): T {
         return ViewModelProvider(this).get(clazz)

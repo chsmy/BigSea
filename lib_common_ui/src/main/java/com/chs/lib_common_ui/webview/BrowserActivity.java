@@ -14,7 +14,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.chs.lib_common_ui.R;
-import com.chs.lib_core.base.BaseActivity;
+import com.chs.lib_common_ui.base.BaseActivity;
 import com.gyf.immersionbar.ImmersionBar;
 import com.tencent.sonic.sdk.SonicCacheInterceptor;
 import com.tencent.sonic.sdk.SonicConfig;

@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.gyf.immersionbar.components.SimpleImmersionOwner
+import com.kingja.loadsir.callback.Callback
+import com.kingja.loadsir.core.LoadService
+import com.kingja.loadsir.core.LoadSir
 
 /**
  *  @author chs
@@ -19,7 +22,8 @@ import com.gyf.immersionbar.components.SimpleImmersionOwner
 abstract class BaseFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionOwner {
 
     private var hasLoaded = false
-
+//    val mLoadService: LoadService<Any> by lazy { setLoadingViewWrap() }
+    var loadView: View? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,10 +34,23 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionOwn
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setLoadingViewWrap()
         initView()
         initData()
         initListener()
     }
+
+    private fun setLoadingViewWrap() : LoadService<Any>? {
+        return if(loadView!=null){
+            LoadSir.getDefault().register(loadView, Callback.OnReloadListener {
+                onNetReload(it)
+            })
+        }else{
+            null
+        }
+    }
+
+    protected open fun onNetReload(v: View?) {}
 
     override fun onResume() {
         super.onResume()

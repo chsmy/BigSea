@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">lib_common_ui</string>
     <string name="ui_search">搜一搜</string>
+    <string name="now_has_no_data">暂无数据,点击可刷新</string>
+    <string name="now_has_data_error">数据出错,点击可刷新</string>
+    <string name="now_request_timeout">请求超时,点击可刷新</string>
 </resources>

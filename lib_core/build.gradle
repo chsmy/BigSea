@@ -54,6 +54,8 @@ dependencies {
     api depLibs.navigation
     api depLibs.navigation_ui
 
+    api depLibs.loadsir
+
     testImplementation depLibs.junit
     androidTestImplementation depLibs.junit_ext
     androidTestImplementation depLibs.espresso

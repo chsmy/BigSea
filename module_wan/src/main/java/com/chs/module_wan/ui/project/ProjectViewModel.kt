@@ -55,7 +55,6 @@ class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
             }else{
                 callback?.onResult(projectData.data.datas,page)
             }
-            loadService?.showSuccess()
         }
     }
 }

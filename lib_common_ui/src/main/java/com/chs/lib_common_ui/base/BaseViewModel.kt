@@ -3,8 +3,8 @@ package com.chs.lib_common_ui.base
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.chs.lib_core.event.SingleLiveEvent
 import com.chs.lib_common_ui.loading.LoadingCallback
+import com.chs.lib_core.event.SingleLiveEvent
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import kotlinx.coroutines.*
@@ -41,15 +41,16 @@ abstract class BaseViewModel : ViewModel(){
           }
     }
 
+
     /**
      * 统一处理异常
      * @param block 请求体
-     * @param cacheBlock 异常
+     * @param exceptionBlock 异常
      * @param complete 请求完成
      */
     private suspend fun handleException(
         block: suspend CoroutineScope.() -> Unit,
-        cacheBlock:suspend CoroutineScope.()->Unit,
+        exceptionBlock: suspend CoroutineScope.() -> Unit,
         complete:suspend CoroutineScope.()->Unit
     ){
           coroutineScope {
@@ -58,17 +59,20 @@ abstract class BaseViewModel : ViewModel(){
                 }catch (e:Exception){
                     mException.value = e
                     e.printStackTrace()
-                    cacheBlock()
+                    exceptionBlock()
                 }finally {
-                  complete()
+                    complete()
+                    mLoadService?.showSuccess()
                 }
           }
     }
 
     fun setLoadingViewWrap(view: View){
         mLoadService =  LoadSir.getDefault().register(view) {
-//            onNetReload(it)
+            onNetReload(it)
         }
     }
+
+    private fun onNetReload(it: View?) {}
 
 }

@@ -1,34 +1,23 @@
 package com.chs.bigsea.ui.mine
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.core.content.ContextCompat
 import com.chs.bigsea.R
 import com.chs.lib_annotation.FragmentDestination
+import com.chs.lib_common_ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 @FragmentDestination(pageUrl = "main/tabs/MineFragment")
-class MineFragment : Fragment() {
+class MineFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = MineFragment()
+    override fun layoutId(): Int = R.layout.fragment_mine
+
+    override fun initView() {
+
+        iv_head.background = ContextCompat.getDrawable(requireContext(),R.drawable.icon_head)
+
     }
 
-    private lateinit var viewModel: MineViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_mine, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MineViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun initData() {
     }
 
 }

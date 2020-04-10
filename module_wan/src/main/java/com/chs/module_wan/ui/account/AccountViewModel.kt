@@ -54,7 +54,6 @@ class AccountDataSource(private val viewModel:BaseListViewModel<Article>,
             }else{
                 callback?.onResult(accountData.data.datas,page)
             }
-            loadService?.showSuccess()
         }
     }
 }

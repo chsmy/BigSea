@@ -18,7 +18,6 @@ class SystemViewModel : BaseViewModel() {
         launch {
            val systemRes = WanRetrofitClient.service.getSystemData()
             mSystemEntity.value = systemRes.data
-            mLoadService?.showSuccess()
         }
     }
 

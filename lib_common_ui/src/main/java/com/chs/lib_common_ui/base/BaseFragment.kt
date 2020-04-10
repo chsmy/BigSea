@@ -9,21 +9,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
-import com.gyf.immersionbar.components.SimpleImmersionOwner
 
 /**
  *  @author chs
  *  date: 2020-01-04 16:38
  *  des:
  */
-abstract class BaseFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionOwner {
+abstract class BaseFragment : Fragment(){
 
     private var hasLoaded = false
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(layoutId(), container, false)
     }
 
@@ -67,10 +63,7 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionOwn
         return ViewModelProvider(this).get(clazz)
     }
 
-    open fun <T : ViewModel?> getViewModel(
-        owner: ViewModelStoreOwner?,
-        clazz: Class<T>
-    ): T {
+    open fun <T : ViewModel?> getViewModel(owner: ViewModelStoreOwner?, clazz: Class<T>): T {
         return ViewModelProvider(owner!!).get(clazz)
     }
 }

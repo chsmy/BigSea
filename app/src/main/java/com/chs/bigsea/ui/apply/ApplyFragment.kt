@@ -9,7 +9,7 @@ import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.fragment_gan.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 @FragmentDestination(pageUrl = "main/tabs/ApplyFragment")
-class ApplyFragment : BaseFragment<ApplyViewModel>() {
+class ApplyFragment : BaseFragment() {
 
     private val mViewModel:ApplyViewModel by viewModel()
 
@@ -27,17 +27,4 @@ class ApplyFragment : BaseFragment<ApplyViewModel>() {
     override fun initData() {
 
     }
-
-    override fun immersionBarEnabled(): Boolean {
-        return true
-    }
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).keyboardEnable(true).init()
-        ImmersionBar.with(this).statusBarColorTransformEnable(false)
-            .keyboardEnable(false)
-            .navigationBarColor(R.color.colorPrimary)
-            .init()
-    }
-
 }

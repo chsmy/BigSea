@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.wan_fragment_wan.*
  * date：2020/4/5
  * des： 项目
  */
-class ProjectFragment : BaseFragment<ProjectViewModel>(){
+class ProjectFragment : BaseFragment(){
 
     private val mAdapter : ProjectAdapter by lazy { ProjectAdapter() }
     private val mViewModel:ProjectViewModel by lazy { getViewModel(ProjectViewModel::class.java) }
@@ -66,12 +66,4 @@ class ProjectFragment : BaseFragment<ProjectViewModel>(){
                 mAdapter.submitList(t)
             })
     }
-
-    override fun immersionBarEnabled(): Boolean {
-        return true
-    }
-
-    override fun initImmersionBar() {
-    }
-
 }

@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.mine.MineFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Mine" />
+   <FrameLayout
+       android:id="@+id/fl_header_bg"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/dp_200"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       android:background="@color/colorPrimary"
+       >
+      <com.makeramen.roundedimageview.RoundedImageView
+          android:id="@+id/iv_head"
+          android:layout_width="@dimen/dp_60"
+          android:layout_height="@dimen/dp_60"
+          app:riv_corner_radius="@dimen/dp_50"
+          android:layout_gravity="center"
+          tools:src="@mipmap/ic_launcher" />
+   </FrameLayout>
 
-</FrameLayout>
+
+
+   <androidx.cardview.widget.CardView
+       android:id="@+id/cardview"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginStart="@dimen/dp_30"
+       android:layout_marginEnd="@dimen/dp_30"
+       android:layout_marginTop="@dimen/dp_180"
+       app:cardPreventCornerOverlap="true"
+       app:cardUseCompatPadding="true"
+       app:cardCornerRadius="@dimen/dp_10"
+       app:layout_constraintTop_toTopOf="parent">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:paddingTop="@dimen/dp_10"
+          android:paddingBottom="@dimen/dp_10"
+          >
+
+         <TextView
+             android:id="@+id/tv_integral"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:drawableTop="@drawable/icon_integral"
+             android:drawablePadding="@dimen/dp_5"
+             android:text="积分"
+             />
+         <TextView
+             android:id="@+id/tv_share"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:drawableTop="@drawable/icon_share"
+             android:drawablePadding="@dimen/dp_5"
+             android:text="分享"
+             />
+         <TextView
+             android:id="@+id/tv_collect"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:drawableTop="@drawable/icon_collection"
+             android:drawablePadding="@dimen/dp_5"
+             android:text="收藏"
+             />
+
+      </LinearLayout>
+
+   </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

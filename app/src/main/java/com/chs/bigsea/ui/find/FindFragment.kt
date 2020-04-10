@@ -8,27 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.chs.bigsea.R
 import com.chs.lib_annotation.FragmentDestination
+import com.chs.lib_common_ui.base.BaseFragment
 
 @FragmentDestination(pageUrl = "main/tabs/FindFragment")
-class FindFragment : Fragment() {
+class FindFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = FindFragment()
+    override fun layoutId(): Int = R.layout.fragment_third
+
+    override fun initView() {
     }
 
-    private lateinit var viewModel: ThirdViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_third, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ThirdViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun initData() {
     }
 
 }

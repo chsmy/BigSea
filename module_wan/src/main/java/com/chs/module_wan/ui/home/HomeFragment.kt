@@ -34,9 +34,9 @@ import kotlinx.android.synthetic.main.wan_fragment_wan.*
 import kotlinx.android.synthetic.main.wan_title_bar.*
 
 @FragmentDestination(pageUrl = "main/tabs/HomeFragment", asStarter = true)
-class HomeFragment : BaseFragment<HomeViewModel>(){
+class HomeFragment : BaseFragment(){
 
-    private val mHomeViewModel:HomeViewModel by lazy {HomeViewModel()}
+    private val mHomeViewModel:HomeViewModel by lazy {getViewModel(HomeViewModel::class.java)}
     private val mAdapter:WanAdapter by lazy { WanAdapter() }
     private lateinit var mBannerViewPager:BannerViewPager<Banner, NetViewHolder>
     private var bannerHeight:Int = 0
@@ -158,17 +158,6 @@ class HomeFragment : BaseFragment<HomeViewModel>(){
     override fun onPause() {
         super.onPause()
         mBannerViewPager.stopLoop()
-    }
-
-    override fun immersionBarEnabled(): Boolean {
-        return true
-    }
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this)
-            .keyboardEnable(false)
-            .transparentStatusBar()
-            .init()
     }
 
     override fun initData() {

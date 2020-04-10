@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.wan_fragment_wan.refreshview
  * date：2020/4/6
  * des：
  */
-class AccountFragment : BaseFragment<AccountViewModel>(){
+class AccountFragment : BaseFragment(){
 
     private val mAdapter : AccountAdapter by lazy { AccountAdapter() }
     private val mViewModel:AccountViewModel by lazy { getViewModel(AccountViewModel::class.java) }
@@ -69,12 +69,4 @@ class AccountFragment : BaseFragment<AccountViewModel>(){
                 mAdapter.submitList(t)
             })
     }
-
-    override fun immersionBarEnabled(): Boolean {
-        return true
-    }
-
-    override fun initImmersionBar() {
-    }
-
 }

@@ -55,10 +55,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return ViewModelProvider(this).get(clazz)
     }
 
-    open fun <T : ViewModel?> getViewModel(
-        owner: ViewModelStoreOwner?,
-        clazz: Class<T>
-    ): T {
+    open fun <T : ViewModel?> getViewModel(owner: ViewModelStoreOwner?, clazz: Class<T>): T {
         return ViewModelProvider(owner!!).get(clazz)
     }
 }

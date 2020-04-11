@@ -3,8 +3,10 @@ package com.chs.lib_common_ui.base
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.chs.lib_common_ui.loading.EmptyCallback
 import com.chs.lib_common_ui.loading.LoadingCallback
 import com.chs.lib_core.event.SingleLiveEvent
+import com.chs.lib_core.http.WanBaseResponse
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import kotlinx.coroutines.*
@@ -73,6 +75,15 @@ abstract class BaseViewModel : ViewModel(){
         }
     }
 
-    private fun onNetReload(it: View?) {}
+    fun onNetReload(it: View?) {}
 
+
+    fun <T> handleResponse(result: WanBaseResponse<T>) : T? {
+        if(result.errorCode == 0){
+            return result.data
+        }else{
+            mLoadService?.showCallback(EmptyCallback::class.java)
+        }
+        return null
+    }
 }

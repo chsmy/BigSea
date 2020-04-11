@@ -3,9 +3,7 @@ package com.chs.module_wan.api
 import com.chs.lib_common_ui.model.Banner
 import com.chs.lib_core.http.WanBaseResponse
 import com.chs.module_wan.model.*
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  *  @author chs
@@ -50,5 +48,10 @@ interface WanService{
     //导航
     @GET("navi/json")
     suspend fun getNavigationData():WanBaseResponse<List<NavigationEntity>>
+
+    @POST("user/login")
+    @FormUrlEncoded
+    suspend fun doLogin(@Field("username")userName:String,@Field("password")password:String)
+            :WanBaseResponse<LoginEntity>
 
 }

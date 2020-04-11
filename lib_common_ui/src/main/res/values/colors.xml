@@ -13,7 +13,8 @@
     <color name="white">#ffffffff</color>
     <color name="text_alpha">#88ffffff</color>
     <color name="color_f5f5f5">#f5f5f5</color>
-
+    <color name="black_60">#99000000</color>
+    <color name="color_line">#ECECEC</color>
     <color name="color_ededed">#EDEDED</color>
 
 </resources>

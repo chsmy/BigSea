@@ -54,6 +54,9 @@ ext{
             rouneImageView         :"com.makeramen:roundedimageview:2.3.0",
             verticallayout         :"q.rorbin:VerticalTabLayout:1.2.5",
             loadsir                : "com.kingja.loadsir:loadsir:1.3.8",
+            room                   :"androidx.room:room-runtime:2.2.3",
+            room_compiler          :"androidx.room:room-compiler:2.2.3",
+            room_ktx               :"androidx.room:room-ktx:2.2.3",
 
     ]
 }

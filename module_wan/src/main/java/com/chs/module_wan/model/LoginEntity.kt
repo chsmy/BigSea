@@ -1,5 +1,7 @@
 package com.chs.module_wan.model
 
+import java.io.Serializable
+
 /**
  * author：chs
  * date：2020/4/11
@@ -19,4 +21,4 @@ data class LoginEntity(
     val token: String,
     val type: Int,
     val username: String
-)
+): Serializable

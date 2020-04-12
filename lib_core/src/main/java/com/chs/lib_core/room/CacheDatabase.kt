@@ -21,10 +21,12 @@ abstract class CacheDatabase : RoomDatabase() {
                 .allowMainThreadQueries()
                 .build()
         }
+
+        fun get(): CacheDatabase? {
+            return db
+        }
     }
 
-    open fun get(): CacheDatabase? {
-        return CacheDatabase.db
-    }
+    abstract fun getCache():CacheDao
 
 }

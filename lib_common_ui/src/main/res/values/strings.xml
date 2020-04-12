@@ -4,4 +4,13 @@
     <string name="now_has_no_data">暂无数据,点击可刷新</string>
     <string name="now_has_data_error">数据出错,点击可刷新</string>
     <string name="now_request_timeout">请求超时,点击可刷新</string>
+
+
+    <string name="login_username">用户名</string>
+    <string name="login_password">密码</string>
+    <string name="login_password_confirm">确认密码</string>
+    <string name="login_go_to_register">去注册>></string>
+    <string name="login_go_to_login">去登录>></string>
+    <string name="login_register">注册</string>
+    <string name="login_login">登录</string>
 </resources>

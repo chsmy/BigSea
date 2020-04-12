@@ -1,4 +1,4 @@
-package com.chs.bigsea.ui.login
+package com.chs.module_wan.ui.login
 
 import androidx.lifecycle.MutableLiveData
 import com.chs.module_wan.model.LoginEntity

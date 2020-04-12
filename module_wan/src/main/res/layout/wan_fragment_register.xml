@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:id="@+id/ll_root"
-    >
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_100"
-        android:layout_margin="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_100"
         android:src="@drawable/android" />
 
     <com.chs.lib_common_ui.widget.ClearEditText
-        android:id="@+id/et_username"
+        android:id="@+id/et_login_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_40"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_30"
         android:layout_marginRight="@dimen/dp_40"
         android:background="@null"
         android:hint="@string/login_username"
@@ -29,6 +28,7 @@
         android:maxLines="1"
         android:padding="@dimen/dp_10"
         android:textColor="@color/text_gray"
+        android:textCursorDrawable="@null"
         android:textSize="@dimen/sp_15" />
 
     <View
@@ -37,11 +37,11 @@
         android:layout_marginRight="@dimen/dp_40" />
 
     <com.chs.lib_common_ui.widget.ClearEditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_40"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_30"
         android:layout_marginRight="@dimen/dp_40"
         android:background="@null"
         android:hint="@string/login_password"
@@ -50,6 +50,29 @@
         android:maxLines="1"
         android:padding="@dimen/dp_10"
         android:textColor="@color/text_gray"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/sp_15" />
+
+    <View
+        style="@style/HorizontalLineStyle"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginRight="@dimen/dp_40" />
+
+    <com.chs.lib_common_ui.widget.ClearEditText
+        android:id="@+id/et_login_password_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_40"
+        android:background="@null"
+        android:hint="@string/login_password_confirm"
+        android:inputType="textPassword"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/text_gray"
+        android:textCursorDrawable="@null"
         android:textSize="@dimen/sp_15" />
 
     <View
@@ -58,27 +81,25 @@
         android:layout_marginRight="@dimen/dp_40" />
 
     <TextView
-        android:id="@+id/tv_login_forget"
+        android:id="@+id/tv_go_to_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginStart="@dimen/dp_40"
-        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_35"
         android:layout_marginEnd="@dimen/dp_60"
-        android:text="@string/login_go_to_register"
+        android:text="@string/login_go_to_login"
         android:textColor="@color/colorPrimary" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_submit"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_45"
-        android:layout_marginTop="@dimen/dp_30"
+        android:layout_height="@dimen/dp_60"
         android:layout_marginStart="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_30"
         android:layout_marginEnd="@dimen/dp_40"
-        android:textColor="@color/white"
         android:backgroundTint="@color/colorPrimary"
-        app:cornerRadius="@dimen/dp_15"
-        android:text="@string/login_login"
-        />
+        android:text="@string/login_register"
+        android:textColor="@color/white"
+        app:cornerRadius="@dimen/dp_15" />
 
 </LinearLayout>

@@ -40,12 +40,12 @@ class BusLiveData<T>(val eventName:String,val instence:LiveDataEvent) : LiveData
 
     var mCurrentVersion = 0
 
-    override fun setValue(value: T) {
+    public override fun setValue(value: T) {
         mCurrentVersion ++
         super.setValue(value)
     }
 
-    override fun postValue(value: T) {
+    public override fun postValue(value: T) {
         mCurrentVersion ++
         super.postValue(value)
     }

@@ -3,7 +3,7 @@
     <!-- 默认水平分割线样式 -->
     <style name="HorizontalLineStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1px</item>
+        <item name="android:layout_height">@dimen/dp_1</item>
         <item name="android:background">@color/color_line</item>
     </style>
 

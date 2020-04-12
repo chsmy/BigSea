@@ -14,7 +14,7 @@ interface CacheDao {
     fun save(cache:Cache)
 
     @Query("select * from cache where `key`=:key")
-    fun getCache(key:String)
+    fun getCache(key:String):Cache
 
     @Delete
     fun delete(cache:Cache)

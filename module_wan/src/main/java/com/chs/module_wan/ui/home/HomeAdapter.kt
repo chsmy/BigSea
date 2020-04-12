@@ -6,6 +6,7 @@ import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
+import com.chs.module_wan.ui.login.UserManager
 import kotlinx.android.synthetic.main.wan_item_home_list.*
 
 /**
@@ -39,5 +40,10 @@ class WanViewHolder(itemView: View) : BaseViewHolder<Article>(itemView){
         tv_publish_time.text = item.niceShareDate
         tv_title.text = item.title
         tv_classify.text = String.format("%1s / %2s",item.superChapterName,item.chapterName)
+        iv_collect.setOnClickListener{
+            if(!UserManager.get().isLogin()){
+                UserManager.get().gotoLogin(itemView.context)
+            }
+        }
     }
 }

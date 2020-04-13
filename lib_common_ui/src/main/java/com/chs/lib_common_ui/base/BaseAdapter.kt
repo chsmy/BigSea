@@ -32,7 +32,7 @@ abstract class BaseAdapter<T>(var data:List<T>) : RecyclerView.Adapter<BaseViewH
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
-        holder.setContent(data[position])
+        holder.setContent(data[position],position)
     }
 
     fun setDataAndRefresh(data:List<T>){

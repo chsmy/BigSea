@@ -13,14 +13,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.BarUtils
 import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.banner.NetViewHolder
+import com.chs.lib_common_ui.base.BaseFragment
+import com.chs.lib_common_ui.base.OnItemChildClickListener
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.model.Banner
 import com.chs.lib_common_ui.webview.BrowserActivity
-import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import com.chs.module_wan.model.HomeOpt
+import com.chs.module_wan.ui.CollectManager
+import com.chs.module_wan.ui.CollectViewModel
 import com.chs.module_wan.ui.account.AccountActivity
+import com.chs.module_wan.ui.login.UserManager
 import com.chs.module_wan.ui.navigation.NavigationActivity
 import com.chs.module_wan.ui.project.ProjectActivity
 import com.chs.module_wan.ui.system.SystemActivity
@@ -37,9 +41,11 @@ import kotlinx.android.synthetic.main.wan_title_bar.*
 class HomeFragment : BaseFragment(){
 
     private val mHomeViewModel:HomeViewModel by lazy {getViewModel(HomeViewModel::class.java)}
+    private val mCollectModel:CollectViewModel by lazy {getViewModel(CollectViewModel::class.java)}
     private val mAdapter:WanAdapter by lazy { WanAdapter() }
     private lateinit var mBannerViewPager:BannerViewPager<Banner, NetViewHolder>
     private var bannerHeight:Int = 0
+    private var clickPosition : Int = 0
     companion object {
         fun newInstance() = HomeFragment()
     }
@@ -132,7 +138,30 @@ class HomeFragment : BaseFragment(){
                 BrowserActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
             }
         }
+        mAdapter.onItemChildClickListener = object : OnItemChildClickListener {
+            override fun onClick(view: View,position: Int) {
+                clickPosition = position
+                val article = mAdapter.currentList!![position]
+                handleCollect(article!!)
+            }
+        }
+        mCollectModel.mCollectRes.observe(this, Observer {
+            if(it.errorCode == 0){
+                val item = mAdapter.currentList?.get(clickPosition)
+                mAdapter.currentList?.get(clickPosition)?.collect = !item!!.collect
+                mAdapter.notifyDataSetChanged()
+            }
+        })
     }
+
+    private fun handleCollect(article: Article) {
+        if (UserManager.get().isNotLogin()) {
+            CollectManager.goToLogin(article,this,requireContext(),mCollectModel)
+        } else {
+            CollectManager.toggleCollect(article,mCollectModel)
+        }
+    }
+
     private fun addBannerView() {
         val bannerView = LayoutInflater.from(requireContext()).inflate(R.layout.wan_header_home,recyclerview,false)
         mBannerViewPager = bannerView.findViewById(R.id.banner)

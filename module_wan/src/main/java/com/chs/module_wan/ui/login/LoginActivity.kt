@@ -49,6 +49,7 @@ class LoginActivity : BaseActivity() {
         val password = et_password.text.toString()
         mViewModel.mLoginEntity.observe(this, Observer {
             UserManager.get().save(it)
+            finish()
         })
         mViewModel.doLogin(username,password)
     }

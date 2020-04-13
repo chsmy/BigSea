@@ -14,5 +14,5 @@ abstract class BaseViewHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemV
         get() = itemView
 
 
-    abstract fun setContent(item:T)
+    abstract fun setContent(item:T,position:Int)
 }

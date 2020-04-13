@@ -68,6 +68,8 @@ dependencies {
     kapt depLibs.room_compiler
     api depLibs.room_ktx
 
+    api depLibs.cookiejar
+
     testImplementation depLibs.junit
     androidTestImplementation depLibs.junit_ext
     androidTestImplementation depLibs.espresso

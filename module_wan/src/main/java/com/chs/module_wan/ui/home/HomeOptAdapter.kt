@@ -21,7 +21,7 @@ class WanOptAdapter(data:List<HomeOpt>) : BaseAdapter<HomeOpt>(data){
 }
 
 class WanOptViewHolder(itemView: View) :BaseViewHolder<HomeOpt>(itemView) {
-    override fun setContent(item: HomeOpt) {
+    override fun setContent(item: HomeOpt,position:Int) {
             iv_icon.setImageResource(item.iconId)
             tv_opt_name.text = item.title
     }

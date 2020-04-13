@@ -31,7 +31,7 @@ class AccountAdapter : AbsPageListAdapter<Article,AccountHolder>(object : DiffUt
 
 }
 class AccountHolder(itemView: View) : BaseViewHolder<Article>(itemView) {
-    override fun setContent(item: Article) {
+    override fun setContent(item: Article,position:Int) {
         tv_name.text = item.author
         tv_title.text = item.title
         tv_publish_time.text = item.niceShareDate

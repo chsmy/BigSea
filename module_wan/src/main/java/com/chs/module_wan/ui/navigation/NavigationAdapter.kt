@@ -26,7 +26,7 @@ class NavAdapter(data:List<NavigationEntity>) : BaseAdapter<NavigationEntity>(da
 }
 
 class NavHolder(itemView: View) : BaseViewHolder<NavigationEntity>(itemView) {
-    override fun setContent(item: NavigationEntity) {
+    override fun setContent(item: NavigationEntity,position:Int) {
         tv_item_title.text = item.name
         if(item.articles.isNotEmpty()){
             val layoutManager = FlexboxLayoutManager(itemView.context)
@@ -47,7 +47,7 @@ class NavHolder(itemView: View) : BaseViewHolder<NavigationEntity>(itemView) {
 }
 
 class NavFlexBoxHolder(itemView: View)  : BaseViewHolder<Article>(itemView){
-    override fun setContent(item: Article) {
+    override fun setContent(item: Article,position:Int) {
         tv_name.text = item.title
     }
 }

@@ -14,7 +14,7 @@ import com.chs.module_wan.model.LoginEntity
  */
 class UserManager {
     private var mUser: LoginEntity? = null
-    val userLiveData = MutableLiveData<LoginEntity>()
+    private val userLiveData = MutableLiveData<LoginEntity>()
 
     init {
         val user = CacheManager.getCache(KEY_USER_CACHE)
@@ -35,12 +35,18 @@ class UserManager {
         return mUser != null
     }
 
+    fun isNotLogin(): Boolean {
+        return mUser == null
+    }
+
+    fun getUser():LoginEntity?{
+        return mUser
+    }
+
     fun save(user: LoginEntity) {
         mUser = user
         CacheManager.save(KEY_USER_CACHE, user)
-        if (userLiveData.hasActiveObservers()) {
-            userLiveData.postValue(user)
-        }
+        userLiveData.postValue(user)
     }
 
     fun gotoLogin(context: Context): LiveData<LoginEntity> {

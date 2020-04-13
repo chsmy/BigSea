@@ -10,8 +10,5 @@ import com.chad.library.adapter.base.BaseQuickAdapter
  * des：
  */
 interface OnItemClickListener {
-    fun onItemClick(
-        view: View,
-        position: Int
-    )
+    fun onItemClick(view: View, position: Int)
 }

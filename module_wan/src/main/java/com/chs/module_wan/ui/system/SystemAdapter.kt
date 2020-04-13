@@ -25,7 +25,7 @@ class SystemAdapter(data:List<SystemEntity>) : BaseAdapter<SystemEntity>(data){
 
 }
 class SystemViewHolder(itemView: View) :BaseViewHolder<SystemEntity>(itemView) {
-    override fun setContent(item: SystemEntity) {
+    override fun setContent(item: SystemEntity,position:Int) {
         tv_sys_title?.text = item.name
         tv_name?.text = item.name
         if(item.children.isNotEmpty()){

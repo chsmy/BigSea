@@ -17,6 +17,7 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
     PagedListAdapter<T, VH>(diffCallback) {
 
     var onItemClickListener: OnItemClickListener? = null
+    var onItemChildClickListener: OnItemChildClickListener? = null
     private var BASE_ITEM_HEADER_TYPE = 10000
     private var BASE_ITEM_FOOTER_TYPE = 20000
 
@@ -94,19 +95,19 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
         if(mHeaders.indexOfKey(viewType)>=0){
             val view = mHeaders.get(viewType)
             return object : BaseViewHolder<T>(view){
-                override fun setContent(item: T) {}
+                override fun setContent(item: T,position:Int) {}
             } as VH
         }
         if(mFooters.indexOfKey(viewType)>=0){
             val view = mFooters.get(viewType)
             return object : BaseViewHolder<T>(view){
-                override fun setContent(item: T) {}
+                override fun setContent(item: T,position:Int) {}
             } as VH
         }
         val view = LayoutInflater.from(parent.context).inflate(getLayoutId(),parent,false)
         val createCurrentViewHolder = createCurrentViewHolder(view, viewType)
         view.setOnClickListener {
-            onItemClickListener?.onItemClick(view,createCurrentViewHolder.adapterPosition)
+            onItemClickListener?.onItemClick(view,createCurrentViewHolder.adapterPosition - mHeaders.size())
         }
         return createCurrentViewHolder
     }
@@ -118,9 +119,9 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
     override fun onBindViewHolder(holder: VH, position: Int) {
         if (isHeaderPosition(position) || isFooterPosition(position)>=0) return
 //        //列表中正常的item的位置 需要减去头部的数量
-        var contentPosition = position - mHeaders.size()
+        val contentPosition = position - mHeaders.size()
         getItem(contentPosition)?.let {
-            holder.setContent(it)
+            holder.setContent(it,contentPosition)
         }
     }
 

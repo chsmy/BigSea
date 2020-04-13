@@ -15,33 +15,19 @@ class NavGraphBuilder {
 
     companion object {
 
-        fun build(navController: NavController,activity:FragmentActivity,containerId:Int) {
+        fun build(navController: NavController,activity: FragmentActivity) {
+            build(navController,activity,0)
+        }
+
+        fun build(navController: NavController, activity: FragmentActivity, containerId: Int) {
             val navigatorProvider = navController.navigatorProvider
-            val fragmentNavigator = CustomFragmentNavigator(activity,activity.supportFragmentManager,
-                containerId)
+            val fragmentNavigator = CustomFragmentNavigator(
+                activity, activity.supportFragmentManager,
+                containerId
+            )
             navigatorProvider.addNavigator(fragmentNavigator)
-            val activityNavigator =
-                navigatorProvider.getNavigator<ActivityNavigator>(ActivityNavigator::class.java)
+            val activityNavigator = navigatorProvider.getNavigator(ActivityNavigator::class.java)
 
-            setNavGraph(navController, navigatorProvider, fragmentNavigator, activityNavigator)
-        }
-
-        fun build(navController: NavController) {
-            val navigatorProvider = navController.navigatorProvider
-            val fragmentNavigator =
-                navigatorProvider.getNavigator<FragmentNavigator>(FragmentNavigator::class.java)
-            val activityNavigator =
-                navigatorProvider.getNavigator<ActivityNavigator>(ActivityNavigator::class.java)
-
-            setNavGraph(navController, navigatorProvider, fragmentNavigator, activityNavigator)
-        }
-
-        fun setNavGraph(
-            navController: NavController,
-            navigatorProvider: NavigatorProvider,
-            fragmentNavigator: Navigator<FragmentNavigator.Destination>,
-            activityNavigator: ActivityNavigator
-        ) {
             val destinationMap = NavConfig.getDestinationMap()
             val navGraph = NavGraph(NavGraphNavigator(navigatorProvider))
 
@@ -69,6 +55,12 @@ class NavGraphBuilder {
                 }
             }
             navController.graph = navGraph
+        }
+
+
+        fun getItemId(pageUrl: String): Int {
+            val destination = NavConfig.getDestinationMap()[pageUrl]
+            return destination?.id ?: -1
         }
 
     }

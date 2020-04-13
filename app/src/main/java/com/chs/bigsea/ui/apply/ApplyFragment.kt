@@ -4,11 +4,12 @@ import com.bumptech.glide.Glide
 import com.chs.bigsea.R
 import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.base.BaseFragment
+import com.chs.lib_core.constant.WanRouterKey
 import com.chs.lib_core.imageloader.ImageLoader
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.fragment_gan.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-@FragmentDestination(pageUrl = "main/tabs/ApplyFragment")
+@FragmentDestination(pageUrl = WanRouterKey.WAN_MAIN_TABLES_APPLY_FRAGMENT)
 class ApplyFragment : BaseFragment() {
 
     private val mViewModel:ApplyViewModel by viewModel()

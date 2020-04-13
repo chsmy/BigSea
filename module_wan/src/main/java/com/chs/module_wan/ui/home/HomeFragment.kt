@@ -18,6 +18,7 @@ import com.chs.lib_common_ui.base.OnItemChildClickListener
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.model.Banner
 import com.chs.lib_common_ui.webview.BrowserActivity
+import com.chs.lib_core.constant.WanRouterKey
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import com.chs.module_wan.model.HomeOpt
@@ -37,7 +38,7 @@ import com.zhpan.bannerview.constants.PageStyle
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
 import kotlinx.android.synthetic.main.wan_title_bar.*
 
-@FragmentDestination(pageUrl = "main/tabs/HomeFragment", asStarter = true)
+@FragmentDestination(pageUrl = WanRouterKey.WAN_MAIN_TABLES_HOME_FRAGMENT, asStarter = true)
 class HomeFragment : BaseFragment(){
 
     private val mHomeViewModel:HomeViewModel by lazy {getViewModel(HomeViewModel::class.java)}

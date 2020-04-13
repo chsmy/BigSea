@@ -9,8 +9,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.chs.bigsea.R
 import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.base.BaseFragment
+import com.chs.lib_core.constant.WanRouterKey
 
-@FragmentDestination(pageUrl = "main/tabs/FindFragment")
+@FragmentDestination(pageUrl = WanRouterKey.WAN_MAIN_TABLES_FIND_FRAGMENT)
 class FindFragment : BaseFragment() {
 
     override fun layoutId(): Int = R.layout.fragment_third

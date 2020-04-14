@@ -34,7 +34,6 @@ class RankDataSource(private val viewModel:BaseListViewModel<RankList>) : PageKe
 
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, RankList>?,
                                callback: LoadCallback<Int, RankList>?){
-        viewModel.isShowLoading = page == 1
         viewModel.launch {
             val rankData =
                 WanRetrofitClient.service.getRank(page)
@@ -44,5 +43,6 @@ class RankDataSource(private val viewModel:BaseListViewModel<RankList>) : PageKe
                 callback?.onResult(rankData.data.datas,page)
             }
         }
+        viewModel.isShowLoading = false
     }
 }

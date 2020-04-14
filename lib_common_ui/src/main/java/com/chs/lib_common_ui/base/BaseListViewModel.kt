@@ -17,6 +17,7 @@ abstract class BaseListViewModel<T> : BaseViewModel(){
 
     private var config:PagedList.Config = PagedList.Config.Builder()
         .setPageSize(20)
+        .setInitialLoadSizeHint(22)
         .build()
     var dataSource: DataSource<Int, T>? = null
     var pageData:LiveData<PagedList<T>>

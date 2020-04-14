@@ -47,15 +47,15 @@ class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
 
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                callback: LoadCallback<Int, Article>?){
-        viewModel.isShowLoading = page == 1
         viewModel.launch {
             val projectData =
                 WanRetrofitClient.service.getProjectListData(page,projectId)
             if(iniCallback!=null){
-                iniCallback.onResult(projectData.data.datas,-1,0)
+                iniCallback.onResult(projectData.data.datas,-1,1)
             }else{
                 callback?.onResult(projectData.data.datas,page)
             }
         }
+        viewModel.isShowLoading = false
     }
 }

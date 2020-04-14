@@ -46,7 +46,6 @@ class AccountDataSource(private val viewModel:BaseListViewModel<Article>,
 
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                callback: LoadCallback<Int, Article>?){
-        viewModel.isShowLoading = page == 1
         viewModel.launch {
             val accountData =
                 WanRetrofitClient.service.getAccountListData(accountId,page)
@@ -56,5 +55,6 @@ class AccountDataSource(private val viewModel:BaseListViewModel<Article>,
                 callback?.onResult(accountData.data.datas,page)
             }
         }
+        viewModel.isShowLoading = false
     }
 }

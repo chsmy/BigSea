@@ -56,7 +56,6 @@ class WanDataSource(private val viewModel:BaseListViewModel<Article>, private va
 
     private fun getHomeListData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                 callback: LoadCallback<Int, Article>?){
-        viewModel.isShowLoading = page == 1
         viewModel.launch {
             val homeList = WanRetrofitClient.service.getHomeList(page)
 
@@ -66,6 +65,7 @@ class WanDataSource(private val viewModel:BaseListViewModel<Article>, private va
                 callback?.onResult(homeList.data.datas,page)
             }
         }
+        viewModel.isShowLoading = false
     }
 
 }

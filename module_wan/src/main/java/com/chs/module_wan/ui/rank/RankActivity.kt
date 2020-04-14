@@ -43,6 +43,7 @@ class RankActivity : BaseActivity() {
     override fun initData() {
         mViewModel.setLoadingViewWrap(refreshview)
         mViewModel.pageData.observe(this, Observer {
+            refreshview.finishRefresh()
             mAdapter.submitList(it)
         })
     }

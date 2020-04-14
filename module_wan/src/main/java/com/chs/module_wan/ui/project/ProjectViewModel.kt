@@ -35,7 +35,7 @@ class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
                         private val projectId:Int,private val loadService: LoadService<Any>?) : PageKeyedDataSource<Int, Article>(){
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Article>) {
-        getProjectData(0,callback,null)
+        getProjectData(1,callback,null)
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
@@ -47,6 +47,7 @@ class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
 
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                callback: LoadCallback<Int, Article>?){
+        viewModel.isShowLoading = page == 1
         viewModel.launch {
             val projectData =
                 WanRetrofitClient.service.getProjectListData(page,projectId)

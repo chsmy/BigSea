@@ -38,7 +38,7 @@ import com.zhpan.bannerview.constants.PageStyle
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
 import kotlinx.android.synthetic.main.wan_title_bar.*
 
-@FragmentDestination(pageUrl = WanRouterKey.WAN_MAIN_TABLES_HOME_FRAGMENT, asStarter = true)
+@FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_HOME, asStarter = true)
 class HomeFragment : BaseFragment(){
 
     private val mHomeViewModel:HomeViewModel by lazy {getViewModel(HomeViewModel::class.java)}
@@ -191,7 +191,7 @@ class HomeFragment : BaseFragment(){
     }
 
     override fun initData() {
-//        mHomeViewModel.setLoadingViewWrap(refreshview)
+        mHomeViewModel.setLoadingViewWrap(refreshview)
         mHomeViewModel.pageData.observe(this,
             Observer<PagedList<Article>> { t ->
                 refreshview.finishRefresh()

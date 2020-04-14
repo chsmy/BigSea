@@ -83,4 +83,10 @@ interface WanService{
     @POST("lg/uncollect_originId/{id}/json")
     suspend fun doUnCollection(@Path("id")id:Int):WanBaseResponse<Any>
 
+    /**
+     * 文章列表 取消收藏
+     */
+    @GET("coin/rank/{page}/json")
+    suspend fun getRank(@Path("page")page:Int):WanBaseResponse<Rank>
+
 }

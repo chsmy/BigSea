@@ -56,12 +56,5 @@ class NavGraphBuilder {
             }
             navController.graph = navGraph
         }
-
-
-        fun getItemId(pageUrl: String): Int {
-            val destination = NavConfig.getDestinationMap()[pageUrl]
-            return destination?.id ?: -1
-        }
-
     }
 }

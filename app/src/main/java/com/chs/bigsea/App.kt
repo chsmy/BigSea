@@ -7,6 +7,9 @@ import com.chs.lib_common_ui.loading.TimeoutCallback
 import com.chs.lib_core.BaseApp
 import com.chs.lib_core.InitializeService
 import com.kingja.loadsir.core.LoadSir
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
 
 
 /**
@@ -16,7 +19,16 @@ import com.kingja.loadsir.core.LoadSir
  */
 class App : BaseApp() {
 
-
+    companion object{
+        init {
+            SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ ->
+                ClassicsHeader(context).setArrowResource(R.drawable.recyclerview_header_arrow)
+            }
+            SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
+                ClassicsFooter(context).setArrowDrawable(null)
+            }
+        }
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -30,11 +42,6 @@ class App : BaseApp() {
             .addCallback(TimeoutCallback())
             .setDefaultCallback(LoadingCallback::class.java) //设置默认状态页
             .commit()
-//        startKoin {
-//            androidContext(this@App)
-//            modules(appModule)
-//        }
-
     }
 
 }

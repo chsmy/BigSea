@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.navigation.NavGraphBuilder
+import com.chs.lib_core.navigation.NavManager
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,7 +25,7 @@ class MainActivity : BaseActivity() {
         ImmersionBar.with(this).transparentStatusBar().init()
         showSplash()
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        NavManager.sNavController = navController
+        NavManager.get().setNavController(navController)
         NavGraphBuilder.build(navController,this,R.id.nav_host_fragment)
         nav_view.setNavController(navController)
     }

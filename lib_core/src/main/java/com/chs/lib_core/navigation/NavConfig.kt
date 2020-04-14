@@ -13,7 +13,7 @@ import kotlin.collections.HashMap
 /**
  * author：chs
  * date：2020/3/29
- * des：
+ * des：解析assets目录下的json文件，将解析结果保存到map中
  */
 class NavConfig {
 

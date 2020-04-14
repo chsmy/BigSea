@@ -25,7 +25,7 @@ class SplashFragment : BaseFragment(){
     override fun layoutId(): Int = R.layout.fragment_splash
 
     override fun initView() {
-        tv_time.background = DrawableUtil.getRoundDrawable(context,R.color.text_alpha,10)
+        tv_time.background = DrawableUtil.getRoundDrawable(context,R.color.colorPrimary,10)
         tv_time.setOnClickListener {
             mOnTime.value = 0
         }
@@ -36,7 +36,7 @@ class SplashFragment : BaseFragment(){
     }
 
     private fun createCountDownTimer():CountDownTimer {
-        return object : CountDownTimer(3000, 1000) {
+        return object : CountDownTimer(4000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val value: String = (millisUntilFinished / 1000).toString()
                 tv_time?.text = (String.format("%ss", value))

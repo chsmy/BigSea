@@ -38,7 +38,7 @@ class AccountDataSource(private val viewModel:BaseListViewModel<Article>,
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
-        getProjectData(params.key+1,null,callback)
+        getProjectData(params.key,null,callback)
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
@@ -46,15 +46,16 @@ class AccountDataSource(private val viewModel:BaseListViewModel<Article>,
 
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                callback: LoadCallback<Int, Article>?){
-        viewModel.launch {
-            val accountData =
-                WanRetrofitClient.service.getAccountListData(accountId,page)
-            if(iniCallback!=null){
-                iniCallback.onResult(accountData.data.datas,-1,0)
-            }else{
-                callback?.onResult(accountData.data.datas,page)
-            }
+
+        val accountData =
+            WanRetrofitClient.service.getAccountListData(accountId,page).execute().body()
+        if(iniCallback!=null){
+            accountData?.data?.datas?.let { iniCallback.onResult(it,-1,2) }
+        }else{
+            accountData?.data?.datas?.let { callback?.onResult(it,page+1) }
         }
+
+        viewModel.mLoadService?.showSuccess()
         viewModel.isShowLoading = false
     }
 }

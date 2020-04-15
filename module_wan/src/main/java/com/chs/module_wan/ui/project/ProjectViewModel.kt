@@ -39,7 +39,7 @@ class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
-        getProjectData(params.key+1,null,callback)
+        getProjectData(params.key,null,callback)
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
@@ -47,15 +47,15 @@ class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
 
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                callback: LoadCallback<Int, Article>?){
-        viewModel.launch {
-            val projectData =
-                WanRetrofitClient.service.getProjectListData(page,projectId)
-            if(iniCallback!=null){
-                iniCallback.onResult(projectData.data.datas,-1,1)
-            }else{
-                callback?.onResult(projectData.data.datas,page)
-            }
+        val projectData =
+            WanRetrofitClient.service.getProjectListData(page,projectId).execute()
+                .body()
+        if(iniCallback!=null){
+            projectData?.data?.datas?.let { iniCallback.onResult(it,-1,2) }
+        }else{
+            projectData?.data?.datas?.let { callback?.onResult(it,page+1) }
         }
+        viewModel.mLoadService?.showSuccess()
         viewModel.isShowLoading = false
     }
 }

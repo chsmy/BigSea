@@ -48,7 +48,7 @@ class WanDataSource(private val viewModel:BaseListViewModel<Article>, private va
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
-        getHomeListData(params.key+1,null,callback)
+        getHomeListData(params.key,null,callback)
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Article>) {
@@ -56,15 +56,14 @@ class WanDataSource(private val viewModel:BaseListViewModel<Article>, private va
 
     private fun getHomeListData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                 callback: LoadCallback<Int, Article>?){
-        viewModel.launch {
-            val homeList = WanRetrofitClient.service.getHomeList(page)
-
-            if(iniCallback!=null){
-                iniCallback.onResult(homeList.data.datas,-1,0)
-            }else{
-                callback?.onResult(homeList.data.datas,page)
-            }
+        val homeList = WanRetrofitClient.service.getHomeList(page)
+            .execute().body()
+        if(iniCallback!=null){
+            homeList?.data?.datas?.let { iniCallback.onResult(it,-1,2) }
+        }else{
+            homeList?.data?.datas?.let { callback?.onResult(it,page+1) }
         }
+        viewModel.mLoadService?.showSuccess()
         viewModel.isShowLoading = false
     }
 

@@ -13,14 +13,12 @@ import androidx.paging.PagedList
  */
 abstract class BaseListViewModel<T> : BaseViewModel(){
 
+    private val pageSize:Int = 20
     val boundaryPageData = MutableLiveData<Boolean>()
 
-    private var config:PagedList.Config = PagedList.Config.Builder()
-        .setPageSize(20)
-        .setInitialLoadSizeHint(22)
-        .build()
+    private val config:PagedList.Config
     var dataSource: DataSource<Int, T>? = null
-    var pageData:LiveData<PagedList<T>>
+    val pageData:LiveData<PagedList<T>>
 
     private var factory = object :DataSource.Factory<Int,T>(){
         override fun create(): DataSource<Int, T> {
@@ -32,7 +30,11 @@ abstract class BaseListViewModel<T> : BaseViewModel(){
     }
 
     init {
-        pageData = LivePagedListBuilder<Int,T>(factory,config).build()
+        config = PagedList.Config.Builder()
+            .setPageSize(pageSize)
+            .setInitialLoadSizeHint(pageSize * 2)
+            .build()
+        pageData = LivePagedListBuilder(factory,config).build()
     }
 
     abstract fun createDataSource(): DataSource<Int, T>

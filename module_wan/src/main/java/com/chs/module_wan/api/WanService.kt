@@ -3,6 +3,7 @@ package com.chs.module_wan.api
 import com.chs.lib_common_ui.model.Banner
 import com.chs.lib_core.http.WanBaseResponse
 import com.chs.module_wan.model.*
+import retrofit2.Call
 import retrofit2.http.*
 
 /**
@@ -23,7 +24,7 @@ interface WanService{
      * 首页
      */
     @GET("article/list/{page}/json")
-    suspend fun getHomeList(@Path("page")page:Int) : WanBaseResponse<HomeEntity>
+    fun getHomeList(@Path("page")page:Int) : Call<WanBaseResponse<HomeEntity>>
 
     /**
      * 系统
@@ -41,8 +42,7 @@ interface WanService{
      * 项目列表
      */
     @GET("/project/list/{page}/json")
-    suspend fun getProjectListData(@Path("page")page:Int,@Query("cid")id:Int):
-            WanBaseResponse<ArticleEntity>
+    fun getProjectListData(@Path("page")page:Int,@Query("cid")id:Int):Call<WanBaseResponse<ArticleEntity>>
 
     /**
      * 公众号名字
@@ -54,8 +54,8 @@ interface WanService{
      * 公众号列表
      */
     @GET("wxarticle/list/{id}/{page}/json")
-    suspend fun getAccountListData(@Path("id")id:Int,@Path("page")page:Int):
-            WanBaseResponse<ArticleEntity>
+    fun getAccountListData(@Path("id")id:Int,@Path("page")page:Int):
+            Call<WanBaseResponse<ArticleEntity>>
 
     /**
      * 导航
@@ -84,9 +84,9 @@ interface WanService{
     suspend fun doUnCollection(@Path("id")id:Int):WanBaseResponse<Any>
 
     /**
-     * 文章列表 取消收藏
+     * 排名列表
      */
     @GET("coin/rank/{page}/json")
-    suspend fun getRank(@Path("page")page:Int):WanBaseResponse<Rank>
+    fun getRank(@Path("page")page:Int):Call<WanBaseResponse<Rank>>
 
 }

@@ -65,8 +65,8 @@ class AccountFragment : BaseFragment(){
         mViewModel.accountId = accountId
         mViewModel.pageData.observe(this,
             Observer<PagedList<Article>> { t ->
-                refreshview.finishRefresh()
                 mAdapter.submitList(t)
+                refreshview.finishRefresh()
             })
     }
 }

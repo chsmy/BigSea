@@ -26,7 +26,7 @@ class RankDataSource(private val viewModel:BaseListViewModel<RankList>) : PageKe
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, RankList>) {
-        getProjectData(params.key+1,null,callback)
+        getProjectData(params.key,null,callback)
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, RankList>) {
@@ -34,15 +34,14 @@ class RankDataSource(private val viewModel:BaseListViewModel<RankList>) : PageKe
 
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, RankList>?,
                                callback: LoadCallback<Int, RankList>?){
-        viewModel.launch {
-            val rankData =
-                WanRetrofitClient.service.getRank(page)
-            if(iniCallback!=null){
-                iniCallback.onResult(rankData.data.datas,-1,0)
-            }else{
-                callback?.onResult(rankData.data.datas,page)
-            }
+        val rankData =
+            WanRetrofitClient.service.getRank(page).execute().body()
+        if(iniCallback!=null){
+            rankData?.data?.datas?.let { iniCallback.onResult(it,-1,2) }
+        }else{
+            rankData?.data?.datas?.let { callback?.onResult(it,page+1) }
         }
+        viewModel.mLoadService?.showSuccess()
         viewModel.isShowLoading = false
     }
 }

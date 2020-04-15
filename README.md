@@ -9,4 +9,4 @@
 - 自定义LiveDataBus实现页面间，组件间通信
 - ....还有一些优秀的开源库
 
-![](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/home_page.png)
+![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/home_page.png)

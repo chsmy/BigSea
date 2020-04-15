@@ -8,3 +8,5 @@
 - 使用paging组件实现列表的滑动加载，下拉刷新使用[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)
 - 自定义LiveDataBus实现页面间，组件间通信
 - ....还有一些优秀的开源库
+
+![](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/home_page.png)

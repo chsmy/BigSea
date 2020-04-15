@@ -1,7 +1,7 @@
 ext{
 
     //false:作为Lib组件存在， true:作为application存在
-    isModule = false
+    isApp = false
 
     android = [compileSdkVersion: 29,
                buildToolsVersion: "29.0.2",

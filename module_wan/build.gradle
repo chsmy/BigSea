@@ -1,4 +1,8 @@
-apply plugin: 'com.android.library'
+if (rootProject.ext.isApp) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -33,6 +37,21 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     resourcePrefix "wan_"
+
+    sourceSets {
+        main {
+            if (isApp.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
+
 }
 //adapter中使用kotlinx.android.extensions
 androidExtensions {

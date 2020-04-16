@@ -4,10 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.chs.lib_common_ui.base.BaseListViewModel
+import com.chs.lib_core.http.WanBaseResponse
 import com.chs.module_wan.api.WanRetrofitClient
 import com.chs.module_wan.model.AccountNameEntity
 import com.chs.module_wan.model.Article
-import com.kingja.loadsir.core.LoadService
+import com.chs.module_wan.model.ArticleEntity
 
 /**
  * author：chs
@@ -47,8 +48,9 @@ class AccountDataSource(private val viewModel:BaseListViewModel<Article>,
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                callback: LoadCallback<Int, Article>?){
 
-        val accountData =
-            WanRetrofitClient.service.getAccountListData(accountId,page).execute().body()
+        val accountData: WanBaseResponse<ArticleEntity>? = viewModel.execute {
+            WanRetrofitClient.service.getAccountListData(accountId,page)
+        }
         if(iniCallback!=null){
             accountData?.data?.datas?.let { iniCallback.onResult(it,-1,2) }
         }else{

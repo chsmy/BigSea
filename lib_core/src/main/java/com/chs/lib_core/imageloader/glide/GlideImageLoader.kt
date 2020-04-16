@@ -31,6 +31,9 @@ class GlideImageLoader : IImageLoader{
             .priority(Priority.NORMAL)
     }
 
+    /**
+     * 加载一个图片
+     */
     override fun loadImage(imageConfig: ImageConfig) {
           Glide.with(imageConfig.imageview.context)
               .asBitmap()
@@ -41,6 +44,9 @@ class GlideImageLoader : IImageLoader{
               .into(imageConfig.imageview)
     }
 
+    /**
+     * 获取一个图片上的颜色，并设置给指定控件
+     */
     override fun loadBg(imageConfig: ImageConfig) {
         Glide.with(imageConfig.imageview.context)
             .load(imageConfig.url)

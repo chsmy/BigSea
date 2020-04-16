@@ -1,2 +1,4 @@
 <resources>
+    <string name="wan_my_integral">我的积分</string>
+    <string name="wan_my_rank">我的排名</string>
 </resources>

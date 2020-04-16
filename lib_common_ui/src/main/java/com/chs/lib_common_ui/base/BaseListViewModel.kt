@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.blankj.utilcode.util.ThreadUtils
 
 /**
  * @author：chs
@@ -34,7 +35,7 @@ abstract class BaseListViewModel<T> : BaseViewModel(){
             .setPageSize(pageSize)
             .setInitialLoadSizeHint(pageSize * 2)
             .build()
-        pageData = LivePagedListBuilder(factory,config).build()
+        pageData = LivePagedListBuilder(factory,config).setFetchExecutor(ThreadUtils.getIoPool()).build()
     }
 
     abstract fun createDataSource(): DataSource<Int, T>

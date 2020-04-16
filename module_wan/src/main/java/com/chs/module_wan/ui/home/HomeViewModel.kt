@@ -7,8 +7,10 @@ import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.chs.lib_common_ui.base.BaseListViewModel
 import com.chs.lib_common_ui.model.Banner
+import com.chs.lib_core.http.WanBaseResponse
 import com.chs.module_wan.api.WanRetrofitClient
 import com.chs.module_wan.model.Article
+import com.chs.module_wan.model.HomeEntity
 import com.kingja.loadsir.core.LoadService
 
 /**
@@ -56,8 +58,9 @@ class WanDataSource(private val viewModel:BaseListViewModel<Article>, private va
 
     private fun getHomeListData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                 callback: LoadCallback<Int, Article>?){
-        val homeList = WanRetrofitClient.service.getHomeList(page)
-            .execute().body()
+        val homeList:WanBaseResponse<HomeEntity>? = viewModel.execute {
+          WanRetrofitClient.service.getHomeList(page)
+        }
         if(iniCallback!=null){
             homeList?.data?.datas?.let { iniCallback.onResult(it,-1,2) }
         }else{

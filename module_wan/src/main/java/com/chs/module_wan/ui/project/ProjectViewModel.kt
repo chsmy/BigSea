@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.chs.lib_common_ui.base.BaseListViewModel
+import com.chs.lib_core.http.WanBaseResponse
 import com.chs.module_wan.api.WanRetrofitClient
 import com.chs.module_wan.model.Article
+import com.chs.module_wan.model.ArticleEntity
 import com.chs.module_wan.model.ProjectEntity
 import com.kingja.loadsir.core.LoadService
 
@@ -47,9 +49,10 @@ class ProjectDataSource(private val viewModel:BaseListViewModel<Article>,
 
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, Article>?,
                                callback: LoadCallback<Int, Article>?){
-        val projectData =
-            WanRetrofitClient.service.getProjectListData(page,projectId).execute()
-                .body()
+
+        val projectData: WanBaseResponse<ArticleEntity>? = viewModel.execute {
+            WanRetrofitClient.service.getProjectListData(page, projectId)
+        }
         if(iniCallback!=null){
             projectData?.data?.datas?.let { iniCallback.onResult(it,-1,2) }
         }else{

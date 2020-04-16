@@ -3,7 +3,9 @@ package com.chs.module_wan.ui.rank
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.chs.lib_common_ui.base.BaseListViewModel
+import com.chs.lib_core.http.WanBaseResponse
 import com.chs.module_wan.api.WanRetrofitClient
+import com.chs.module_wan.model.Rank
 import com.chs.module_wan.model.RankList
 
 /**
@@ -34,8 +36,10 @@ class RankDataSource(private val viewModel:BaseListViewModel<RankList>) : PageKe
 
     private fun getProjectData(page:Int, iniCallback: LoadInitialCallback<Int, RankList>?,
                                callback: LoadCallback<Int, RankList>?){
-        val rankData =
-            WanRetrofitClient.service.getRank(page).execute().body()
+
+        val rankData: WanBaseResponse<Rank>? = viewModel.execute {
+            WanRetrofitClient.service.getRank(page)
+        }
         if(iniCallback!=null){
             rankData?.data?.datas?.let { iniCallback.onResult(it,-1,2) }
         }else{

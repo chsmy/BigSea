@@ -5,9 +5,11 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.webview.BrowserActivity
-import com.chs.lib_common_ui.base.BaseFragment
+import com.chs.lib_core.imageloader.ImageLoader
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
@@ -55,6 +57,17 @@ class ProjectFragment : BaseFragment(){
         refreshview.setOnRefreshListener {
             mViewModel.dataSource?.invalidate()
         }
+        //优化快速滑动时候图片加载
+        recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    ImageLoader.resumeRequest(requireContext())
+                } else {
+                    ImageLoader.pauseRequest(requireContext())
+                }
+            }
+        })
     }
 
     override fun initData() {

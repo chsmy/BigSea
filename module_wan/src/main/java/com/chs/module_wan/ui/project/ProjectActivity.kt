@@ -38,6 +38,7 @@ class ProjectActivity : BaseActivity() {
     override fun initListener() {}
 
     override fun initData() {
+        mViewModel.setLoadingViewWrap(viewpager)
         mViewModel.mProjectKinds.observe(this, Observer {
             setViewPagerAdapter(it)
             TabLayoutMediator(tablayout, viewpager) { tab, position ->

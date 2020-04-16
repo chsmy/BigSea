@@ -3,7 +3,6 @@ package com.chs.module_wan.ui.login
 import androidx.lifecycle.MutableLiveData
 import com.chs.module_wan.model.LoginEntity
 import com.chs.lib_common_ui.base.BaseViewModel
-import com.chs.lib_core.http.WanBaseResponse
 import com.chs.module_wan.api.WanRetrofitClient
 
 /**

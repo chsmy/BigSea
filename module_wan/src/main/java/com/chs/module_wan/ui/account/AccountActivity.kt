@@ -11,7 +11,6 @@ import com.chs.module_wan.R
 import com.chs.module_wan.model.AccountNameEntity
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.wan_activity_project.*
-import kotlinx.android.synthetic.main.wan_activity_system.*
 import kotlinx.android.synthetic.main.wan_include_page_title.*
 
 /**
@@ -41,6 +40,7 @@ class AccountActivity : BaseActivity() {
     }
 
     override fun initData() {
+        mViewModel.setLoadingViewWrap(viewpager)
         mViewModel.mAccountName.observe(this, Observer {
             setViewPagerAdapter(it)
             TabLayoutMediator(tablayout, viewpager) { tab, position ->

@@ -11,6 +11,7 @@ import com.chs.lib_core.http.WanBaseResponse
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import kotlinx.coroutines.*
+import retrofit2.Call
 import java.util.concurrent.TimeoutException
 
 /**
@@ -34,6 +35,9 @@ abstract class BaseViewModel : ViewModel(){
         viewModelScope.launch { block() }
     }
 
+    /**
+     * 请求网络
+     */
     fun launch(block: suspend CoroutineScope.() -> Unit){
          if (isShowLoading) {
              mLoadService?.showCallback(LoadingCallback::class.java)
@@ -72,6 +76,9 @@ abstract class BaseViewModel : ViewModel(){
           }
     }
 
+    /**
+     * 处理异常
+     */
     private fun handleException(e: Exception) {
         if (e is TimeoutException) {
             mLoadService?.showCallback(TimeoutCallback::class.java)
@@ -90,6 +97,9 @@ abstract class BaseViewModel : ViewModel(){
     open fun onNetReload(it: View?) {}
 
 
+    /**
+     * 处理结果，只
+     */
     fun <T> handleResponse(result: WanBaseResponse<T>) : T? {
         if(result.errorCode == 0){
             return result.data
@@ -97,5 +107,26 @@ abstract class BaseViewModel : ViewModel(){
             mLoadService?.showCallback(EmptyCallback::class.java)
         }
         return null
+    }
+
+    /**
+     * 同步请求
+     */
+    fun <T> execute(block: () -> Call<WanBaseResponse<T>>): WanBaseResponse<T>? {
+        if (isShowLoading) {
+            mLoadService?.showCallback(LoadingCallback::class.java)
+        }
+        var result: WanBaseResponse<T>? = null
+
+        try {
+            result = block().execute().body()
+        } catch (e: Exception) {
+            mException.value = e
+            e.printStackTrace()
+            handleException(e)
+        } finally {
+            mLoadService?.showSuccess()
+        }
+        return result
     }
 }

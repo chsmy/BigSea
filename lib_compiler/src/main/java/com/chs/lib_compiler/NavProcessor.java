@@ -132,6 +132,7 @@ public class NavProcessor extends AbstractProcessor {
             boolean needLogin = false;
             boolean asStarter = false;
             boolean isFragment = true;
+            boolean isBelongTab = false;
 //            messager.printMessage(Diagnostic.Kind.NOTE,"className:"+className);
             Annotation annotation = element.getAnnotation(desAnnotationClazz);
             //根据不同的注解获取注解的参数
@@ -147,6 +148,7 @@ public class NavProcessor extends AbstractProcessor {
                 needLogin = destination.needLogin();
                 asStarter = destination.asStarter();
                 isFragment = false;
+                isBelongTab = destination.isBelongTab();
             }
             //将参数封装成JsonObject后放到map中保存
             if(destMap.containsKey(pageUrl)){
@@ -159,6 +161,7 @@ public class NavProcessor extends AbstractProcessor {
                 jsonObject.put("needLogin",needLogin);
                 jsonObject.put("asStarter",asStarter);
                 jsonObject.put("isFragment",isFragment);
+                jsonObject.put("isBelongTab",isBelongTab);
                 destMap.put(pageUrl,jsonObject);
             }
         }

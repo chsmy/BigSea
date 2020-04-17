@@ -1,8 +1,14 @@
 package com.chs.lib_core.navigation
 
+import android.content.ComponentName
 import android.os.Bundle
 import android.os.Parcelable
+import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph
+import androidx.navigation.NavGraphNavigator
+import com.blankj.utilcode.util.Utils
+import com.chs.lib_core.R
 import java.io.Serializable
 
 /**
@@ -16,12 +22,43 @@ class NavManager {
         private var sNavController:NavController? = null
         private val sMavManager = NavManager()
         fun get():NavManager{
+            setNavController()
             return sMavManager
         }
-    }
+        private fun setNavController() {
+            if(sNavController == null){
+                val navController = NavController(Utils.getApp())
+                val navigatorProvider = navController.navigatorProvider
+                val navGraph = NavGraph(NavGraphNavigator(navigatorProvider))
+                val activityNavigator = navigatorProvider.getNavigator(ActivityNavigator::class.java)
+                val destinationMap = NavConfig.getDestinationMap()
+                val activityDestinationStart:ActivityNavigator.Destination = getStartDestination(activityNavigator)
+                navGraph.addDestination(activityDestinationStart)
+                for ((key, destination) in destinationMap) {
+                    if (!destination.isFragment&&!destination.isBelongTab){
+                        val activityDestination = activityNavigator.createDestination()
+                        activityDestination.id = destination.id
+                        activityDestination.setComponentName(
+                            ComponentName(Utils.getApp().packageName, destination.className!!)
+                        )
+                        activityDestination.addDeepLink(destination.pageUrl!!)
+                        navGraph.addDestination(activityDestination)
+                    }
+                }
+                navGraph.startDestination = activityDestinationStart.id
+                navController.graph = navGraph
+                sNavController = navController
+            }
+        }
 
-    fun setNavController(navController:NavController){
-        sNavController = navController
+        private fun getStartDestination(activityNavigator:ActivityNavigator): ActivityNavigator.Destination {
+            val activityDestination = activityNavigator.createDestination()
+            activityDestination.id = R.id.bottom_start_activity
+            activityDestination.setComponentName(
+                ComponentName(Utils.getApp().packageName, "com.chs.lib_core.navigation.EmptyActivity")
+            )
+            return activityDestination
+        }
     }
 
     fun build(toWhere: String) : Builder{

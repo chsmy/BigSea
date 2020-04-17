@@ -26,4 +26,9 @@ public @interface ActivityDestination {
      * @return 是否是启动页
      */
     boolean asStarter() default false;
+
+    /**
+     * @return 是否属于主页中的tab页面  首页tab有可能点击去一个新的activity
+     */
+    boolean isBelongTab() default false;
 }

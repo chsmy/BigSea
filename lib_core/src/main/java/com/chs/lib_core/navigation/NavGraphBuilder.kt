@@ -15,10 +15,6 @@ class NavGraphBuilder {
 
     companion object {
 
-        fun build(navController: NavController,activity: FragmentActivity) {
-            build(navController,activity,0)
-        }
-
         fun build(navController: NavController, activity: FragmentActivity, containerId: Int) {
             val navigatorProvider = navController.navigatorProvider
             val fragmentNavigator = CustomFragmentNavigator(
@@ -39,16 +35,18 @@ class NavGraphBuilder {
                     fragmentDestination.addDeepLink(destination.pageUrl!!)
                     navGraph.addDestination(fragmentDestination)
                 } else {
-                    val activityDestination = activityNavigator.createDestination()
-                    activityDestination.id = destination.id
-                    activityDestination.setComponentName(
-                        ComponentName(
-                            Utils.getApp().packageName,
-                            destination.className!!
+                    if(destination.isBelongTab){
+                        val activityDestination = activityNavigator.createDestination()
+                        activityDestination.id = destination.id
+                        activityDestination.setComponentName(
+                            ComponentName(
+                                Utils.getApp().packageName,
+                                destination.className!!
+                            )
                         )
-                    )
-                    activityDestination.addDeepLink(destination.pageUrl!!)
-                    navGraph.addDestination(activityDestination)
+                        activityDestination.addDeepLink(destination.pageUrl!!)
+                        navGraph.addDestination(activityDestination)
+                    }
                 }
                 if (destination.asStarter) {
                     navGraph.startDestination = destination.id

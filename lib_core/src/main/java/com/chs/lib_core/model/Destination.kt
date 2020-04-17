@@ -12,4 +12,5 @@ class Destination {
     var needLogin = false
     var asStarter = false
     var isFragment = false
+    var isBelongTab = false
 }

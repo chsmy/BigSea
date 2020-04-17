@@ -25,7 +25,6 @@ class MainActivity : BaseActivity() {
         ImmersionBar.with(this).transparentStatusBar().init()
         showSplash()
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        NavManager.get().setNavController(navController)
         NavGraphBuilder.build(navController,this,R.id.nav_host_fragment)
         nav_view.setNavController(navController)
     }

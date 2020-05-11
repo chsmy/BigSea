@@ -12,13 +12,12 @@ import com.chs.module_wan.model.SystemEntity
  */
 class SystemViewModel : BaseViewModel() {
 
-    val mSystemEntity:MutableLiveData<List<SystemEntity>> = MutableLiveData<List<SystemEntity>>()
-
-    fun getSystemData(){
-        launch {
-           val systemRes = WanRetrofitClient.service.getSystemData()
-            mSystemEntity.value = systemRes.data
+    val mSystemEntity:MutableLiveData<List<SystemEntity>> by lazy {
+        MutableLiveData<List<SystemEntity>>().also {
+            launch {
+                val systemRes = WanRetrofitClient.service.getSystemData()
+                mSystemEntity.value = systemRes.data
+            }
         }
     }
-
 }

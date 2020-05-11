@@ -44,6 +44,5 @@ class SystemActivity: BaseActivity() {
         mSystemViewModel.mSystemEntity.observe(this, Observer {
             mAdapter.setDataAndRefresh(it)
         })
-        mSystemViewModel.getSystemData()
     }
 }

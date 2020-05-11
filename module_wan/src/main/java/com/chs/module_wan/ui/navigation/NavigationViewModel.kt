@@ -12,13 +12,11 @@ import com.chs.module_wan.model.NavigationEntity
  */
 class NavigationViewModel : BaseViewModel() {
 
-    val mNavigation : MutableLiveData<List<NavigationEntity>> = MutableLiveData()
-
-    fun getNavigationData(){
+    val mNavigation : MutableLiveData<List<NavigationEntity>> by lazy {
+        MutableLiveData<List<NavigationEntity>>().also {
         launch {
             val navData = WanRetrofitClient.service.getNavigationData()
             mNavigation.value = navData.data
         }
-    }
-
+    } }
 }

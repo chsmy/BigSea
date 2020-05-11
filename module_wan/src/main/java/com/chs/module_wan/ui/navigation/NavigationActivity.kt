@@ -87,6 +87,5 @@ class NavigationActivity : BaseActivity() {
                 tab_layout.addTab(QTabView(this).setTitle(itemTitleTab))
             }
         })
-        mViewModel.getNavigationData()
     }
 }

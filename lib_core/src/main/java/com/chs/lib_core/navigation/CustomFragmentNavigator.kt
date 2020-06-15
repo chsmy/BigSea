@@ -173,26 +173,4 @@ class CustomFragmentNavigator(context: Context, manager: FragmentManager, contai
     private fun generateBackStackName(backStackIndex: Int, destId: Int): String {
         return "$backStackIndex-$destId"
     }
-
-    private fun getDestId(backStackName: String?): Int {
-        val split: Array<String> =
-            backStackName?.split("-")?.toTypedArray() ?: arrayOf()
-        check(split.size == 2) {
-            ("Invalid back stack entry on the "
-                    + "NavHostFragment's back stack - use getChildFragmentManager() "
-                    + "if you need to do custom FragmentTransactions from within "
-                    + "Fragments created via your navigation graph.")
-        }
-        return try { // Just make sure the backStackIndex is correctly formatted
-            split[0].toInt()
-            split[1].toInt()
-        } catch (e: NumberFormatException) {
-            throw IllegalStateException(
-                "Invalid back stack entry on the "
-                        + "NavHostFragment's back stack - use getChildFragmentManager() "
-                        + "if you need to do custom FragmentTransactions from within "
-                        + "Fragments created via your navigation graph."
-            )
-        }
-    }
 }

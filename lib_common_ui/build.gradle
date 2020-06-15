@@ -52,4 +52,5 @@ dependencies {
     api depLibs.flexbox
     api depLibs.rouneImageView
     api depLibs.verticallayout
+    implementation 'com.just.agentweb:agentweb:4.1.3'
 }

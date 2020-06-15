@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chs.lib_common_ui" />
+    package="com.chs.lib_common_ui" >
+
+    <application>
+        <activity android:name=".webview.BaseWebActivity" />
+    </application>
+</manifest>

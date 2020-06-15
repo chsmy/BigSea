@@ -17,6 +17,7 @@ import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.lib_common_ui.base.OnItemChildClickListener
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.model.Banner
+import com.chs.lib_common_ui.webview.BaseWebActivity
 import com.chs.lib_common_ui.webview.BrowserActivity
 import com.chs.lib_core.constant.WanRouterKey
 import com.chs.module_wan.R
@@ -136,7 +137,8 @@ class HomeFragment : BaseFragment(){
         })
         mAdapter.onItemClickListener = object : OnItemClickListener{
             override fun onItemClick(view: View, position: Int) {
-                BrowserActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
+                BaseWebActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
+//                BrowserActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
             }
         }
         mAdapter.onItemChildClickListener = object : OnItemChildClickListener {

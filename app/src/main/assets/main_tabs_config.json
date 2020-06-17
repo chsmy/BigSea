@@ -14,8 +14,8 @@
       "size": 24,
       "enable": true,
       "index": 1,
-      "pageUrl": "main/tabs/ApplyFragment",
-      "title": "应用"
+      "pageUrl": "main/tabs/VideoFragment",
+      "title": "视频"
     },
     {
       "size": 24,

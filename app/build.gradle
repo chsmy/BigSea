@@ -42,7 +42,8 @@ androidExtensions {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':module_wan')
-
+    implementation project(':module_video')
+    implementation project(':lib_common_ui')
     implementation project(path: ':lib_annotation')
     kapt project(path: ':lib_compiler')
 }

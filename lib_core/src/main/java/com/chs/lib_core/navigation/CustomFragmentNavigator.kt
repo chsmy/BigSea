@@ -35,7 +35,7 @@ class CustomFragmentNavigator(context: Context, manager: FragmentManager, contai
         navOptions: NavOptions?,
         navigatorExtras: Extras?
     ): NavDestination? {
-        if (mFragmentManager!!.isStateSaved) {
+        if (mFragmentManager.isStateSaved) {
             Log.i(
                 TAG,
                 "Ignoring navigate() call: FragmentManager has already"
@@ -45,9 +45,9 @@ class CustomFragmentNavigator(context: Context, manager: FragmentManager, contai
         }
         var className = destination.className
         if (className[0] == '.') {
-            className = mContext!!.packageName + className
+            className = mContext.packageName + className
         }
-        val ft = mFragmentManager!!.beginTransaction()
+        val ft = mFragmentManager.beginTransaction()
 
         var enterAnim = navOptions?.enterAnim ?: -1
         var exitAnim = navOptions?.exitAnim ?: -1
@@ -61,16 +61,16 @@ class CustomFragmentNavigator(context: Context, manager: FragmentManager, contai
             ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim)
         }
 
-        val frg = mFragmentManager!!.primaryNavigationFragment
+        val frg = mFragmentManager.primaryNavigationFragment
         if (frg != null) {
             ft.hide(frg)
         }
 
         val tag = destination.id.toString()
-        var fragment = mFragmentManager!!.findFragmentByTag(tag)
+        var fragment = mFragmentManager.findFragmentByTag(tag)
         if (fragment == null) {
             fragment = mFragmentManager.getFragmentFactory().instantiate(mContext.classLoader, className)
-            fragment!!.arguments = args
+            fragment.arguments = args
             ft.add(mContainerId, fragment, tag)
         } else {
             ft.show(fragment)
@@ -93,7 +93,7 @@ class CustomFragmentNavigator(context: Context, manager: FragmentManager, contai
                 // back stack, a simple replace() isn't enough so we
                 // remove it from the back stack and put our replacement
                 // on the back stack in its place
-                mFragmentManager!!.popBackStack(
+                mFragmentManager.popBackStack(
                     generateBackStackName(mBackStack.size, mBackStack.peekLast()),
                     FragmentManager.POP_BACK_STACK_INCLUSIVE
                 )
@@ -127,7 +127,7 @@ class CustomFragmentNavigator(context: Context, manager: FragmentManager, contai
         if (mBackStack.isEmpty()) {
             return false
         }
-        if (mFragmentManager!!.isStateSaved) {
+        if (mFragmentManager.isStateSaved) {
             Log.i(
                 TAG,
                 "Ignoring popBackStack() call: FragmentManager has already"
@@ -135,7 +135,7 @@ class CustomFragmentNavigator(context: Context, manager: FragmentManager, contai
             )
             return false
         }
-        mFragmentManager?.popBackStack(
+        mFragmentManager.popBackStack(
             generateBackStackName(mBackStack.size, mBackStack.peekLast()),
             FragmentManager.POP_BACK_STACK_INCLUSIVE
         )

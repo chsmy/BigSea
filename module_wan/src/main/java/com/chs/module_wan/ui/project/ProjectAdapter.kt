@@ -37,7 +37,7 @@ class ProjectHolder(itemView: View) : BaseViewHolder<Article>(itemView) {
         tv_name.text = item.author
         tv_title.text = item.title
         tv_publish_time.text = item.niceShareDate
-        ImageLoader.url(item.envelopePic).into(iv_img)
+        ImageLoader.url(item.envelopePic).roundRadius(6).roundInto(iv_img)
         tv_content.text = item.desc
         tv_kind.text = item.superChapterName
     }

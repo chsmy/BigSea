@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_15"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/icon_tab_mine" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintBottom_toBottomOf="@id/iv_head"
+        app:layout_constraintLeft_toRightOf="@id/iv_head"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="王老五" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_head"
+        tools:text="哈哈哈哈哈哈" />
+
+    <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+        android:id="@+id/play_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

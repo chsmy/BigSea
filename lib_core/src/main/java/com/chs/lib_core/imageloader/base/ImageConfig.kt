@@ -17,12 +17,14 @@ class ImageConfig(builder: Builder) {
     var placeholder = 0
     var errorPic = 0
     var imageloader:IImageLoader? = null
+    var roundRadius = 0
     init {
         url = builder.url
         imageview = builder.imageView
         placeholder = builder.placeholder
         errorPic = builder.errorPic
         bgView = builder.bgView
+        roundRadius = builder.roundRadius
     }
 
     fun getImageLoader():IImageLoader{
@@ -35,6 +37,9 @@ class ImageConfig(builder: Builder) {
     fun show(){
             getImageLoader().loadImage(this)
     }
+    fun showRound(){
+            getImageLoader().loadRoundImage(this)
+    }
     fun showBg(){
             getImageLoader().loadBg(this)
     }
@@ -45,6 +50,7 @@ class ImageConfig(builder: Builder) {
          var bgView: View? = null
          var placeholder = 0
          var errorPic = 0
+         var roundRadius = 0
 
         fun url(url:String):Builder{
             this.url = url
@@ -58,10 +64,18 @@ class ImageConfig(builder: Builder) {
             this.errorPic = errorPic
             return this
         }
+        fun roundRadius(roundRadius:Int): Builder{
+            this.roundRadius = roundRadius
+            return this
+        }
 
         fun into(imageView: ImageView){
             this.imageView = imageView
             ImageConfig(this).show()
+        }
+        fun roundInto(imageView: ImageView){
+            this.imageView = imageView
+            ImageConfig(this).showRound()
         }
         fun intoBg(imageView: ImageView,bgView:View){
             this.imageView = imageView

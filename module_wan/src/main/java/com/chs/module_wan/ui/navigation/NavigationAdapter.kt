@@ -3,7 +3,7 @@ import android.view.View
 import com.chs.lib_common_ui.base.BaseAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.lib_common_ui.base.OnItemClickListener
-import com.chs.lib_common_ui.webview.BrowserActivity
+import com.chs.lib_common_ui.webview.BaseWebActivity
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import com.chs.module_wan.model.NavigationEntity
@@ -39,7 +39,7 @@ class NavHolder(itemView: View) : BaseViewHolder<NavigationEntity>(itemView) {
             rv_tag.adapter = adapter
             adapter.onItemClickListener = object : OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    BrowserActivity.start(itemView.context, item.articles[position].link)
+                    BaseWebActivity.start(itemView.context, item.articles[position].link)
                 }
             }
         }

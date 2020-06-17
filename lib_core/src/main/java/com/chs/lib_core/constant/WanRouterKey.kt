@@ -8,7 +8,7 @@ package com.chs.lib_core.constant
 class WanRouterKey {
     companion object{
         const val FRAGMENT_MAIN_TABLES_HOME = "main/tabs/HomeFragment"
-        const val FRAGMENT_MAIN_TABLES_APPLY = "main/tabs/ApplyFragment"
+        const val FRAGMENT_MAIN_TABLES_APPLY = "main/tabs/VideoFragment"
         const val FRAGMENT_MAIN_TABLES_FIND = "main/tabs/FindFragment"
         const val FRAGMENT_MAIN_TABLES_MINE = "main/tabs/MineFragment"
         const val ACTIVITY_MAIN_MINE_RANK = "main/mine/RankActivity"

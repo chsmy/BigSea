@@ -17,11 +17,10 @@
        android:orientation="vertical"
        android:background="@color/colorPrimary"
        >
-      <com.makeramen.roundedimageview.RoundedImageView
+      <ImageView
           android:id="@+id/iv_head"
           android:layout_width="@dimen/dp_60"
           android:layout_height="@dimen/dp_60"
-          app:riv_corner_radius="@dimen/dp_50"
           tools:src="@mipmap/ic_launcher" />
       <TextView
           android:id="@+id/tv_name"

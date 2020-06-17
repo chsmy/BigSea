@@ -4,8 +4,6 @@ import android.app.IntentService
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
-import com.tencent.sonic.sdk.SonicEngine
-import com.tencent.sonic.sdk.SonicSessionConfig
 
 /**
  * author：chs
@@ -36,16 +34,7 @@ class InitializeService : IntentService("InitializeService") {
      * application中可以延时初始化的任务
      */
     private fun initApplication() {
-        //初始化webview
-        initWebView()
 
-    }
-
-    private fun initWebView() {
-        val sessionConfigBuilder = SonicSessionConfig.Builder()
-        sessionConfigBuilder.setSupportLocalServer(true)
-        val preloadSuccess=
-            SonicEngine.getInstance().preCreateSession(DEMO_URL, sessionConfigBuilder.build())
     }
 
 }

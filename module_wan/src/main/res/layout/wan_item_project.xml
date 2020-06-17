@@ -26,7 +26,7 @@
         android:layout_marginTop="@dimen/dp_10"
         />
 
-    <com.makeramen.roundedimageview.RoundedImageView
+    <ImageView
         android:id="@+id/iv_img"
         android:layout_width="@dimen/dp_120"
         android:layout_height="@dimen/dp_80"

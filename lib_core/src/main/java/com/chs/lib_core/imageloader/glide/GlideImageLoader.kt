@@ -10,6 +10,7 @@ import androidx.palette.graphics.Target
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.DrawableImageViewTarget
@@ -35,6 +36,33 @@ class GlideImageLoader : IImageLoader{
      * 加载一个图片
      */
     override fun loadImage(imageConfig: ImageConfig) {
+          Glide.with(imageConfig.imageview.context)
+              .asBitmap()
+              .load(imageConfig.url)
+              .placeholder(imageConfig.placeholder)
+              .error(imageConfig.errorPic)
+              .apply(options)
+              .into(imageConfig.imageview)
+    }
+    /**
+     * 加载一个圆形图片
+     */
+    override fun loadCircleImage(imageConfig: ImageConfig) {
+          Glide.with(imageConfig.imageview.context)
+              .asBitmap()
+              .load(imageConfig.url)
+              .placeholder(imageConfig.placeholder)
+              .error(imageConfig.errorPic)
+              .apply(options)
+              .circleCrop()
+              .into(imageConfig.imageview)
+    }
+    /**
+     * 加载一个圆角图片
+     */
+    override fun loadRoundImage(imageConfig: ImageConfig) {
+        val roundedCorners = RoundedCorners(imageConfig.roundRadius)
+        val  options=RequestOptions.bitmapTransform(roundedCorners)
           Glide.with(imageConfig.imageview.context)
               .asBitmap()
               .load(imageConfig.url)

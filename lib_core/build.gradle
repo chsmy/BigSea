@@ -35,42 +35,39 @@ android {
 }
 
 dependencies {
-    def depLibs = rootProject.deplibs
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api depLibs.appcompact
-    api depLibs.multidex
-    api depLibs.ktx
-    api depLibs.glide
-    api depLibs.palette
-    api depLibs.retrofit
-    api depLibs.retrofit_converter
-    api depLibs.gson
-    api depLibs.coroutines_android
-    api depLibs.httploging
-    api depLibs.lifecycle_viewmodel_ktx
-    api depLibs.lifecycle_ext
-    api depLibs.koin_androidx_viewmodel
-    api depLibs.koin_androidx_scope
-    api depLibs.koin_android
-    api depLibs.utils
-    api depLibs.webview
-    //沉浸栏
-    api depLibs.immersionbar
-    api depLibs.immersionbar_ktx
-    api depLibs.immersionbar_components
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'com.android.support:multidex:1.0.3'
+    api 'androidx.core:core-ktx:1.5.0-alpha01'
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    api 'androidx.palette:palette:1.0.0'
+    api 'com.squareup.okhttp3:okhttp:4.2.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    api 'com.squareup.retrofit2:retrofit:2.6.3'
+    api 'com.squareup.retrofit2:converter-gson:2.6.3'
+    api 'com.google.code.gson:gson:2.8.6'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.4'
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha04'
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    api 'org.koin:koin-androidx-viewmodel:2.0.1'
+    api 'org.koin:koin-androidx-scope:2.0.1'
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+    api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
+    api 'com.gyf.immersionbar:immersionbar-components:3.0.0'
+    api 'com.blankj:utilcodex:1.26.0'
+    api 'androidx.navigation:navigation-fragment:2.2.2'
+    api 'androidx.navigation:navigation-ui:2.2.2'
+    api 'com.kingja.loadsir:loadsir:1.3.8'
 
-    api depLibs.navigation
-    api depLibs.navigation_ui
+    api 'androidx.room:room-runtime:2.2.5'
+    kapt 'androidx.room:room-compiler:2.2.5'
+    api 'androidx.room:room-ktx:2.2.5'
 
-    api depLibs.loadsir
-    api depLibs.room
-    kapt depLibs.room_compiler
-    api depLibs.room_ktx
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    api 'com.shuyu:GSYVideoPlayer:7.1.4'
 
-    api depLibs.cookiejar
-
-    testImplementation depLibs.junit
-    androidTestImplementation depLibs.junit_ext
-    androidTestImplementation depLibs.espresso
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

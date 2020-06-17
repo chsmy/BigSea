@@ -9,6 +9,10 @@ interface IImageLoader{
 
     fun loadImage(imageConfig: ImageConfig)
 
+    fun loadCircleImage(imageConfig: ImageConfig)
+
+    fun loadRoundImage(imageConfig: ImageConfig)
+
     fun loadBg(imageConfig: ImageConfig)
 
 }

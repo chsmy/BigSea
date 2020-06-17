@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.lib_common_ui.base.OnItemClickListener
-import com.chs.lib_common_ui.webview.BrowserActivity
+import com.chs.lib_common_ui.webview.BaseWebActivity
 import com.chs.lib_core.imageloader.ImageLoader
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
@@ -51,7 +51,7 @@ class ProjectFragment : BaseFragment(){
         super.initListener()
         mAdapter.onItemClickListener = object : OnItemClickListener{
             override fun onItemClick(view: View, position: Int) {
-                BrowserActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
+                BaseWebActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
             }
         }
         refreshview.setOnRefreshListener {

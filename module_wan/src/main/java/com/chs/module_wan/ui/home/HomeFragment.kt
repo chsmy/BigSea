@@ -39,14 +39,15 @@ import kotlinx.android.synthetic.main.wan_fragment_wan.*
 import kotlinx.android.synthetic.main.wan_title_bar.*
 
 @FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_HOME, asStarter = true)
-class HomeFragment : BaseFragment(){
+class HomeFragment : BaseFragment() {
 
-    private val mHomeViewModel:HomeViewModel by lazy {getViewModel(HomeViewModel::class.java)}
-    private val mCollectModel:CollectViewModel by lazy {getViewModel(CollectViewModel::class.java)}
-    private val mAdapter:WanAdapter by lazy { WanAdapter() }
-    private lateinit var mBannerViewPager:BannerViewPager<Banner, NetViewHolder>
-    private var bannerHeight:Int = 0
-    private var clickPosition : Int = 0
+    private val mHomeViewModel: HomeViewModel by lazy { getViewModel(HomeViewModel::class.java) }
+    private val mCollectModel: CollectViewModel by lazy { getViewModel(CollectViewModel::class.java) }
+    private val mAdapter: WanAdapter by lazy { WanAdapter() }
+    private lateinit var mBannerViewPager: BannerViewPager<Banner, NetViewHolder>
+    private var bannerHeight: Int = 0
+    private var clickPosition: Int = 0
+
     companion object {
         fun newInstance() = HomeFragment()
     }
@@ -65,19 +66,20 @@ class HomeFragment : BaseFragment(){
     }
 
     private fun addOptionsView() {
-        val optRootView = LayoutInflater.from(requireContext()).inflate(R.layout.wan_item_option,recyclerview,false)
+        val optRootView = LayoutInflater.from(requireContext())
+            .inflate(R.layout.wan_item_option, recyclerview, false)
         val optList = ArrayList<HomeOpt>()
         optList.add(HomeOpt("体系", R.drawable.home_opt_1, ""))
         optList.add(HomeOpt("导航", R.drawable.home_opt_2, ""))
         optList.add(HomeOpt("项目", R.drawable.home_opt_3, ""))
         optList.add(HomeOpt("公众号", R.drawable.home_opt_4, ""))
         val rvOpt = optRootView.findViewById<RecyclerView>(R.id.rv_opt)
-        rvOpt.layoutManager = GridLayoutManager(context,4)
+        rvOpt.layoutManager = GridLayoutManager(context, 4)
         val wanOptAdapter = WanOptAdapter(optList)
         rvOpt.adapter = wanOptAdapter
-        wanOptAdapter.onItemClickListener = object : OnItemClickListener{
+        wanOptAdapter.onItemClickListener = object : OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
-                when(position){
+                when (position) {
                     0 -> SystemActivity.start(requireContext())
                     1 -> NavigationActivity.start(requireContext())
                     2 -> ProjectActivity.start(requireContext())
@@ -92,16 +94,29 @@ class HomeFragment : BaseFragment(){
     override fun initListener() {
         super.initListener()
         refreshview.setOnRefreshListener {
-             mHomeViewModel.dataSource?.invalidate()
+            mHomeViewModel.dataSource?.invalidate()
         }
-        refreshview.setOnMultiPurposeListener(object : SimpleMultiPurposeListener(){
+        refreshview.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
             override fun onHeaderMoving(
-                header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
-                super.onHeaderMoving(header, isDragging, percent, offset, headerHeight, maxDragHeight)
-                if(isDragging&&toolbar.visibility==View.VISIBLE&&offset>100){
+                header: RefreshHeader?,
+                isDragging: Boolean,
+                percent: Float,
+                offset: Int,
+                headerHeight: Int,
+                maxDragHeight: Int
+            ) {
+                super.onHeaderMoving(
+                    header,
+                    isDragging,
+                    percent,
+                    offset,
+                    headerHeight,
+                    maxDragHeight
+                )
+                if (isDragging && toolbar.visibility == View.VISIBLE && offset > 100) {
                     toolbar.visibility = View.GONE
                 }
-                if(offset == 0 && toolbar.visibility==View.GONE){
+                if (offset == 0 && toolbar.visibility == View.GONE) {
                     toolbar.visibility = View.VISIBLE
                 }
             }
@@ -134,37 +149,40 @@ class HomeFragment : BaseFragment(){
                 }
             }
         })
-        mAdapter.onItemClickListener = object : OnItemClickListener{
+        mAdapter.onItemClickListener = object : OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
                 BaseWebActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
             }
         }
         mAdapter.onItemChildClickListener = object : OnItemChildClickListener {
-            override fun onClick(view: View,position: Int) {
+            override fun onClick(view: View, position: Int) {
                 clickPosition = position
                 val article = mAdapter.currentList!![position]
                 handleCollect(article!!)
             }
         }
         mCollectModel.mCollectRes.observe(this, Observer {
-            if(it.errorCode == 0){
+            if (it.errorCode == 0) {
                 val item = mAdapter.currentList?.get(clickPosition)
                 mAdapter.currentList?.get(clickPosition)?.collect = !item!!.collect
                 mAdapter.notifyDataSetChanged()
+            } else if (it.errorCode == -1001) {
+                 UserManager.get().gotoLogin(requireContext())
             }
         })
     }
 
     private fun handleCollect(article: Article) {
-        if (UserManager.get().isNotLogin()) {
-            CollectManager.goToLogin(article,this,requireContext(),mCollectModel)
+        if (!UserManager.get().isNotLogin()) {
+            CollectManager.goToLogin(article, this, requireContext(), mCollectModel)
         } else {
-            CollectManager.toggleCollect(article,mCollectModel)
+            CollectManager.toggleCollect(article, mCollectModel)
         }
     }
 
     private fun addBannerView() {
-        val bannerView = LayoutInflater.from(requireContext()).inflate(R.layout.wan_header_home,recyclerview,false)
+        val bannerView = LayoutInflater.from(requireContext())
+            .inflate(R.layout.wan_header_home, recyclerview, false)
         mBannerViewPager = bannerView.findViewById(R.id.banner)
         mHomeViewModel.mBanner.observe(this, Observer<List<Banner>> {
             mBannerViewPager.setCanLoop(true)
@@ -172,9 +190,14 @@ class HomeFragment : BaseFragment(){
                 .setPageMargin(resources.getDimensionPixelOffset(R.dimen.dp_10))
                 .setRevealWidth(resources.getDimensionPixelOffset(R.dimen.dp_10))
                 .setPageStyle(PageStyle.MULTI_PAGE)
-                .setHolderCreator{ NetViewHolder() }
+                .setHolderCreator { NetViewHolder() }
                 .setInterval(3000)
-                .setOnPageClickListener { position -> BaseWebActivity.start(requireContext(),it[position].url) }
+                .setOnPageClickListener { position ->
+                    BaseWebActivity.start(
+                        requireContext(),
+                        it[position].url
+                    )
+                }
                 .create(it)
             mBannerViewPager.startLoop()
         })
@@ -195,6 +218,7 @@ class HomeFragment : BaseFragment(){
         mHomeViewModel.pageData.observe(this,
             Observer<PagedList<Article>> { t ->
                 refreshview.finishRefresh()
-                mAdapter.submitList(t) })
+                mAdapter.submitList(t)
+            })
     }
 }

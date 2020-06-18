@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:focusable="true"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -13,9 +14,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_20"
-        android:paddingStart="@dimen/dp_15"
-        android:paddingEnd="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_30"
+        android:paddingStart="@dimen/dp_20"
+        android:paddingEnd="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_5"
         android:textColor="@color/text_black"
         tools:text="倒计时"
         />
@@ -39,7 +42,7 @@
         android:layout_marginTop="@dimen/dp_20"
         android:textColor="@color/text_black"
         android:textSize="@dimen/sp_16"
-        android:text="Splash页面测试"
+        android:text="这是广告页面"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

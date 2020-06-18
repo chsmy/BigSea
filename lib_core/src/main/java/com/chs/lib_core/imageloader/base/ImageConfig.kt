@@ -40,6 +40,9 @@ class ImageConfig(builder: Builder) {
     fun showRound(){
             getImageLoader().loadRoundImage(this)
     }
+    fun showCircle(){
+            getImageLoader().loadCircleImage(this)
+    }
     fun showBg(){
             getImageLoader().loadBg(this)
     }
@@ -72,6 +75,10 @@ class ImageConfig(builder: Builder) {
         fun into(imageView: ImageView){
             this.imageView = imageView
             ImageConfig(this).show()
+        }
+        fun circleInto(imageView: ImageView){
+            this.imageView = imageView
+            ImageConfig(this).showCircle()
         }
         fun roundInto(imageView: ImageView){
             this.imageView = imageView

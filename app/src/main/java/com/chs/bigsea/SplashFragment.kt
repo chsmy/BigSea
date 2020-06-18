@@ -25,7 +25,7 @@ class SplashFragment : BaseFragment(){
     override fun layoutId(): Int = R.layout.fragment_splash
 
     override fun initView() {
-        tv_time.background = DrawableUtil.getRoundDrawable(context,R.color.colorPrimary,10)
+        tv_time.background = DrawableUtil.getRoundDrawable(context,R.color.colorPrimary,20)
         tv_time.setOnClickListener {
             mOnTime.value = 0
         }

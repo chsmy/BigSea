@@ -12,5 +12,6 @@ class WanRouterKey {
         const val FRAGMENT_MAIN_TABLES_FIND = "main/tabs/FindFragment"
         const val FRAGMENT_MAIN_TABLES_MINE = "main/tabs/MineFragment"
         const val ACTIVITY_MAIN_MINE_RANK = "main/mine/RankActivity"
+        const val DIALOG_ACTIVITY_HOME = "main/tabs/HomeDialogActivity"
     }
 }

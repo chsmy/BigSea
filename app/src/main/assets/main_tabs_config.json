@@ -18,16 +18,23 @@
       "title": "视频"
     },
     {
-      "size": 24,
+      "size": 40,
       "enable": true,
       "index": 2,
+      "pageUrl": "main/tabs/HomeDialogActivity",
+      "title": ""
+    },
+    {
+      "size": 24,
+      "enable": true,
+      "index": 3,
       "pageUrl": "main/tabs/FindFragment",
       "title": "发现"
     },
     {
       "size": 24,
       "enable": true,
-      "index": 3,
+      "index": 4,
       "pageUrl": "main/tabs/MineFragment",
       "title": "我的"
     }

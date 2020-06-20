@@ -26,7 +26,7 @@ class BottomBarView : BottomNavigationView, BottomNavigationView.OnNavigationIte
 
     companion object {
         val sIcons = arrayOf(
-            R.drawable.icon_tab_home, R.drawable.icon_tab_apply,
+            R.drawable.icon_tab_home, R.drawable.icon_tab_apply,R.drawable.icon_home_add,
             R.drawable.icon_tab_find, R.drawable.icon_tab_mine
         )
     }

@@ -34,7 +34,6 @@ class App : BaseApp() {
         super.onCreate()
 
         InitializeService.start(this)
-
         LoadSir.beginBuilder()
             .addCallback(ErrorCallback()) //添加各种状态页
             .addCallback(EmptyCallback())

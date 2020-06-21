@@ -2,4 +2,7 @@
     package="com.chs.module_video">
 
     /
+    <application>
+        <activity android:name=".publish.PublishVideoActivity" />
+    </application>
 </manifest>

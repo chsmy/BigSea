@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.Utils
 /**
  * author：chs
  * date：2020/3/29
- * des： 构建一个导航图
+ * des： 构建一个首页的导航图
  */
 class NavGraphBuilder {
 
@@ -35,7 +35,7 @@ class NavGraphBuilder {
                     fragmentDestination.addDeepLink(destination.pageUrl!!)
                     navGraph.addDestination(fragmentDestination)
                 } else {
-//                    if(destination.isBelongTab){
+                    if(destination.isBelongTab){
                         val activityDestination = activityNavigator.createDestination()
                         activityDestination.id = destination.id
                         activityDestination.setComponentName(
@@ -46,7 +46,7 @@ class NavGraphBuilder {
                         )
                         activityDestination.addDeepLink(destination.pageUrl!!)
                         navGraph.addDestination(activityDestination)
-//                    }
+                    }
                 }
                 if (destination.asStarter) {
                     navGraph.startDestination = destination.id

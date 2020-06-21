@@ -47,7 +47,7 @@ class ImageConfig(builder: Builder) {
             getImageLoader().loadBg(this)
     }
 
-    object Builder{
+    class Builder{
          lateinit var url: String
          lateinit var imageView:ImageView
          var bgView: View? = null

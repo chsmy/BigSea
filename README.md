@@ -8,6 +8,9 @@
 - 使用paging组件实现列表的滑动加载，下拉刷新使用[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)
 - 自定义LiveDataBus实现页面间，组件间通信
 - 使用Room数据库缓存对象
+- 使用cameraX完成拍照和视频录制的功能
 - ....还有一些优秀的开源库
 
 ![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/home_page.png)
+![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/home_video.png)
+![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/bigsea_take.png)

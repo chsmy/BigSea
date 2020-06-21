@@ -13,7 +13,7 @@ import com.chs.lib_core.imageloader.base.ImageConfig
 object ImageLoader{
 
     fun url(url:String): ImageConfig.Builder {
-         return ImageConfig.Builder.url(url)
+         return ImageConfig.Builder().url(url)
     }
 
     fun trimMemory(application: Application?, level: Int) {

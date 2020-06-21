@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="video_publish">发布帖子</string>
+    <string name="video_btn_publish">发布</string>
+    <string name="video_add_des">添加一个内容介绍把</string>
+</resources>

@@ -1,7 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chs.lib_common_ui" >
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <application>
         <activity android:name=".webview.BaseWebActivity" />
+        <activity android:name=".camera.CameraViewActivity" />
+        <activity android:name=".camera.CameraActivity" />
+        <activity android:name=".camera.PreviewActivity" />
     </application>
 </manifest>

@@ -11,8 +11,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-     private var splashFragment:SplashFragment? = null
-
     override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.activity_main
 
     override fun setContentView(layoutResID: Int) {
@@ -22,7 +20,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-        ImmersionBar.with(this).transparentStatusBar().init()
+        ImmersionBar.with(this).transparentStatusBar().fitsSystemWindows(false).init()
         showSplash()
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         NavGraphBuilder.build(navController,this,R.id.nav_host_fragment)
@@ -31,18 +29,18 @@ class MainActivity : BaseActivity() {
 
     private fun showSplash() {
         val transaction = supportFragmentManager.beginTransaction()
-        splashFragment = supportFragmentManager.findFragmentByTag(SplashFragment::class.java.simpleName) as SplashFragment?
+        var splashFragment = supportFragmentManager.findFragmentByTag(SplashFragment::class.java.simpleName) as SplashFragment?
         if(splashFragment!=null){
             if(splashFragment!!.isAdded){
                 transaction.show(splashFragment!!).commitAllowingStateLoss()
             }else{
                 transaction.remove(splashFragment!!).commitAllowingStateLoss()
                 splashFragment = SplashFragment.newInstance()
-                transaction.add(R.id.container, splashFragment!!,SplashFragment::class.java.simpleName).commitAllowingStateLoss()
+                transaction.add(R.id.container, splashFragment!!,SplashFragment::class.java.simpleName).commit()
             }
         }else{
             splashFragment = SplashFragment.newInstance()
-            transaction.add(R.id.container, splashFragment!!,SplashFragment::class.java.simpleName).commitAllowingStateLoss()
+            transaction.add(R.id.container, splashFragment!!,SplashFragment::class.java.simpleName).commit()
         }
         splashFragment?.mOnTime?.observe(this, Observer {
             if(it == 0L){
@@ -55,7 +53,7 @@ class MainActivity : BaseActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = supportFragmentManager.findFragmentByTag(SplashFragment::class.java.simpleName)
         if(fragment!=null){
-            transaction.remove(fragment).commitAllowingStateLoss()
+            transaction.remove(fragment).commit()
         }
     }
 

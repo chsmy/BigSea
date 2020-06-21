@@ -2,10 +2,6 @@
     package="com.chs.lib_core" >
 
     <application>
-        <activity android:name="com.chs.lib_common_ui.webview.BrowserActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:process=":remoteWeb"
-            />
         <activity android:name=".navigation.EmptyActivity"
             android:theme="@android:style/Theme.Translucent" />
     </application>

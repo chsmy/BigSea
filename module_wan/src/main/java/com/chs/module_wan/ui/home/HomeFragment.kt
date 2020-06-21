@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.SizeUtils
 import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.banner.NetViewHolder
 import com.chs.lib_common_ui.base.BaseFragment
@@ -33,8 +34,10 @@ import com.gyf.immersionbar.ImmersionBar
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.zhpan.bannerview.BannerViewPager
-import com.zhpan.bannerview.constants.IndicatorSlideMode
+import com.zhpan.bannerview.constants.IndicatorGravity
 import com.zhpan.bannerview.constants.PageStyle
+import com.zhpan.indicator.enums.IndicatorSlideMode
+import com.zhpan.indicator.enums.IndicatorStyle
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
 import kotlinx.android.synthetic.main.wan_title_bar.*
 
@@ -187,8 +190,12 @@ class HomeFragment : BaseFragment() {
         mHomeViewModel.mBanner.observe(this, Observer<List<Banner>> {
             mBannerViewPager.setCanLoop(true)
                 .setIndicatorSlideMode(IndicatorSlideMode.NORMAL)
-                .setPageMargin(resources.getDimensionPixelOffset(R.dimen.dp_10))
-                .setRevealWidth(resources.getDimensionPixelOffset(R.dimen.dp_10))
+                .setIndicatorStyle(IndicatorStyle.ROUND_RECT)
+                .setIndicatorGravity(IndicatorGravity.CENTER)
+                .setIndicatorHeight(SizeUtils.dp2px(6f))
+                .setIndicatorSliderColor(ContextCompat.getColor(requireContext(),R.color.white_)
+                    ,ContextCompat.getColor(requireContext(),R.color.white))
+                .setIndicatorSliderWidth(SizeUtils.dp2px(6f), SizeUtils.dp2px(17f))
                 .setPageStyle(PageStyle.MULTI_PAGE)
                 .setHolderCreator { NetViewHolder() }
                 .setInterval(3000)

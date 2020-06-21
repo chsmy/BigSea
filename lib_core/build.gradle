@@ -67,6 +67,9 @@ dependencies {
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     api 'com.shuyu:GSYVideoPlayer:7.1.4'
 
+    api 'com.permissionx.guolindev:permissionx:1.2.2'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

@@ -2,10 +2,14 @@ package com.chs.lib_common_ui.base
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.chs.lib_common_ui.R
+import com.gyf.immersionbar.ImmersionBar
 
 /**
  * author：chs
@@ -17,10 +21,22 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getContentView(savedInstanceState))
+        ImmersionBar.with(this)
+            .statusBarColor(R.color.colorPrimary)
+            .fitsSystemWindows(true)
+            .init()
+
         initView()
         initListener()
         initData()
     }
+
+     private fun getStatusBarView(): View{
+         val view  = View(this)
+         val paramas = ViewGroup.LayoutParams(MATCH_PARENT,ImmersionBar.getStatusBarHeight(this))
+         view.layoutParams = paramas
+         return view
+     }
 
     /**
      * 返回一个用于显示界面的布局id

@@ -3,7 +3,7 @@ package com.chs.module_wan.model
 /**
  * author：chs
  * date：2020/4/5
- * des：
+ * des：项目实体类
  */
 data class ProjectEntity(
     val children: List<ProjectEntity>,

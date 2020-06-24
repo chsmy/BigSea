@@ -7,11 +7,12 @@ import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.lib_core.constant.WanRouterKey
 import com.chs.lib_core.video.ScrollCalculatorHelper
+import com.gyf.immersionbar.ImmersionBar
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.CommonUtil
 import kotlinx.android.synthetic.main.video_fragment_video.*
 
-@FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_APPLY)
+@FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_APPLY,isBelongTab = true)
 class VideoFragment : BaseFragment() {
 
     private val mViewModel by lazy { getViewModel(VideoViewModel::class.java) }
@@ -38,6 +39,7 @@ class VideoFragment : BaseFragment() {
         linearLayoutManager = LinearLayoutManager(requireContext())
         recyclerview.layoutManager = linearLayoutManager
         recyclerview.adapter = mAdapter
+        ImmersionBar.with(requireActivity()).transparentStatusBar().init()
     }
 
     override fun initData() {
@@ -76,6 +78,7 @@ class VideoFragment : BaseFragment() {
         if(hidden){
             GSYVideoManager.onPause()
         }else{
+            ImmersionBar.with(requireActivity()).transparentStatusBar().init()
             GSYVideoManager.onResume(true)
         }
     }

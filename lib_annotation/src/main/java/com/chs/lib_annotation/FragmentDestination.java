@@ -26,4 +26,9 @@ public @interface FragmentDestination {
      * @return 是否是启动页
      */
     boolean asStarter() default false;
+
+    /**
+     * @return 是否属于主页中的tab页面
+     */
+    boolean isBelongTab() default false;
 }

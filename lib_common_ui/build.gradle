@@ -62,4 +62,5 @@ dependencies {
     implementation "androidx.camera:camera-lifecycle:1.0.0-beta05"
 
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    api 'com.contrarywind:Android-PickerView:4.1.9'
 }

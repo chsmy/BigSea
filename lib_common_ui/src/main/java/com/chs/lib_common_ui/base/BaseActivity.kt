@@ -23,6 +23,7 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(getContentView(savedInstanceState))
         ImmersionBar.with(this)
             .statusBarColor(R.color.colorPrimary)
+            .autoStatusBarDarkModeEnable(true)
             .fitsSystemWindows(true)
             .init()
 

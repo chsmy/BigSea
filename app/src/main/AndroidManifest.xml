@@ -36,6 +36,7 @@
         </activity>
         <activity android:name=".HomeDialogActivity"
             android:theme="@style/fullWindow" />
+        <activity android:name=".ui.todo.CreateToDoActivity" />
     </application>
 
 </manifest>

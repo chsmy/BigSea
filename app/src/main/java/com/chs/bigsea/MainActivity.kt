@@ -31,18 +31,18 @@ class MainActivity : BaseActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         var splashFragment = supportFragmentManager.findFragmentByTag(SplashFragment::class.java.simpleName) as SplashFragment?
         if(splashFragment!=null){
-            if(splashFragment!!.isAdded){
-                transaction.show(splashFragment!!).commitAllowingStateLoss()
+            if(splashFragment.isAdded){
+                transaction.show(splashFragment).commitAllowingStateLoss()
             }else{
-                transaction.remove(splashFragment!!).commitAllowingStateLoss()
+                transaction.remove(splashFragment).commitAllowingStateLoss()
                 splashFragment = SplashFragment.newInstance()
-                transaction.add(R.id.container, splashFragment!!,SplashFragment::class.java.simpleName).commit()
+                transaction.add(R.id.container, splashFragment,SplashFragment::class.java.simpleName).commit()
             }
         }else{
             splashFragment = SplashFragment.newInstance()
-            transaction.add(R.id.container, splashFragment!!,SplashFragment::class.java.simpleName).commit()
+            transaction.add(R.id.container, splashFragment,SplashFragment::class.java.simpleName).commit()
         }
-        splashFragment?.mOnTime?.observe(this, Observer {
+        splashFragment.mOnTime.observe(this, Observer {
             if(it == 0L){
                 closeSplashFragment()
             }

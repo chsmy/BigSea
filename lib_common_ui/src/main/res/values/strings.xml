@@ -13,4 +13,7 @@
     <string name="login_go_to_login">去登录>></string>
     <string name="login_register">注册</string>
     <string name="login_login">登录</string>
+    <string name="xing">*</string>
+    <string name="please_input">请输入</string>
+    <string name="please_select">请选择</string>
 </resources>

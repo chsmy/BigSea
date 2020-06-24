@@ -41,7 +41,7 @@ import com.zhpan.indicator.enums.IndicatorStyle
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
 import kotlinx.android.synthetic.main.wan_title_bar.*
 
-@FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_HOME, asStarter = true)
+@FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_HOME, asStarter = true,isBelongTab = true)
 class HomeFragment : BaseFragment() {
 
     private val mHomeViewModel: HomeViewModel by lazy { getViewModel(HomeViewModel::class.java) }
@@ -68,14 +68,24 @@ class HomeFragment : BaseFragment() {
         ImmersionBar.setTitleBar(this, toolbar)
     }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if(!hidden){
+            ImmersionBar.with(requireActivity()).transparentStatusBar().init()
+            ImmersionBar.setTitleBar(this, toolbar)
+        }
+    }
+
     private fun addOptionsView() {
         val optRootView = LayoutInflater.from(requireContext())
             .inflate(R.layout.wan_item_option, recyclerview, false)
         val optList = ArrayList<HomeOpt>()
-        optList.add(HomeOpt("体系", R.drawable.home_opt_1, ""))
-        optList.add(HomeOpt("导航", R.drawable.home_opt_2, ""))
-        optList.add(HomeOpt("项目", R.drawable.home_opt_3, ""))
-        optList.add(HomeOpt("公众号", R.drawable.home_opt_4, ""))
+        optList.apply {
+            add(HomeOpt("体系", R.drawable.home_opt_1, ""))
+            add(HomeOpt("导航", R.drawable.home_opt_2, ""))
+            add(HomeOpt("项目", R.drawable.home_opt_3, ""))
+            add(HomeOpt("公众号", R.drawable.home_opt_4, ""))
+        }
         val rvOpt = optRootView.findViewById<RecyclerView>(R.id.rv_opt)
         rvOpt.layoutManager = GridLayoutManager(context, 4)
         val wanOptAdapter = WanOptAdapter(optList)

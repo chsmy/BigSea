@@ -28,7 +28,7 @@ class NavGraphBuilder {
             val navGraph = NavGraph(NavGraphNavigator(navigatorProvider))
 
             for ((key, destination) in destinationMap) {
-                if (destination.isFragment) {
+                if (destination.isFragment&&destination.isBelongTab) {
                     val fragmentDestination = fragmentNavigator.createDestination()
                     fragmentDestination.className = destination.className!!
                     fragmentDestination.id = destination.id

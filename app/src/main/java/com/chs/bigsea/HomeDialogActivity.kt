@@ -1,6 +1,7 @@
 package com.chs.bigsea
 
 import android.os.Bundle
+import com.chs.bigsea.ui.todo.CreateToDoActivity
 import com.chs.lib_annotation.ActivityDestination
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.constant.WanRouterKey
@@ -11,7 +12,7 @@ import kotlinx.android.synthetic.main.dialog_fragment_add.*
 /**
  * author：chs
  * date：2020/6/20
- * des：
+ * des： 首页中间点击添加图标后弹出的界面
  */
 @ActivityDestination(pageUrl = WanRouterKey.DIALOG_ACTIVITY_HOME,isBelongTab = true)
 class HomeDialogActivity : BaseActivity() {
@@ -33,7 +34,7 @@ class HomeDialogActivity : BaseActivity() {
     override fun initListener() {
         super.initListener()
         ivToDo.setOnClickListener {
-
+           CreateToDoActivity.start(this)
         }
         ivVideo.setOnClickListener {
             NavManager.get()

@@ -1,4 +1,8 @@
-apply plugin: 'com.android.application'
+if (rootProject.ext.isApp) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -6,24 +10,22 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion rootProject.android.compileSdkVersion
     buildToolsVersion rootProject.android.buildToolsVersion
+
     defaultConfig {
-        applicationId "com.chs.bigsea"
         minSdkVersion rootProject.android.minSdkVersion
         targetSdkVersion rootProject.android.targetSdkVersion
         versionCode rootProject.android.versionCode
         versionName rootProject.android.versionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        // 将svg图片生成 指定维度的png图片
-        vectorDrawables.generatedDensities('xhdpi','xxhdpi')
-        // 使用support-v7兼容5.0以上
-        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
             }
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -34,17 +36,28 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    resourcePrefix "eye_"
+    sourceSets {
+        main {
+            if (isApp.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
 }
 //adapter中使用kotlinx.android.extensions
 androidExtensions {
     experimental = true
 }
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':module_wan')
-    implementation project(':module_video')
-    implementation project(':module_eye')
-    implementation project(':lib_common_ui')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    compileOnly project(':lib_common_ui')
     implementation project(path: ':lib_annotation')
     kapt project(path: ':lib_compiler')
 }

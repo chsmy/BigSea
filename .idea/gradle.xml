@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/lib_common_ui" />
             <option value="$PROJECT_DIR$/lib_compiler" />
             <option value="$PROJECT_DIR$/lib_core" />
+            <option value="$PROJECT_DIR$/module_eye" />
             <option value="$PROJECT_DIR$/module_video" />
             <option value="$PROJECT_DIR$/module_wan" />
           </set>

@@ -26,6 +26,7 @@ import androidx.core.app.ActivityCompat;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chs.lib_common_ui.R;
 import com.chs.lib_common_ui.widget.RecordView;
+import com.gyf.immersionbar.ImmersionBar;
 import com.permissionx.guolindev.PermissionX;
 
 import java.io.File;
@@ -54,6 +55,7 @@ public class CameraViewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_view);
+        ImmersionBar.with(this).init();
         mCameraView = findViewById(R.id.view_finder);
         mRecordView = findViewById(R.id.record_view);
         mBtnCameraSwitch = findViewById(R.id.camera_switch_button);

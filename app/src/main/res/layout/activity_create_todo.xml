@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/wan_include_page_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_10"
+            android:gravity="center"
+            android:text="标题"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_money_x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/tv_title"
+            android:text="@string/xing"
+            android:textColor="@color/color_f5f5f5"
+            android:textSize="@dimen/sp_14" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_toEndOf="@id/tv_money_x"
+            android:background="@color/white"
+            android:hint="@string/please_input"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:background="@color/color_f0f2f5" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_96"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center"
+            android:text="内容"
+            android:textSize="@dimen/sp_14" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingStart="@dimen/dp_5"
+            android:textSize="@dimen/sp_14"
+            android:background="@color/white"
+            android:hint="@string/please_input" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:background="@color/color_f0f2f5" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_select_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_10"
+            android:gravity="center"
+            android:text="时间"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_category_x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/tv_time"
+            android:text="@string/xing"
+            android:textColor="@color/color_ff5151"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_time_res"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_toStartOf="@+id/iv_arrow_ca"
+            android:layout_toEndOf="@id/tv_category_x"
+            android:gravity="center_vertical"
+            android:hint="@string/please_select"
+            android:textSize="@dimen/sp_14" />
+
+        <ImageView
+            android:id="@+id/iv_arrow_ca"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:src="@drawable/arrow_right" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:background="@color/color_f0f2f5" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_100">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="取消"
+            android:textColor="@color/colorPrimary"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="@dimen/dp_1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_confirm"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="确定" />
+    </LinearLayout>
+</LinearLayout>

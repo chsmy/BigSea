@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.fragment_splash.*
 /**
  *  @author chs
  *  date: 2020-04-10 11:01
- *  des:
+ *  des:  闪屏广告页
  */
 class SplashFragment : BaseFragment(){
 

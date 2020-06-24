@@ -142,6 +142,7 @@ public class NavProcessor extends AbstractProcessor {
                 needLogin = destination.needLogin();
                 asStarter = destination.asStarter();
                 isFragment = true;
+                isBelongTab = destination.isBelongTab();
             }else if(annotation instanceof ActivityDestination){
                 ActivityDestination destination =  (ActivityDestination) annotation;
                 pageUrl = destination.pageUrl();

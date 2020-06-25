@@ -1,14 +1,14 @@
-package com.chs.module_eye
+package com.chs.module_eye.ui
 
-import android.view.View
-import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.lib_core.constant.WanRouterKey
+import com.chs.module_eye.AttentionFragment
+import com.chs.module_eye.R
+import com.chs.module_eye.ui.recommend.RecommendFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.eye_fragment_find.*
@@ -30,7 +30,7 @@ class FindFragment : BaseFragment() {
             .statusBarColor(com.chs.lib_common_ui.R.color.color_f0f2f5)
             .autoStatusBarDarkModeEnable(true)
             .init()
-        setStatusBarViewHeight()
+        setStatusBarViewHeight(status_bar_find)
     }
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
@@ -40,12 +40,6 @@ class FindFragment : BaseFragment() {
             .autoStatusBarDarkModeEnable(true)
             .init()
         }
-    }
-
-    private fun setStatusBarViewHeight() {
-        val layoutParams = LinearLayout.LayoutParams(status_bar.layoutParams)
-        layoutParams.height = ImmersionBar.getStatusBarHeight(this)
-        status_bar.layoutParams = layoutParams
     }
 
     override fun initData() {

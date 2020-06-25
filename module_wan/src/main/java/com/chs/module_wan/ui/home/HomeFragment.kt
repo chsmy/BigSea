@@ -10,9 +10,11 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.SizeUtils
 import com.chs.lib_annotation.FragmentDestination
+import com.chs.lib_common_ui.banner.BannerAdapter
 import com.chs.lib_common_ui.banner.NetViewHolder
 import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.lib_common_ui.base.OnItemChildClickListener
@@ -36,6 +38,7 @@ import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.constants.IndicatorGravity
 import com.zhpan.bannerview.constants.PageStyle
+import com.zhpan.bannerview.utils.BannerUtils
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
@@ -198,24 +201,23 @@ class HomeFragment : BaseFragment() {
             .inflate(R.layout.wan_header_home, recyclerview, false)
         mBannerViewPager = bannerView.findViewById(R.id.banner)
         mHomeViewModel.mBanner.observe(this, Observer<List<Banner>> {
-            mBannerViewPager.setCanLoop(true)
-                .setIndicatorSlideMode(IndicatorSlideMode.NORMAL)
-                .setIndicatorStyle(IndicatorStyle.ROUND_RECT)
-                .setIndicatorGravity(IndicatorGravity.CENTER)
-                .setIndicatorHeight(SizeUtils.dp2px(6f))
-                .setIndicatorSliderColor(ContextCompat.getColor(requireContext(),R.color.white_)
-                    ,ContextCompat.getColor(requireContext(),R.color.white))
-                .setIndicatorSliderWidth(SizeUtils.dp2px(6f), SizeUtils.dp2px(17f))
-                .setPageStyle(PageStyle.MULTI_PAGE)
-                .setHolderCreator { NetViewHolder() }
-                .setInterval(3000)
-                .setOnPageClickListener { position ->
-                    BaseWebActivity.start(
-                        requireContext(),
-                        it[position].url
-                    )
-                }
-                .create(it)
+            mBannerViewPager.apply {
+                adapter = BannerAdapter()
+                setAutoPlay(true)
+                setIndicatorStyle(IndicatorStyle.ROUND_RECT)
+                setIndicatorSliderGap(getResources().getDimensionPixelOffset(R.dimen.dp_4))
+                setIndicatorMargin(0, 0, 0, resources.getDimension(R.dimen.dp_100).toInt())
+                setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
+                setIndicatorSliderRadius(resources.getDimension(R.dimen.dp_3).toInt(), resources.getDimension(R.dimen.dp_4_5).toInt())
+                setIndicatorSliderColor(ContextCompat.getColor(requireContext(), R.color.white_),
+                    ContextCompat.getColor(requireContext(), R.color.white))
+               .setOnPageClickListener { position ->
+                        BaseWebActivity.start(
+                            requireContext(),
+                            it[position].url
+                        )
+                    }
+            }.create(it)
             mBannerViewPager.startLoop()
         })
         mHomeViewModel.getBannerData()

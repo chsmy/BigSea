@@ -4,11 +4,11 @@
     android:layout_height="match_parent">
 
   <com.scwang.smartrefresh.layout.SmartRefreshLayout
-      android:id="@+id/refresh_view"
+      android:id="@+id/refreshView"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
       <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/recycler_view"
+          android:id="@+id/recyclerView"
           android:layout_width="match_parent"
           android:layout_height="match_parent"/>
   </com.scwang.smartrefresh.layout.SmartRefreshLayout>

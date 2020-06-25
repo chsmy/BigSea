@@ -23,7 +23,7 @@ class AccountAdapter : AbsPageListAdapter<Article,AccountHolder>(object : DiffUt
     }
 }) {
 
-    override fun getLayoutId(): Int = R.layout.wan_item_account
+    override fun getItemViewType2(position: Int): Int = R.layout.wan_item_account
 
     override fun createCurrentViewHolder(view: View, viewType: Int): AccountHolder {
        return AccountHolder(view)

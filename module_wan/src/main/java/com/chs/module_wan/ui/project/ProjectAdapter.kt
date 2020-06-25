@@ -25,7 +25,7 @@ class ProjectAdapter() :
         }
     }) {
 
-    override fun getLayoutId(): Int = R.layout.wan_item_project
+    override fun getItemViewType2(position: Int): Int = R.layout.wan_item_project
 
     override fun createCurrentViewHolder(view: View, viewType: Int): ProjectHolder {
         return ProjectHolder(view)

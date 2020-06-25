@@ -25,7 +25,7 @@ class RankAdapter :
         }
     }) {
 
-    override fun getLayoutId(): Int = R.layout.wan_item_rank
+    override fun getItemViewType2(position: Int): Int  = R.layout.wan_item_rank
 
     override fun createCurrentViewHolder(view: View, viewType: Int): RankHolder {
         return RankHolder(view)

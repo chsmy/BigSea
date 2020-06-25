@@ -1,5 +1,6 @@
 package com.chs.module_video
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,7 @@ import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.CommonUtil
 import kotlinx.android.synthetic.main.video_fragment_video.*
 
-@FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_APPLY,isBelongTab = true)
+@FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_APPLY, isBelongTab = true)
 class VideoFragment : BaseFragment() {
 
     private val mViewModel by lazy { getViewModel(VideoViewModel::class.java) }
@@ -23,9 +24,11 @@ class VideoFragment : BaseFragment() {
 
     private fun setScrollHelper(): ScrollCalculatorHelper {
         val playTop = CommonUtil.getScreenHeight(requireContext()) / 2 - CommonUtil.dip2px(
-            requireContext(), 200f)
+            requireContext(), 200f
+        )
         val playBottom = CommonUtil.getScreenHeight(requireContext()) / 2 + CommonUtil.dip2px(
-            requireContext(), 200f)
+            requireContext(), 200f
+        )
         return ScrollCalculatorHelper(R.id.play_view, playTop, playBottom)
     }
 
@@ -39,7 +42,12 @@ class VideoFragment : BaseFragment() {
         linearLayoutManager = LinearLayoutManager(requireContext())
         recyclerview.layoutManager = linearLayoutManager
         recyclerview.adapter = mAdapter
-        ImmersionBar.with(requireActivity()).transparentStatusBar().init()
+        ImmersionBar.with(this)
+            .statusBarColor(com.chs.lib_common_ui.R.color.white)
+            .autoStatusBarDarkModeEnable(true)
+            .init()
+        setStatusBarViewHeight(status_bar_video)
+        GSYVideoManager.onResume()
     }
 
     override fun initData() {
@@ -75,17 +83,20 @@ class VideoFragment : BaseFragment() {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if(hidden){
+        if (hidden) {
             GSYVideoManager.onPause()
-        }else{
-            ImmersionBar.with(requireActivity()).transparentStatusBar().init()
+        } else {
+            ImmersionBar.with(requireActivity())
+                .statusBarColor(com.chs.lib_common_ui.R.color.white)
+                .autoStatusBarDarkModeEnable(true)
+                .init()
             GSYVideoManager.onResume(true)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        GSYVideoManager.onResume()
+
     }
 
     override fun onPause() {

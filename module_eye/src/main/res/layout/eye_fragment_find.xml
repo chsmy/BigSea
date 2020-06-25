@@ -7,10 +7,10 @@
     android:orientation="vertical">
 
     <View
-        android:id="@+id/status_bar"
+        android:id="@+id/status_bar_find"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_f0f2f5"
+        android:background="@color/white"
         />
 
     <com.google.android.material.tabs.TabLayout

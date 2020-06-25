@@ -1,4 +1,4 @@
-package com.chs.module_eye
+package com.chs.module_eye.ui
 
 import androidx.lifecycle.ViewModel
 

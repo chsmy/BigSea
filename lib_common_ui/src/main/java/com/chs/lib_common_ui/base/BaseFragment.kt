@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.gyf.immersionbar.ImmersionBar
 
 /**
  *  @author chs
@@ -66,4 +68,11 @@ abstract class BaseFragment : Fragment(){
     open fun <T : ViewModel?> getViewModel(owner: ViewModelStoreOwner?, clazz: Class<T>): T {
         return ViewModelProvider(owner!!).get(clazz)
     }
+
+    fun setStatusBarViewHeight(statusBar:View) {
+        val layoutParams = LinearLayout.LayoutParams(statusBar.layoutParams)
+        layoutParams.height = ImmersionBar.getStatusBarHeight(this)
+        statusBar.layoutParams = layoutParams
+    }
+
 }

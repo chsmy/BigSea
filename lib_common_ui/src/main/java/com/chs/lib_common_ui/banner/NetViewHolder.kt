@@ -5,7 +5,7 @@ import android.widget.ImageView
 import com.chs.lib_common_ui.R
 import com.chs.lib_common_ui.model.Banner
 import com.chs.lib_core.imageloader.ImageLoader
-import com.zhpan.bannerview.holder.ViewHolder
+import com.zhpan.bannerview.BaseViewHolder
 
 
 /**
@@ -13,14 +13,9 @@ import com.zhpan.bannerview.holder.ViewHolder
  *  date: 2020-01-18 15:59
  *  des:  banner 使用
  */
-class NetViewHolder : ViewHolder<Banner> {
-
-    override fun getLayoutId(): Int {
-        return R.layout.item_net
-    }
-
-    override fun onBind(itemView: View?, data: Banner, position: Int, size: Int) {
-        val imageView: ImageView = itemView!!.findViewById(R.id.banner_image)
-        ImageLoader.url(data.imagePath).into(imageView)
+class NetViewHolder(itemView:View) : BaseViewHolder<Banner>(itemView) {
+    override fun bindData(data: Banner?, position: Int, pageSize: Int) {
+        val imageView: ImageView = itemView.findViewById(R.id.banner_image)
+        ImageLoader.url(data?.imagePath!!).into(imageView)
     }
 }

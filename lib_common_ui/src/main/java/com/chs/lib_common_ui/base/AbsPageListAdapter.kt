@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.chs.lib_common_ui.R
 
 /**
  * @author：chs
@@ -15,6 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
  */
 abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUtil.ItemCallback<T>) :
     PagedListAdapter<T, VH>(diffCallback) {
+
+    companion object{
+        const val TYPE_UNKNOWN = -1
+    }
 
     var onItemClickListener: OnItemClickListener? = null
     var onItemChildClickListener: OnItemChildClickListener? = null
@@ -79,8 +84,8 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
         return getItemViewType2(position - mHeaders.size())
     }
 
-    protected fun getItemViewType2(i: Int): Int {
-        return 0
+    open fun getItemViewType2(position: Int): Int {
+        return TYPE_UNKNOWN
     }
 
     private fun isFooterPosition(position: Int): Int {
@@ -104,7 +109,8 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
                 override fun setContent(item: T,position:Int) {}
             } as VH
         }
-        val view = LayoutInflater.from(parent.context).inflate(getLayoutId(),parent,false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(if(viewType== TYPE_UNKNOWN) R.layout.empty_view else viewType,parent,false)
         val createCurrentViewHolder = createCurrentViewHolder(view, viewType)
         view.setOnClickListener {
             onItemClickListener?.onItemClick(view,createCurrentViewHolder.adapterPosition - mHeaders.size())
@@ -113,8 +119,6 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
     }
 
     abstract fun createCurrentViewHolder(view: View, viewType: Int): VH
-
-    abstract fun getLayoutId(): Int
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         if (isHeaderPosition(position) || isFooterPosition(position)>=0) return

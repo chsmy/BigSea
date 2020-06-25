@@ -7,6 +7,7 @@ import com.chs.lib_common_ui.loading.EmptyCallback
 import com.chs.lib_common_ui.loading.LoadingCallback
 import com.chs.lib_common_ui.loading.TimeoutCallback
 import com.chs.lib_core.event.SingleLiveEvent
+import com.chs.lib_core.http.EyeBaseResponse
 import com.chs.lib_core.http.VideoBaseResponse
 import com.chs.lib_core.http.WanBaseResponse
 import com.kingja.loadsir.core.LoadService
@@ -111,7 +112,7 @@ abstract class BaseViewModel : ViewModel(){
     }
 
     /**
-     * 同步请求
+     * 玩android同步请求
      */
     fun <T> execute(block: () -> Call<WanBaseResponse<T>>): WanBaseResponse<T>? {
         if (isShowLoading) {
@@ -122,7 +123,7 @@ abstract class BaseViewModel : ViewModel(){
         try {
             result = block().execute().body()
         } catch (e: Exception) {
-            mException.value = e
+            mException.postValue(e)
             e.printStackTrace()
             handleException(e)
         } finally {
@@ -131,7 +132,7 @@ abstract class BaseViewModel : ViewModel(){
         return result
     }
     /**
-     * 同步请求
+     * video同步请求
      */
     fun <T> executeVideo(block: () -> Call<VideoBaseResponse<T>>): VideoBaseResponse<T>? {
         if (isShowLoading) {
@@ -142,7 +143,27 @@ abstract class BaseViewModel : ViewModel(){
         try {
             result = block().execute().body()
         } catch (e: Exception) {
-            mException.value = e
+            mException.postValue(e)
+            e.printStackTrace()
+            handleException(e)
+        } finally {
+            mLoadService?.showSuccess()
+        }
+        return result
+    }
+    /**
+     * 开眼eye同步请求
+     */
+    fun <T> executeEye(block: () -> Call<EyeBaseResponse<T>>): EyeBaseResponse<T>? {
+        if (isShowLoading) {
+            mLoadService?.showCallback(LoadingCallback::class.java)
+        }
+        var result: EyeBaseResponse<T>? = null
+
+        try {
+            result = block().execute().body()
+        } catch (e: Exception) {
+            mException.postValue(e)
             e.printStackTrace()
             handleException(e)
         } finally {

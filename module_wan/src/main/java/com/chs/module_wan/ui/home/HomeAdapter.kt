@@ -32,7 +32,7 @@ class WanAdapter :
         return WanViewHolder(view,onItemChildClickListener)
     }
 
-    override fun getLayoutId(): Int = R.layout.wan_item_home_list
+    override fun getItemViewType2(position: Int): Int = R.layout.wan_item_home_list
 
 }
 

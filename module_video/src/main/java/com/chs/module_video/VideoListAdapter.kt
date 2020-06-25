@@ -33,7 +33,8 @@ class VideoListAdapter : AbsPageListAdapter<VideoList, VideoListViewHolder> {
         return VideoListViewHolder(view)
     }
 
-    override fun getLayoutId(): Int = R.layout.video_item_display
+    override fun getItemViewType2(position: Int): Int = R.layout.video_item_display
+
 }
 
 class VideoListViewHolder(itemView: View) : BaseViewHolder<VideoList>(itemView) {

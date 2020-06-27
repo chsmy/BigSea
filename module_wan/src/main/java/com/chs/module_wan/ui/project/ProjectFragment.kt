@@ -51,11 +51,11 @@ class ProjectFragment : BaseFragment(){
         super.initListener()
         mAdapter.onItemClickListener = object : OnItemClickListener{
             override fun onItemClick(view: View, position: Int) {
-                BaseWebActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
+                BaseWebActivity.start(requireContext(), mAdapter.getCurrentItem(position)?.link)
             }
         }
         refreshview.setOnRefreshListener {
-            mViewModel.dataSource?.invalidate()
+            mAdapter.refresh()
         }
         //优化快速滑动时候图片加载
         recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -74,9 +74,9 @@ class ProjectFragment : BaseFragment(){
         mViewModel.setLoadingViewWrap(refreshview)
         mViewModel.projectId = projectId
         mViewModel.pageData.observe(this,
-            Observer<PagedList<Article>> { t ->
+            Observer{ t ->
                 refreshview.finishRefresh()
-                mAdapter.submitList(t)
+                mAdapter.submitData(lifecycle,t)
             })
     }
 }

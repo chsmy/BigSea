@@ -1,13 +1,12 @@
 package com.chs.module_eye.ui
 
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.lib_core.constant.WanRouterKey
-import com.chs.module_eye.AttentionFragment
 import com.chs.module_eye.R
+import com.chs.module_eye.ui.follow.FollowFragment
 import com.chs.module_eye.ui.recommend.RecommendFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gyf.immersionbar.ImmersionBar
@@ -58,7 +57,7 @@ class FindFragment : BaseFragment() {
             override fun createFragment(position: Int): Fragment {
                 return when(position){
                     0 -> RecommendFragment.newInstance()
-                    1 -> AttentionFragment.newInstance()
+                    1 -> FollowFragment.newInstance()
                     else -> RecommendFragment.newInstance()
                 }
             }

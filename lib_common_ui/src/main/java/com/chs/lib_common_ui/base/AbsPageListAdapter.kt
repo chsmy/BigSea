@@ -4,7 +4,7 @@ import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_common_ui.R
@@ -14,8 +14,8 @@ import com.chs.lib_common_ui.R
  * date：2020/2/4
  * des：可以添加header footer 并且可以分页加载的adapter
  */
-abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUtil.ItemCallback<T>) :
-    PagedListAdapter<T, VH>(diffCallback) {
+abstract class AbsPageListAdapter<T : Any,VH: BaseViewHolder<T>>(diffCallback: DiffUtil.ItemCallback<T>) :
+    PagingDataAdapter<T, VH>(diffCallback) {
 
     companion object{
         const val TYPE_UNKNOWN = -1
@@ -29,6 +29,9 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
     private val mHeaders = SparseArray<View>()
     private val mFooters = SparseArray<View>()
 
+    fun getCurrentItem(position:Int):T?{
+        return getItem(position)
+    }
 
     fun addHeaderView(view:View){
         if(mHeaders.indexOfValue(view)<0){
@@ -158,8 +161,8 @@ abstract class AbsPageListAdapter<T,VH: BaseViewHolder<T>>(diffCallback: DiffUti
  * 所以只会定位到数据的第一位 不会定位到header的第一位
  * 解决办法 重写registerAdapterDataObserver 传入一个包装好的RecyclerView.AdapterDataObserver，在其内部加上header的数量
  */
-class AdapterDataObserverProxy<T,VH: BaseViewHolder<T>>(private val observer: RecyclerView.AdapterDataObserver,
-                               private val adapter: AbsPageListAdapter<T, VH>
+class AdapterDataObserverProxy<T : Any,VH: BaseViewHolder<T>>(private val observer: RecyclerView.AdapterDataObserver,
+                                                              private val adapter: AbsPageListAdapter<T, VH>
 )
     : RecyclerView.AdapterDataObserver(){
     override fun onChanged() {

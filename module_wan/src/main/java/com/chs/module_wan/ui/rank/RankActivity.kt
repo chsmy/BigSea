@@ -36,7 +36,7 @@ class RankActivity : BaseActivity() {
     override fun initListener() {
         super.initListener()
         refreshview.setOnRefreshListener {
-            mViewModel.dataSource?.invalidate()
+            mAdapter.refresh()
         }
     }
 
@@ -44,7 +44,7 @@ class RankActivity : BaseActivity() {
         mViewModel.setLoadingViewWrap(refreshview)
         mViewModel.pageData.observe(this, Observer {
             refreshview.finishRefresh()
-            mAdapter.submitList(it)
+            mAdapter.submitData(lifecycle,it)
         })
     }
 }

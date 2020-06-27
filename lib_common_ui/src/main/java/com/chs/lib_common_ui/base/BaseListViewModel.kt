@@ -2,9 +2,8 @@ package com.chs.lib_common_ui.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
+import androidx.lifecycle.asLiveData
+import androidx.paging.*
 import com.blankj.utilcode.util.ThreadUtils
 
 /**
@@ -12,33 +11,14 @@ import com.blankj.utilcode.util.ThreadUtils
  * date：2020/2/5
  * des：RecyclerView + Paging组件的时候使用
  */
-abstract class BaseListViewModel<T> : BaseViewModel(){
+abstract class BaseListViewModel<T : Any, D:Any> : BaseViewModel(){
 
-    private val pageSize:Int = 20
-    val boundaryPageData = MutableLiveData<Boolean>()
+    val pageData:LiveData<PagingData<D>> by lazy { getPagingData().asLiveData() }
 
-    private val config:PagedList.Config
-    var dataSource: DataSource<Int, T>? = null
-    val pageData:LiveData<PagedList<T>>
+    private fun getPagingData() = Pager(PagingConfig(pageSize = 20)){
+        createDataSource()
+    }.flow
 
-    private var factory = object :DataSource.Factory<Int,T>(){
-        override fun create(): DataSource<Int, T> {
-              if (dataSource == null||(dataSource!=null&& dataSource!!.isInvalid)){
-                  dataSource = createDataSource()
-              }
-            return dataSource!!
-        }
-    }
-
-    init {
-        config = PagedList.Config.Builder()
-            .setPageSize(pageSize)
-            .setInitialLoadSizeHint(pageSize * 2)
-            .build()
-        pageData = LivePagedListBuilder(factory,config).setFetchExecutor(ThreadUtils.getIoPool()).build()
-    }
-
-    abstract fun createDataSource(): DataSource<Int, T>
-
+    abstract fun createDataSource(): PagingSource<T, D>
 
 }

@@ -38,9 +38,9 @@ class RecommendFragment:BaseFragment() {
     override fun initData() {
         mViewModel.setLoadingViewWrap(refreshView)
         mViewModel.pageData.observe(this,
-            Observer<PagedList<RecommendItem>> { t ->
+            Observer { t ->
                 refreshView.finishRefresh()
-                mAdapter.submitList(t)
+                mAdapter.submitData(lifecycle,t)
             })
     }
 }

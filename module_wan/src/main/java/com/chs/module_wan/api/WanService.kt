@@ -24,7 +24,7 @@ interface WanService{
      * 首页
      */
     @GET("article/list/{page}/json")
-    fun getHomeList(@Path("page")page:Int) : Call<WanBaseResponse<HomeEntity>>
+    suspend fun getHomeList(@Path("page")page:Int) : WanBaseResponse<HomeEntity>
 
     /**
      * 系统
@@ -42,7 +42,7 @@ interface WanService{
      * 项目列表
      */
     @GET("/project/list/{page}/json")
-    fun getProjectListData(@Path("page")page:Int,@Query("cid")id:Int):Call<WanBaseResponse<ArticleEntity>>
+    suspend fun getProjectListData(@Path("page")page:Int,@Query("cid")id:Int):WanBaseResponse<ArticleEntity>
 
     /**
      * 公众号名字
@@ -54,8 +54,8 @@ interface WanService{
      * 公众号列表
      */
     @GET("wxarticle/list/{id}/{page}/json")
-    fun getAccountListData(@Path("id")id:Int,@Path("page")page:Int):
-            Call<WanBaseResponse<ArticleEntity>>
+    suspend fun getAccountListData(@Path("id")id:Int,@Path("page")page:Int):
+            WanBaseResponse<ArticleEntity>
 
     /**
      * 导航
@@ -87,6 +87,6 @@ interface WanService{
      * 排名列表
      */
     @GET("coin/rank/{page}/json")
-    fun getRank(@Path("page")page:Int):Call<WanBaseResponse<Rank>>
+    suspend fun getRank(@Path("page")page:Int):WanBaseResponse<Rank>
 
 }

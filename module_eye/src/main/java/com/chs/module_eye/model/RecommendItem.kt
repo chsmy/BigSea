@@ -20,7 +20,7 @@ data class Data(
     val count: Int,
     val dataType: String,
     val footer: Any,
-    val header: Any,
+    val header: Header,
     val itemList: List<ItemX>
 )
 
@@ -165,19 +165,20 @@ data class DataXX(
 )
 
 data class Header(
-    val actionUrl: Any,
+    val actionUrl: String,
     val cover: Any,
     val description: Any,
     val font: Any,
-    val icon: Any,
+    val icon: String,
     val id: Int,
-    val label: Any,
+    val label: String,
     val labelList: Any,
     val rightText: Any,
     val subTitle: Any,
     val subTitleFont: Any,
     val textAlign: String,
-    val title: Any
+    val title: String,
+    val issuerName: String
 )
 
 data class Label(

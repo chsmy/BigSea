@@ -54,7 +54,7 @@ class VideoFragment : BaseFragment() {
         mViewModel.setLoadingViewWrap(refreshview)
         mViewModel.pageData.observe(this, Observer { t ->
             refreshview.finishRefresh()
-            mAdapter.submitList(t)
+            mAdapter.submitData(lifecycle,t)
         })
     }
 

@@ -50,11 +50,11 @@ class AccountFragment : BaseFragment(){
         super.initListener()
         mAdapter.onItemClickListener = object : OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
-                BaseWebActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
+                BaseWebActivity.start(requireContext(), mAdapter.getCurrentItem(position)?.link)
             }
         }
         refreshview.setOnRefreshListener {
-            mViewModel.dataSource?.invalidate()
+            mAdapter.refresh()
         }
     }
 
@@ -62,8 +62,8 @@ class AccountFragment : BaseFragment(){
         mViewModel.setLoadingViewWrap(refreshview)
         mViewModel.accountId = accountId
         mViewModel.pageData.observe(this,
-            Observer<PagedList<Article>> { t ->
-                mAdapter.submitList(t)
+                 Observer  { t ->
+                mAdapter.submitData(lifecycle,t)
                 refreshview.finishRefresh()
             })
     }

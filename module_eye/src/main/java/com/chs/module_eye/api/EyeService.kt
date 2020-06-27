@@ -1,6 +1,8 @@
 package com.chs.module_eye.api
 
 import com.chs.lib_core.http.EyeBaseResponse
+import com.chs.module_eye.model.FollowItem
+import com.chs.module_eye.model.Item
 import com.chs.module_eye.model.RecommendItem
 import retrofit2.Call
 import retrofit2.http.GET
@@ -27,10 +29,12 @@ interface EyeService {
     //社区
     //1.推荐
     //请求地址： http://baobab.kaiyanapp.com/api/v7/community/tab/rec
-    @GET()
-    fun getRecData(@Url url:String):Call<EyeBaseResponse<List<RecommendItem>>>
+    @GET
+    suspend fun getRecData(@Url url:String):EyeBaseResponse<List<RecommendItem>>
     //2.关注
     //请求地址： http://baobab.kaiyanapp.com/api/v6/community/tab/follow
+    @GET
+    suspend fun getFollowData(@Url url:String):EyeBaseResponse<List<Item>>
     //通知
     //1.主题
     //请求地址： http://baobab.kaiyanapp.com/api/v7/tag/tabList

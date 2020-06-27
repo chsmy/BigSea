@@ -19,9 +19,9 @@ interface VideoService {
 
     //列表接口 https://api.apiopen.top/getJoke?page=1&count=5&type=video
     @GET("getJoke")
-    fun getVideoList(
+    suspend fun getVideoList(
         @Query("page") page: Int, @Query("count")
         count: Int, @Query("type") type: String
-    ): Call<VideoBaseResponse<List<VideoList>>>
+    ):VideoBaseResponse<List<VideoList>>
 
 }

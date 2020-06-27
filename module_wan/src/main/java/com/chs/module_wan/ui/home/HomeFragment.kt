@@ -110,7 +110,7 @@ class HomeFragment : BaseFragment() {
     override fun initListener() {
         super.initListener()
         refreshview.setOnRefreshListener {
-            mHomeViewModel.dataSource?.invalidate()
+            mAdapter.refresh()
         }
         refreshview.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
             override fun onHeaderMoving(
@@ -167,20 +167,20 @@ class HomeFragment : BaseFragment() {
         })
         mAdapter.onItemClickListener = object : OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
-                BaseWebActivity.start(requireContext(), mAdapter.currentList?.get(position)?.link)
+                BaseWebActivity.start(requireContext(), mAdapter.getCurrentItem(position)?.link)
             }
         }
         mAdapter.onItemChildClickListener = object : OnItemChildClickListener {
             override fun onClick(view: View, position: Int) {
                 clickPosition = position
-                val article = mAdapter.currentList!![position]
+                val article = mAdapter.getCurrentItem(position)
                 handleCollect(article!!)
             }
         }
         mCollectModel.mCollectRes.observe(this, Observer {
             if (it.errorCode == 0) {
-                val item = mAdapter.currentList?.get(clickPosition)
-                mAdapter.currentList?.get(clickPosition)?.collect = !item!!.collect
+                val item = mAdapter.getCurrentItem(clickPosition)
+                mAdapter.getCurrentItem(clickPosition)?.collect = !item!!.collect
                 mAdapter.notifyDataSetChanged()
             } else if (it.errorCode == -1001) {
                  UserManager.get().gotoLogin(requireContext())
@@ -235,9 +235,9 @@ class HomeFragment : BaseFragment() {
     override fun initData() {
         mHomeViewModel.setLoadingViewWrap(refreshview)
         mHomeViewModel.pageData.observe(this,
-            Observer<PagedList<Article>> { t ->
+            Observer { t ->
                 refreshview.finishRefresh()
-                mAdapter.submitList(t)
+                mAdapter.submitData(lifecycle,t)
             })
     }
 }

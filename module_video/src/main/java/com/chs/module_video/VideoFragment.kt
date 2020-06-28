@@ -41,7 +41,7 @@ class VideoFragment : BaseFragment() {
     override fun initView() {
         linearLayoutManager = LinearLayoutManager(requireContext())
         recyclerview.layoutManager = linearLayoutManager
-        recyclerview.adapter = mAdapter
+        recyclerview.adapter = mAdapter.getLoadStateAdapter(mAdapter)
         ImmersionBar.with(this)
             .statusBarColor(com.chs.lib_common_ui.R.color.white)
             .autoStatusBarDarkModeEnable(true)

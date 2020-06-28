@@ -64,7 +64,7 @@ class HomeFragment : BaseFragment() {
 
     override fun initView() {
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.adapter = mAdapter
+        recyclerview.adapter = mAdapter.getLoadStateAdapter(mAdapter)
         addBannerView()
         addOptionsView()
         ImmersionBar.with(requireActivity()).transparentStatusBar().init()

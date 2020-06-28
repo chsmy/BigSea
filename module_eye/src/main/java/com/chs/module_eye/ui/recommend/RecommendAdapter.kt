@@ -169,9 +169,12 @@ class RecommendCustomViewHolder(
 ) : BaseViewHolder<RecommendItem>(itemView) {
     override fun setContent(item: RecommendItem, position: Int) {
       val picHeight = calculateImageHeight(item.data.content.data.width,item.data.content.data.height)
-        tvPic.layoutParams.height = picHeight
-      ImageLoader.url(item.data.content.data.cover.feed).roundRadius(10)
-          .roundInto(tvPic)
+        tv_pic.layoutParams.height = picHeight
+        tv_name.text = item.data.content.data.owner.nickname
+        tv_des.text =  item.data.content.data.description
+        ImageLoader.url(item.data.content.data.owner.avatar).circleInto(iv_head)
+        ImageLoader.url(item.data.content.data.cover.feed).roundRadius(10)
+          .roundInto(tv_pic)
     }
 
     /**

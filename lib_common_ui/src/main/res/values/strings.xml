@@ -16,4 +16,5 @@
     <string name="xing">*</string>
     <string name="please_input">请输入</string>
     <string name="please_select">请选择</string>
+    <string name="retry">重试</string>
 </resources>

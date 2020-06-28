@@ -2,14 +2,47 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
-        android:id="@+id/tvPic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/iv_head"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/dp_5"
         />
 
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/iv_head"
+        android:layout_marginStart="@dimen/dp_10"
+        app:layout_constraintTop_toTopOf="@id/iv_head"
+        android:textSize="@dimen/sp_12"
+        tools:text="啦啦啦啊"
+        />
+
+    <ImageView
+        android:id="@+id/tv_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/iv_head"
+        android:layout_marginTop="@dimen/dp_5"
+        android:scaleType="fitXY"
+        />
+    <TextView
+        android:id="@+id/tv_des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_pic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        android:ellipsize="end"
+        tools:text="啦啦啦啊啦啦啦啊啦啦啦啊啦啦啦啊"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

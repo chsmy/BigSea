@@ -30,7 +30,7 @@ class RankActivity : BaseActivity() {
     override fun initView() {
         tv_title_name.text = "排名"
         recyclerview.layoutManager = LinearLayoutManager(this)
-        recyclerview.adapter = mAdapter
+        recyclerview.adapter = mAdapter.getLoadStateAdapter(mAdapter)
     }
 
     override fun initListener() {

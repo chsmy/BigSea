@@ -1,5 +1,6 @@
 package com.chs.module_eye.ui.follow
 
+import PostLoadStateAdapter
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -30,7 +31,7 @@ class FollowFragment : BaseFragment(){
     override fun initView() {
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = mAdapter
+        recyclerView.adapter = mAdapter.getLoadStateAdapter(mAdapter)
         recyclerView.setHasFixedSize(true)
         recyclerView.itemAnimator = null
     }

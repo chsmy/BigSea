@@ -29,7 +29,7 @@ class RecommendFragment:BaseFragment() {
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = mAdapter
+        recyclerView.adapter = mAdapter.getLoadStateAdapter(mAdapter)
         recyclerView.addItemDecoration(RecommendItemDecoration())
         recyclerView.setHasFixedSize(true)
         recyclerView.itemAnimator = null

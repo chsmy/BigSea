@@ -1,5 +1,6 @@
 package com.chs.module_wan.ui.account
 
+import PostLoadStateAdapter
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -43,7 +44,7 @@ class AccountFragment : BaseFragment(){
 
     override fun initView() {
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.adapter = mAdapter
+        recyclerview.adapter = mAdapter.getLoadStateAdapter(mAdapter)
     }
 
     override fun initListener() {

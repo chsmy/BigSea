@@ -44,7 +44,7 @@ class ProjectFragment : BaseFragment(){
 
     override fun initView() {
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview.adapter = mAdapter
+        recyclerview.adapter = mAdapter.getLoadStateAdapter(mAdapter)
     }
 
     override fun initListener() {

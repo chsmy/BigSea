@@ -1,10 +1,12 @@
 package com.chs.lib_common_ui.base
 
+import PostLoadStateAdapter
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_common_ui.R
@@ -31,6 +33,13 @@ abstract class AbsPageListAdapter<T : Any,VH: BaseViewHolder<T>>(diffCallback: D
 
     fun getCurrentItem(position:Int):T?{
         return getItem(position)
+    }
+
+    /**
+     * 设置底部加载 和 错误重试
+     */
+    fun <T : Any,VH: BaseViewHolder<T>>getLoadStateAdapter(adapter: PagingDataAdapter<T,VH>): ConcatAdapter {
+        return adapter.withLoadStateFooter(PostLoadStateAdapter(adapter))
     }
 
     fun addHeaderView(view:View){

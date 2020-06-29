@@ -10,8 +10,11 @@
 - 自定义LiveDataBus实现页面间，组件间通信
 - 使用Room数据库缓存对象
 - 使用cameraX完成拍照和视频录制的功能
-- ....还有一些优秀的开源库
+- 使用google的exoplayer来播放视频，并且自定义实现列表滑动播放
 
 ![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/home_page.png)
-![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/home_video.png)
+![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/bigsea_1.png)
+![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/bigsea_2.png)
+
+![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/bigsea_3.png)
 ![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/bigsea_take.png)

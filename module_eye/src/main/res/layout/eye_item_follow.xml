@@ -46,15 +46,19 @@
         />
     <TextView
         android:id="@+id/tv_des"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_5"
-        tools:text="啦啦啦啦啦啦啦啦"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:maxLines="2"
+        android:ellipsize="end"
+        tools:text="啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦"
         />
-    <com.chs.lib_core.video.SampleCoverVideo
+    <com.chs.lib_common_ui.widget.PlayerView
         android:id="@+id/play_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_200"

@@ -5,13 +5,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chs.lib_common_ui.base.BaseFragment
+import com.chs.lib_common_ui.exoplayer.PagePlayerDetector
+import com.chs.lib_common_ui.exoplayer.PagePlayerManager
+import com.chs.lib_core.common.BusKey
+import com.chs.lib_core.event.LiveDataBus
 import com.chs.module_eye.R
-import com.chs.module_eye.ui.recommend.RecommendAdapter
-import com.chs.module_eye.ui.recommend.RecommendFragment
-import com.chs.module_eye.ui.recommend.RecommendItemDecoration
-import com.chs.module_eye.ui.recommend.RecommendViewModel
-import com.gyf.immersionbar.ImmersionBar
-import com.shuyu.gsyvideoplayer.GSYVideoManager
 import kotlinx.android.synthetic.main.eye_fragment_refresh.*
 
 /**
@@ -22,13 +20,15 @@ import kotlinx.android.synthetic.main.eye_fragment_refresh.*
 class FollowFragment : BaseFragment(){
     private val mViewModel by lazy { getViewModel(FollowViewModel::class.java) }
     override fun layoutId(): Int = R.layout.eye_fragment_refresh
-    private val mAdapter by lazy { FollowAdapter() }
-
+    private val mAdapter by lazy { FollowAdapter(pagePlayerDetector) }
+    private lateinit var pagePlayerDetector: PagePlayerDetector
     companion object{
         fun newInstance() = FollowFragment()
+        const val KEY_FOLLOW_VIDEO_NAME = "FollowFragment"
     }
 
     override fun initView() {
+        pagePlayerDetector = PagePlayerDetector(this,recyclerView)
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = mAdapter.getLoadStateAdapter(mAdapter)
@@ -45,27 +45,30 @@ class FollowFragment : BaseFragment(){
             })
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (hidden) {
-            GSYVideoManager.onPause()
-        } else {
-            GSYVideoManager.onResume(true)
-        }
+    override fun initListener() {
+        super.initListener()
+        //由于该fragment在viewpager中 无法监听到onHiddenChanged方法，所以从父类传过来使用
+        LiveDataBus.get<Boolean>(BusKey.KEY_ON_HIDDEN_CHANGED).observe(this, Observer {
+            if (it) {
+                pagePlayerDetector.onPause()
+            } else {
+                pagePlayerDetector.onResume()
+            }
+        })
     }
 
     override fun onResume() {
         super.onResume()
-
+        pagePlayerDetector.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        GSYVideoManager.onPause()
+        pagePlayerDetector.onPause()
     }
 
     override fun onDestroy() {
+        PagePlayerManager.release(KEY_FOLLOW_VIDEO_NAME)
         super.onDestroy()
-        GSYVideoManager.releaseAllVideos()
     }
 }

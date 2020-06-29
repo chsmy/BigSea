@@ -14,15 +14,15 @@ import kotlinx.android.synthetic.main.dialog_fragment_add.*
  * date：2020/6/20
  * des： 首页中间点击添加图标后弹出的界面
  */
-@ActivityDestination(pageUrl = WanRouterKey.DIALOG_ACTIVITY_HOME,isBelongTab = true)
+@ActivityDestination(pageUrl = WanRouterKey.DIALOG_ACTIVITY_HOME, isBelongTab = true)
 class HomeDialogActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        overridePendingTransition(R.anim.bottom_in,0)
+        overridePendingTransition(R.anim.bottom_in, 0)
         super.onCreate(savedInstanceState)
     }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int  = R.layout.dialog_fragment_add
+    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.dialog_fragment_add
 
     override fun initView() {
         ImmersionBar.with(this).transparentStatusBar().fitsSystemWindows(false).init()
@@ -34,7 +34,8 @@ class HomeDialogActivity : BaseActivity() {
     override fun initListener() {
         super.initListener()
         ivToDo.setOnClickListener {
-           CreateToDoActivity.start(this)
+            CreateToDoActivity.start(this)
+            finish()
         }
         ivVideo.setOnClickListener {
             NavManager.get()
@@ -49,6 +50,6 @@ class HomeDialogActivity : BaseActivity() {
 
     override fun finish() {
         super.finish()
-        overridePendingTransition(0,R.anim.bottom_out)
+        overridePendingTransition(0, R.anim.bottom_out)
     }
 }

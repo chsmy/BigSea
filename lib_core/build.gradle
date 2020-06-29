@@ -65,7 +65,6 @@ dependencies {
     api 'androidx.room:room-ktx:2.2.5'
 
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
-    api 'com.shuyu:GSYVideoPlayer:7.1.4'
 
     api 'com.permissionx.guolindev:permissionx:1.2.2'
 

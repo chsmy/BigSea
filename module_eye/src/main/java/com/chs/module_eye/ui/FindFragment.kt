@@ -4,7 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.base.BaseFragment
+import com.chs.lib_core.common.BusKey
 import com.chs.lib_core.constant.WanRouterKey
+import com.chs.lib_core.event.LiveDataBus
 import com.chs.module_eye.R
 import com.chs.module_eye.ui.follow.FollowFragment
 import com.chs.module_eye.ui.recommend.RecommendFragment
@@ -39,6 +41,7 @@ class FindFragment : BaseFragment() {
             .autoStatusBarDarkModeEnable(true)
             .init()
         }
+        LiveDataBus.get<Boolean>(BusKey.KEY_ON_HIDDEN_CHANGED).postValue(hidden)
     }
 
     override fun initData() {

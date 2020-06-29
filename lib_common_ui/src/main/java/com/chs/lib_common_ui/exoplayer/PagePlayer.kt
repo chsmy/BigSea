@@ -14,8 +14,9 @@ import com.google.android.exoplayer2.ui.PlayerView
  */
 class PagePlayer {
     var exoplayer:SimpleExoPlayer?
-    private var playerView:PlayerView?
-    private var controlView:PlayerControlView?
+    var playerView:PlayerView?
+    var controlView:PlayerControlView?
+    var playUrl:String? = null
     init {
         val app = Utils.getApp()
         //初始化exoplayer
@@ -25,8 +26,11 @@ class PagePlayer {
         playerView = LayoutInflater.from(app).inflate(R.layout.layout_exo_player_view,
             null,false) as PlayerView
         //视频播放控制器
-        controlView = LayoutInflater.from(app).inflate(R.layout.layout_exo_player_view,
+        controlView = LayoutInflater.from(app).inflate(R.layout.layout_exo_player_contorller_view,
             null,false) as PlayerControlView
+        //把播放器和控制器跟exoplayer相关联
+        playerView?.player = exoplayer
+        controlView?.player = exoplayer
     }
 
     fun release() {
@@ -49,5 +53,12 @@ class PagePlayer {
         controlView = null
     }
 
+    /**
+     * 用于视图切换的时候 无缝续播
+     */
+    fun switchPlayerView(currentPlayerView: PlayerView, attach: Boolean) {
+        playerView?.player = if(attach) null else exoplayer
+        currentPlayerView.player = if(attach) exoplayer else null
+    }
 
 }

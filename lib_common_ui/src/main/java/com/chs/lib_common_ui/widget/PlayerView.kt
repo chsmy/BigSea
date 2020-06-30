@@ -8,6 +8,7 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.ImageView
+import com.blankj.utilcode.util.ScreenUtils
 import com.chs.lib_common_ui.R
 import com.chs.lib_common_ui.exoplayer.IPlayTarget
 import com.chs.lib_common_ui.exoplayer.PagePlayerManager
@@ -20,25 +21,25 @@ import com.google.android.exoplayer2.ui.PlayerControlView
  * date：2020/6/29
  * des： 视频播放的容器
  */
-class PlayerView : FrameLayout,IPlayTarget, Player.EventListener,
+open class PlayerView : FrameLayout,IPlayTarget, Player.EventListener,
     PlayerControlView.VisibilityListener {
 
     /**
      * 保存播放对象target的key
      */
-    private var targetKey: String? = null
+    var targetKey: String? = null
 
     /**
      * 视频的链接地址
      */
-    private lateinit var videoUrl: String
+    lateinit var videoUrl: String
 
     /**
      * 是否正在播放
      */
     var isTargetPlaying: Boolean = false
 
-    var withPx = 0
+    var widthPx = 0
     var heightPx = 0
     var loadingView: View
 
@@ -46,7 +47,7 @@ class PlayerView : FrameLayout,IPlayTarget, Player.EventListener,
      * 暂停/播放按钮
      */
     private var playBtn: ImageView
-    private var cover: ImageView
+    var cover: ImageView
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
@@ -73,11 +74,46 @@ class PlayerView : FrameLayout,IPlayTarget, Player.EventListener,
 
     fun bindData(key:String,with:Int,height:Int,coverUrl:String,videoUrl:String){
         targetKey = key
-        withPx = with
+        widthPx = with
         heightPx = height
         this.videoUrl = videoUrl
         ImageLoader.url(coverUrl).into(cover)
+        if(with!=0&&height!=0){
+            setSize(widthPx, heightPx)
+        }
+    }
 
+    /**
+     * 视频宽高等比缩放
+     */
+    open fun setSize(widthPx: Int, heightPx: Int) {
+//        if(heightPx!=0){
+//            val maxWidth = ScreenUtils.getScreenWidth()
+//            val maxHeight = ScreenUtils.getScreenWidth()
+//            //当前布局的宽高
+//            var layoutWidth = 0
+//            var layoutHeight = 0
+//            if(widthPx>=heightPx){
+//                //如果视频的宽大于等于高
+//                layoutWidth= maxWidth
+//                layoutHeight = widthPx/heightPx*maxWidth
+//            }else{
+//                //如果视频的宽小于高
+//                layoutWidth =  widthPx/heightPx*maxHeight
+//                layoutHeight = maxHeight
+//            }
+//            val params = layoutParams
+//            params.width = layoutWidth
+//            params.height = layoutHeight
+//            layoutParams = params
+
+//            val coverParams = cover.layoutParams as LayoutParams
+//            coverParams.width = layoutWidth
+//            coverParams.height = layoutHeight
+//            coverParams.gravity = Gravity.CENTER
+//            cover.layoutParams = coverParams
+
+//        }
     }
 
     override fun getOwner(): ViewGroup {

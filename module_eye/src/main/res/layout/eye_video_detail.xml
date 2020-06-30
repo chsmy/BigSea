@@ -1,6 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.chs.lib_common_ui.widget.FullScreenPlayerView
+        android:id="@+id/play_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dp_200"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:anchorId="@+id/player_view"
+        app:layout_behavior="com.chs.lib_common_ui.widget.ViewAnchorBehavior"
+        >
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/iv_head"
+            app:layout_constraintTop_toTopOf="@id/iv_head"
+            android:layout_marginStart="@dimen/dp_10"
+            tools:text="灵魂洗练石"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/iv_head"
+            app:layout_constraintBottom_toBottomOf="@id/iv_head"
+            tools:text="48天前"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_publish"
+            style="@style/materialButton"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/eye_notice"
+            app:cornerRadius="@dimen/dp_15"
+            app:layout_constraintBottom_toBottomOf="@id/iv_head"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_head" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:overScrollMode="never"
+        app:anchorId="@+id/user_info"
+        app:layout_behavior="com.chs.lib_common_ui.widget.ViewAnchorBehavior"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48">
+        <TextView
+            android:id="@+id/input_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginRight="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_4"
+            android:layout_weight="4"
+            android:background="@drawable/bg_edit_view"
+            android:gravity="center_vertical"
+            android:hint="@string/eye_publish_your_comm"
+            android:paddingStart="@dimen/dp_10"
+            android:textColor="@color/text_gray"
+            android:textColorHint="@color/text_gray"
+            android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/icon_cell_like"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="赞"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/icon_collected"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="收藏"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/icon_cell_share"
+                android:layout_weight="1"
+                android:text="分享"
+                />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/action_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/icon_back"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

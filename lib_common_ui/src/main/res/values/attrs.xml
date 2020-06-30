@@ -7,4 +7,9 @@
         <attr name="radius" format="dimension"/>
         <attr name="duration" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="ViewAnchorBehavior">
+        <attr name="anchorId" format="integer"/>
+    </declare-styleable>
+
 </resources>

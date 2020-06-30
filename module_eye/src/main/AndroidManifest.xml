@@ -2,4 +2,7 @@
     package="com.chs.module_eye">
 
     /
+    <application>
+        <activity android:name=".ui.detail.VideoDetailActivity" />
+    </application>
 </manifest>

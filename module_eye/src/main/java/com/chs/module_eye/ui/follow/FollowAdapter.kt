@@ -62,9 +62,6 @@ class FollowViewHolder(itemView: View,
         tv_des.text = subData.content.data.description
         ImageLoader.url(item.data.header.icon).circleInto(iv_head)
 
-        val imageView = ImageView(itemView.context)
-        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        ImageLoader.url(item.data.content.data.cover.feed).into(imageView)
         play_view.bindData(FollowFragment.KEY_FOLLOW_VIDEO_NAME,subData.content.data.width,subData.content.data.height,
         subData.content.data.cover.feed,subData.content.data.playUrl)
     }

@@ -55,9 +55,6 @@ class VideoListViewHolder(itemView: View) : BaseViewHolder<VideoList>(itemView) 
         tv_title.text = item.text
         ImageLoader.url(item.header).circleInto(iv_head)
 
-        val imageView = ImageView(itemView.context)
-        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        ImageLoader.url(item.thumbnail).into(imageView)
         play_view.bindData(VideoFragment.KEY_VIDEO_VIDEO_NAME,1080,1920,
             item.thumbnail,item.video)
     }

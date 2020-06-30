@@ -16,7 +16,7 @@ data class FollowItem(
 data class Item(
     val adIndex: Int,
     val `data`: Data,
-    val id: Int,
+    val id: Long,
     val tag: Any,
     val type: String
 )

@@ -1,15 +1,18 @@
 package com.chs.module_eye.ui.follow
 
 import PostLoadStateAdapter
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chs.lib_common_ui.base.BaseFragment
+import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.exoplayer.PagePlayerDetector
 import com.chs.lib_common_ui.exoplayer.PagePlayerManager
 import com.chs.lib_core.common.BusKey
 import com.chs.lib_core.event.LiveDataBus
 import com.chs.module_eye.R
+import com.chs.module_eye.ui.detail.VideoDetailActivity
 import kotlinx.android.synthetic.main.eye_fragment_refresh.*
 
 /**
@@ -55,6 +58,13 @@ class FollowFragment : BaseFragment(){
                 pagePlayerDetector.onResume()
             }
         })
+        mAdapter.onItemClickListener = object : OnItemClickListener{
+            override fun onItemClick(view: View, position: Int) {
+                val currentItem = mAdapter.getCurrentItem(position)
+                val id = currentItem?.data?.header?.id?:0
+                VideoDetailActivity.start(requireContext(),id,KEY_FOLLOW_VIDEO_NAME)
+            }
+        }
     }
 
     override fun onResume() {

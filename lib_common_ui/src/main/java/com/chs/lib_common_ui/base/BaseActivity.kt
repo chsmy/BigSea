@@ -21,11 +21,11 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getContentView(savedInstanceState))
-        ImmersionBar.with(this)
-            .statusBarColor(R.color.colorPrimary)
-            .autoStatusBarDarkModeEnable(true)
-            .fitsSystemWindows(true)
-            .init()
+//        ImmersionBar.with(this)
+//            .statusBarColor(R.color.colorPrimary)
+//            .autoStatusBarDarkModeEnable(true)
+//            .fitsSystemWindows(true)
+//            .init()
 
         initView()
         initListener()

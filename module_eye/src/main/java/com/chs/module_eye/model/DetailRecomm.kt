@@ -57,7 +57,7 @@ data class DetailData(
     val src: Any,
     val subTitle: Any,
     val subtitles: List<Any>,
-    val tags: List<Tag>,
+    val tags: List<Tag>?,
     val text: String,
     val thumbPlayUrl: Any,
     val title: String,

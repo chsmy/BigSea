@@ -3,9 +3,16 @@ package com.chs.module_eye.ui.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.LinearLayout
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.chs.lib_common_ui.base.BaseActivity
+import com.chs.lib_core.imageloader.ImageLoader
 import com.chs.module_eye.R
+import com.chs.module_eye.model.DetailCommItem
+import com.gyf.immersionbar.ImmersionBar
+import kotlinx.android.synthetic.main.eye_fragment_find.*
 import kotlinx.android.synthetic.main.eye_video_detail.*
 
 /**
@@ -16,6 +23,8 @@ import kotlinx.android.synthetic.main.eye_video_detail.*
 class VideoDetailActivity:BaseActivity() {
 
     private val mViewModel by lazy { getViewModel(VideoDetailViewModel::class.java) }
+
+    private val mAdapter by lazy { DetailCommAdapter(ArrayList()) }
 
     companion object{
         private const val KEY_VIDEO_DETAIL = "VideoDetailActivity"
@@ -31,9 +40,11 @@ class VideoDetailActivity:BaseActivity() {
     override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.eye_video_detail
 
     override fun initView() {
-
+        ImmersionBar.with(this).transparentStatusBar()
+            .init()
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = mAdapter
     }
-
     override fun initData() {
         val videoId = intent.getLongExtra(KEY_VIDEO_DETAIL,0)
         val videoPlayKey = intent.getStringExtra(KEY_VIDEO_PLAY_KEY)?:""
@@ -41,9 +52,13 @@ class VideoDetailActivity:BaseActivity() {
             mViewModel.getDetailData(videoId)
         }
         mViewModel.detailPageData.observe(this, Observer {
-            play_view.bindData(videoPlayKey,0,0,it.detail.cover.feed,
+            play_view.bindData(videoPlayKey,720,1280,it.detail.cover.feed,
             it.detail.playUrl)
+            ImageLoader.url(it.detail.author.icon).circleInto(iv_head)
+            tv_name.text = it.detail.author.name
+            tv_des.text = it.detail.author.description
             play_view.onActive()
+            mAdapter.setDataAndRefresh(it.detailRecommend)
         })
     }
 

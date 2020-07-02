@@ -35,22 +35,22 @@ class FullScreenPlayerView : PlayerView{
     }
 
     override fun setSize(widthPx: Int, heightPx: Int) {
-        if(widthPx>heightPx){
-            super.setSize(widthPx, heightPx)
-            return
-        }
-        val screenWidth = ScreenUtils.getScreenWidth()
-        val screenHeight = ScreenUtils.getScreenHeight()
-
-        val layoutParams = layoutParams
-        layoutParams.height = screenHeight
-        layoutParams.width = screenWidth
-
-        val covLayoutParams = cover.layoutParams as LayoutParams
-        covLayoutParams.width = (widthPx / (heightPx * 1.0f / screenHeight)).toInt()
-        covLayoutParams.height = screenHeight
-        covLayoutParams.gravity = Gravity.CENTER
-        cover.layoutParams = covLayoutParams
+//        if(widthPx>heightPx){
+//            super.setSize(widthPx, heightPx)
+//            return
+//        }
+//        val screenWidth = ScreenUtils.getScreenWidth()
+//        val screenHeight = ScreenUtils.getScreenHeight()
+//
+//        val layoutParams = layoutParams
+//        layoutParams.height = screenHeight
+//        layoutParams.width = screenWidth
+//
+//        val covLayoutParams = cover.layoutParams as LayoutParams
+//        covLayoutParams.width = (widthPx / (heightPx * 1.0f / screenHeight)).toInt()
+//        covLayoutParams.height = screenHeight
+//        covLayoutParams.gravity = Gravity.CENTER
+//        cover.layoutParams = covLayoutParams
     }
 
     override fun onActive() {
@@ -74,7 +74,7 @@ class FullScreenPlayerView : PlayerView{
                 (parent as ViewGroup).removeView(playerView)
                 (parent as PlayerView).inActive()
             }
-            addView(playerView,0,cover.layoutParams)
+            this.addView(playerView,0,cover.layoutParams)
         }
         //将控制器添加到当前容器的底部
         val ctrParent = controlView?.parent

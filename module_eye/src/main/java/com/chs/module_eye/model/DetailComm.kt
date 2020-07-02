@@ -8,7 +8,7 @@ package com.chs.module_eye.model
 
 data class DetailCommItem(
     val adIndex: Int,
-    val `data`: Data,
+    val `data`: DetailCommData,
     val id: Int,
     val tag: Any,
     val type: String

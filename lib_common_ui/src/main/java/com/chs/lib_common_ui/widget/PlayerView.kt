@@ -9,6 +9,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.ImageView
 import com.blankj.utilcode.util.ScreenUtils
+import com.bumptech.glide.Glide
 import com.chs.lib_common_ui.R
 import com.chs.lib_common_ui.exoplayer.IPlayTarget
 import com.chs.lib_common_ui.exoplayer.PagePlayerManager
@@ -77,10 +78,14 @@ open class PlayerView : FrameLayout,IPlayTarget, Player.EventListener,
         widthPx = with
         heightPx = height
         this.videoUrl = videoUrl
+
         ImageLoader.url(coverUrl).into(cover)
         if(with!=0&&height!=0){
             setSize(widthPx, heightPx)
         }
+//        val builder = Glide.with(context).load(coverUrl)
+//        val layoutParams = layoutParams
+//        builder.override(layoutParams.width,layoutParams.height).into(cover)
     }
 
     /**

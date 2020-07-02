@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    >
 
     <com.chs.lib_common_ui.widget.FullScreenPlayerView
         android:id="@+id/play_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/user_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:anchorId="@+id/player_view"
-        app:layout_behavior="com.chs.lib_common_ui.widget.ViewAnchorBehavior"
+        app:layout_constraintTop_toBottomOf="@id/play_view"
         >
         <ImageView
             android:id="@+id/iv_head"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginStart="@dimen/dp_10"
@@ -38,14 +40,17 @@
             tools:text="灵魂洗练石"
             />
         <TextView
+            android:id="@+id/tv_des"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@id/iv_head"
             app:layout_constraintBottom_toBottomOf="@id/iv_head"
+            android:layout_marginStart="@dimen/dp_10"
+            app:layout_constraintRight_toLeftOf="@+id/btn_keep"
             tools:text="48天前"
             />
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_publish"
+            android:id="@+id/btn_keep"
             style="@style/materialButton"
             android:layout_width="@dimen/dp_70"
             android:layout_height="wrap_content"
@@ -61,16 +66,22 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/dp_10"
         android:overScrollMode="never"
-        app:anchorId="@+id/user_info"
-        app:layout_behavior="com.chs.lib_common_ui.widget.ViewAnchorBehavior"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@id/user_info"
+        app:layout_constraintBottom_toTopOf="@+id/ll_bottom"
         />
 
     <LinearLayout
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48">
+        android:layout_height="@dimen/dp_48"
+        android:layout_gravity="bottom"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
         <TextView
             android:id="@+id/input_view"
             android:layout_width="0dp"
@@ -80,7 +91,7 @@
             android:layout_marginRight="@dimen/dp_16"
             android:layout_marginBottom="@dimen/dp_4"
             android:layout_weight="4"
-            android:background="@drawable/bg_edit_view"
+            android:background="@drawable/bg_edit_view2"
             android:gravity="center_vertical"
             android:hint="@string/eye_publish_your_comm"
             android:paddingStart="@dimen/dp_10"
@@ -119,6 +130,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_10"
-        android:layout_marginTop="18dp"
-        android:src="@drawable/icon_back"/>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:layout_marginTop="@dimen/dp_30"
+        android:src="@drawable/icon_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

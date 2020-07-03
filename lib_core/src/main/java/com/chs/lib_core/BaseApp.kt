@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.ComponentCallbacks2
 import android.content.Context
 import androidx.multidex.MultiDex
-import com.chs.lib_core.imageloader.ImageLoader
+import com.bumptech.glide.Glide
 
 /**
  *  @author chs
@@ -21,14 +21,13 @@ open class BaseApp : Application() {
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
         if (level == ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
-            ImageLoader.clearMemoryCache(this)
+            Glide.get(this).trimMemory(level)
         }
-        ImageLoader.trimMemory(this,level)
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        ImageLoader.clearMemoryCache(this)
+        Glide.get(this).clearMemory()
     }
 
 }

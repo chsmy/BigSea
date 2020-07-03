@@ -3,8 +3,7 @@ package com.chs.lib_core.navigation
 import android.content.ComponentName
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.*
-import androidx.navigation.fragment.FragmentNavigator
-import com.blankj.utilcode.util.Utils
+import com.chs.lib_core.utils.AppUtil
 
 /**
  * author：chs
@@ -40,7 +39,7 @@ class NavGraphBuilder {
                         activityDestination.id = destination.id
                         activityDestination.setComponentName(
                             ComponentName(
-                                Utils.getApp().packageName,
+                                AppUtil.getApp().packageName,
                                 destination.className!!
                             )
                         )

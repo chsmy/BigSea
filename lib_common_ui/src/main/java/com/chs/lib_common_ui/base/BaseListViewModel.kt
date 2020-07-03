@@ -1,10 +1,8 @@
 package com.chs.lib_common_ui.base
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.paging.*
-import com.blankj.utilcode.util.ThreadUtils
 
 /**
  * @author：chs

@@ -6,6 +6,7 @@ import com.chs.lib_common_ui.loading.LoadingCallback
 import com.chs.lib_common_ui.loading.TimeoutCallback
 import com.chs.lib_core.BaseApp
 import com.chs.lib_core.InitializeService
+import com.chs.lib_core.utils.AppUtil
 import com.kingja.loadsir.core.LoadSir
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
@@ -32,7 +33,7 @@ class App : BaseApp() {
 
     override fun onCreate() {
         super.onCreate()
-
+        AppUtil.init(this)
         InitializeService.start(this)
         LoadSir.beginBuilder()
             .addCallback(ErrorCallback()) //添加各种状态页

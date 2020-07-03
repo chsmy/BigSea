@@ -2,7 +2,7 @@ package com.chs.lib_common_ui.exoplayer
 
 import android.app.Application
 import android.net.Uri
-import com.blankj.utilcode.util.Utils
+import com.chs.lib_core.utils.AppUtil
 import com.google.android.exoplayer2.database.ExoDatabaseProvider
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
@@ -21,7 +21,7 @@ class PagePlayerManager {
     companion object{
         private val sPlayers = HashMap<String,PagePlayer>()
 
-        val app: Application = Utils.getApp()
+        val app: Application = AppUtil.getApp()
         //创建http视频资源工厂
         private val dataSourceFactory = DefaultHttpDataSourceFactory(Util.getUserAgent(app,app.packageName))
         //创建缓存 指定缓存位置和缓存策略 设置最大缓存200M

@@ -9,12 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.blankj.utilcode.util.ScreenUtils
-import com.blankj.utilcode.util.SizeUtils
 import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.lib_common_ui.base.OnItemChildClickListener
-import com.chs.lib_core.imageloader.ImageLoader
+import com.chs.lib_core.extension.*
 import com.chs.module_eye.R
 import com.chs.module_eye.model.ItemX
 import com.chs.module_eye.model.RecommendItem
@@ -90,10 +88,10 @@ class RecommendCollViewHolder(
                 val pos = parent.getChildAdapterPosition(view)
                 val count = parent.adapter?.itemCount?.minus(1)
                 if(pos!=0){
-                    outRect.left = SizeUtils.dp2px(5f)
+                    outRect.left = dp2px(5f)
                 }
                 if(pos == count){
-                    outRect.right = SizeUtils.dp2px(10f)
+                    outRect.right = dp2px(10f)
                 }
             }
         })
@@ -115,8 +113,8 @@ class RecommendCollViewHolder(
     }
     inner class HeadViewHolder(itemView: View) : BaseViewHolder<ItemX>(itemView){
         override fun setContent(item: ItemX, position: Int) {
-            itemView.layoutParams.width = (ScreenUtils.getScreenWidth()-SizeUtils.dp2px(25f))/2
-           ImageLoader.url(item.data.bgPicture).into(iv_pic)
+            itemView.layoutParams.width = (getScreenWidth()-dp2px(25f))/2
+            iv_pic.load(item.data.bgPicture)
             tv_pic_des.text = item.data.title
         }
 
@@ -145,7 +143,7 @@ class RecommendBannerViewHolder(
                 val ivPicture = view.findViewById<ImageView>(R.id.banner_image)
 //                if (item.data.label?.text.isNullOrEmpty()) tvLabel.invisible() else tvLabel.visible()
 //                tvLabel.text = item.data.label?.text ?: ""
-                ImageLoader.url(item.data.image).roundRadius(10).roundInto(ivPicture)
+                ivPicture.loadRound(item.data.image,10)
             }
         }
 
@@ -172,9 +170,8 @@ class RecommendCustomViewHolder(
         tv_pic.layoutParams.height = picHeight
         tv_name.text = item.data.content.data.owner.nickname
         tv_des.text =  item.data.content.data.description
-        ImageLoader.url(item.data.content.data.owner.avatar).circleInto(iv_head)
-        ImageLoader.url(item.data.content.data.cover.feed).roundRadius(10)
-          .roundInto(tv_pic)
+        iv_head.loadCircle(item.data.content.data.owner.avatar)
+        tv_pic.loadRound(item.data.content.data.cover.feed,10)
     }
 
     /**
@@ -187,9 +184,9 @@ class RecommendCustomViewHolder(
     private fun calculateImageHeight(originalWidth: Int, originalHeight: Int): Int {
         //服务器数据异常处理
         if (originalWidth == 0 || originalHeight == 0) {
-            return ScreenUtils.getScreenWidth()/2
+            return getScreenWidth()/2
         }
-        return ScreenUtils.getScreenWidth()/2 * originalHeight / originalWidth
+        return getScreenWidth()/2 * originalHeight / originalWidth
     }
 }
 class RecommendItemDecoration:RecyclerView.ItemDecoration(){
@@ -202,16 +199,16 @@ class RecommendItemDecoration:RecyclerView.ItemDecoration(){
         super.getItemOffsets(outRect, view, parent, state)
         val layoutParams = (view.layoutParams as StaggeredGridLayoutManager.LayoutParams)
         val spanIndex = layoutParams.spanIndex
-        outRect.top = SizeUtils.dp2px(10f)
+        outRect.top = dp2px(10f)
 
         when (spanIndex) {
             0 -> {
-                outRect.left = SizeUtils.dp2px(10f)
-                outRect.right = SizeUtils.dp2px(if(layoutParams.isFullSpan) 10f else 3f)
+                outRect.left = dp2px(10f)
+                outRect.right = dp2px(if(layoutParams.isFullSpan) 10f else 3f)
             }
             else -> {
-                outRect.left = SizeUtils.dp2px(3f)
-                outRect.right = SizeUtils.dp2px(10f)
+                outRect.left = dp2px(3f)
+                outRect.right = dp2px(10f)
             }
         }
     }

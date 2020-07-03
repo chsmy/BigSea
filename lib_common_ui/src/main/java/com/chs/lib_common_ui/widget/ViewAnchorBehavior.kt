@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.blankj.utilcode.util.SizeUtils
 import com.chs.lib_common_ui.R
+import com.chs.lib_core.extension.dp2px
 
 /**
  * author：chs
@@ -21,7 +21,7 @@ class ViewAnchorBehavior:CoordinatorLayout.Behavior<View> {
         val arr = context.obtainStyledAttributes(attributeSet, R.styleable.ViewAnchorBehavior,0,0)
         anchorId = arr.getResourceId(R.styleable.ViewAnchorBehavior_anchorId, 0)
         arr.recycle()
-        extraUsed = SizeUtils.dp2px(48f)
+        extraUsed = dp2px(48f)
     }
 
     override fun layoutDependsOn(

@@ -1,14 +1,12 @@
 package com.chs.module_eye.ui.follow
 
 import android.view.View
-import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.lib_common_ui.base.OnItemChildClickListener
 import com.chs.lib_common_ui.exoplayer.PagePlayerDetector
-import com.chs.lib_core.imageloader.ImageLoader
+import com.chs.lib_core.extension.loadCircle
 import com.chs.module_eye.R
 import com.chs.module_eye.model.Item
 import kotlinx.android.synthetic.main.eye_item_follow.*
@@ -60,7 +58,7 @@ class FollowViewHolder(itemView: View,
         tv_name.text = subData.header.issuerName
         tv_title.text = subData.content.data.title
         tv_des.text = subData.content.data.description
-        ImageLoader.url(item.data.header.icon).circleInto(iv_head)
+        iv_head.loadCircle(item.data.header.icon)
 
         play_view.bindData(FollowFragment.KEY_FOLLOW_VIDEO_NAME,subData.content.data.width,subData.content.data.height,
         subData.content.data.cover.feed,subData.content.data.playUrl)

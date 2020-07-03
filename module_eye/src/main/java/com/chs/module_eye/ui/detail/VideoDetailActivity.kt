@@ -3,16 +3,12 @@ package com.chs.module_eye.ui.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chs.lib_common_ui.base.BaseActivity
-import com.chs.lib_core.imageloader.ImageLoader
+import com.chs.lib_core.extension.loadCircle
 import com.chs.module_eye.R
-import com.chs.module_eye.model.DetailCommItem
 import com.gyf.immersionbar.ImmersionBar
-import kotlinx.android.synthetic.main.eye_fragment_find.*
 import kotlinx.android.synthetic.main.eye_video_detail.*
 
 /**
@@ -54,7 +50,7 @@ class VideoDetailActivity:BaseActivity() {
         mViewModel.detailPageData.observe(this, Observer {
             play_view.bindData(videoPlayKey,720,1280,it.detail.cover.feed,
             it.detail.playUrl)
-            ImageLoader.url(it.detail.author.icon).circleInto(iv_head)
+            iv_head.loadCircle(it.detail.author.icon)
             tv_name.text = it.detail.author.name
             tv_des.text = it.detail.author.description
             play_view.onActive()

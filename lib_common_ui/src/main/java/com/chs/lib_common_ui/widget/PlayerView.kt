@@ -8,12 +8,10 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.ImageView
-import com.blankj.utilcode.util.ScreenUtils
-import com.bumptech.glide.Glide
 import com.chs.lib_common_ui.R
 import com.chs.lib_common_ui.exoplayer.IPlayTarget
 import com.chs.lib_common_ui.exoplayer.PagePlayerManager
-import com.chs.lib_core.imageloader.ImageLoader
+import com.chs.lib_core.extension.load
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.PlayerControlView
 
@@ -79,7 +77,7 @@ open class PlayerView : FrameLayout,IPlayTarget, Player.EventListener,
         heightPx = height
         this.videoUrl = videoUrl
 
-        ImageLoader.url(coverUrl).into(cover)
+        cover.load(coverUrl)
         if(with!=0&&height!=0){
             setSize(widthPx, heightPx)
         }

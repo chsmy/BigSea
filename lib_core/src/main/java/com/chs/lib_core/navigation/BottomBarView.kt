@@ -8,8 +8,8 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.MenuItem
 import androidx.navigation.NavController
-import com.blankj.utilcode.util.SizeUtils
 import com.chs.lib_core.R
+import com.chs.lib_core.extension.dp2px
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -77,7 +77,7 @@ class BottomBarView : BottomNavigationView, BottomNavigationView.OnNavigationIte
             if (itemId < 0) {
                 continue
             }
-            val size = SizeUtils.dp2px(tab.size.toFloat())
+            val size = dp2px(tab.size.toFloat())
             val menuView: BottomNavigationMenuView = getChildAt(0) as BottomNavigationMenuView
             val itemView: BottomNavigationItemView = menuView.getChildAt(index) as BottomNavigationItemView
             itemView.setIconSize(size)

@@ -6,13 +6,9 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.Observer
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
-import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.SizeUtils
 import com.chs.lib_annotation.FragmentDestination
 import com.chs.lib_common_ui.banner.BannerAdapter
 import com.chs.lib_common_ui.banner.NetViewHolder
@@ -22,6 +18,7 @@ import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.model.Banner
 import com.chs.lib_common_ui.webview.BaseWebActivity
 import com.chs.lib_core.constant.WanRouterKey
+import com.chs.lib_core.extension.getStatusBarHeight
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import com.chs.module_wan.model.HomeOpt
@@ -224,7 +221,7 @@ class HomeFragment : BaseFragment() {
         mAdapter.addHeaderView(bannerView)
         val bannerParams = mBannerViewPager.layoutParams
         val titleBarParams = toolbar.layoutParams
-        bannerHeight = bannerParams.height - titleBarParams.height - BarUtils.getStatusBarHeight()
+        bannerHeight = bannerParams.height - titleBarParams.height - getStatusBarHeight()
     }
 
     override fun onPause() {

@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.blankj.utilcode.util.ScreenUtils
 import com.chs.lib_common_ui.R
 import com.chs.lib_common_ui.exoplayer.PagePlayerManager
 import com.google.android.exoplayer2.Player

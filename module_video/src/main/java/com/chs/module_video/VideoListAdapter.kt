@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.lib_common_ui.exoplayer.PagePlayerDetector
-import com.chs.lib_core.imageloader.ImageLoader
+import com.chs.lib_core.extension.loadCircle
 import com.chs.module_video.model.VideoList
 import kotlinx.android.synthetic.main.video_item_display.*
 
@@ -53,7 +53,7 @@ class VideoListViewHolder(itemView: View) : BaseViewHolder<VideoList>(itemView) 
     override fun setContent(item: VideoList, position: Int) {
         tv_name.text = item.name
         tv_title.text = item.text
-        ImageLoader.url(item.header).circleInto(iv_head)
+        iv_head.loadCircle(item.header)
 
         play_view.bindData(VideoFragment.KEY_VIDEO_VIDEO_NAME,1080,1920,
             item.thumbnail,item.video)

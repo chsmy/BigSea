@@ -7,8 +7,8 @@ import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.NavGraphNavigator
-import com.blankj.utilcode.util.Utils
 import com.chs.lib_core.R
+import com.chs.lib_core.utils.AppUtil
 import java.io.Serializable
 
 /**
@@ -27,7 +27,7 @@ class NavManager {
         }
         private fun setNavController() {
             if(sNavController == null){
-                val navController = NavController(Utils.getApp())
+                val navController = NavController(AppUtil.getApp())
                 val navigatorProvider = navController.navigatorProvider
                 val navGraph = NavGraph(NavGraphNavigator(navigatorProvider))
                 val activityNavigator = navigatorProvider.getNavigator(ActivityNavigator::class.java)
@@ -39,7 +39,7 @@ class NavManager {
                         val activityDestination = activityNavigator.createDestination()
                         activityDestination.id = destination.id
                         activityDestination.setComponentName(
-                            ComponentName(Utils.getApp().packageName, destination.className!!)
+                            ComponentName(AppUtil.getApp().packageName, destination.className!!)
                         )
                         activityDestination.addDeepLink(destination.pageUrl!!)
                         navGraph.addDestination(activityDestination)
@@ -55,7 +55,7 @@ class NavManager {
             val activityDestination = activityNavigator.createDestination()
             activityDestination.id = R.id.bottom_start_activity
             activityDestination.setComponentName(
-                ComponentName(Utils.getApp().packageName, "com.chs.lib_core.navigation.EmptyActivity")
+                ComponentName(AppUtil.getApp().packageName, "com.chs.lib_core.navigation.EmptyActivity")
             )
             return activityDestination
         }

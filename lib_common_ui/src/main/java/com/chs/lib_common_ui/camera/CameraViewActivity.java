@@ -22,10 +22,9 @@ import androidx.camera.core.VideoCapture;
 import androidx.camera.view.CameraView;
 import androidx.core.app.ActivityCompat;
 
-
-import com.blankj.utilcode.util.ToastUtils;
 import com.chs.lib_common_ui.R;
 import com.chs.lib_common_ui.widget.RecordView;
+import com.chs.lib_core.utils.ToastUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.permissionx.guolindev.PermissionX;
 

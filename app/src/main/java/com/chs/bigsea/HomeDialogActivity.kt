@@ -35,17 +35,20 @@ class HomeDialogActivity : BaseActivity() {
         super.initListener()
         ivToDo.setOnClickListener {
             CreateToDoActivity.start(this)
-            finish()
         }
         ivVideo.setOnClickListener {
             NavManager.get()
                 .build(WanRouterKey.ACTIVITY_VIDEO_PUBLISH)
                 .navigate()
-            finish()
         }
         ivClose.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        finish()
     }
 
     override fun finish() {

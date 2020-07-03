@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.DiffUtil
 import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
-import com.chs.lib_core.imageloader.ImageLoader
+import com.chs.lib_core.extension.loadRound
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import kotlinx.android.synthetic.main.wan_item_project.*
@@ -37,7 +37,7 @@ class ProjectHolder(itemView: View) : BaseViewHolder<Article>(itemView) {
         tv_name.text = item.author
         tv_title.text = item.title
         tv_publish_time.text = item.niceShareDate
-        ImageLoader.url(item.envelopePic).roundRadius(6).roundInto(iv_img)
+        iv_img.loadRound(item.envelopePic,6)
         tv_content.text = item.desc
         tv_kind.text = item.superChapterName
     }

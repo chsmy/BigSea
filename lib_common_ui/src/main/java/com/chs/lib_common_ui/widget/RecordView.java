@@ -18,8 +18,9 @@ import android.view.ViewConfiguration;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blankj.utilcode.util.SizeUtils;
 import com.chs.lib_common_ui.R;
+
+import static com.chs.lib_core.extension.ScreenKt.dp2px;
 
 
 /**
@@ -60,9 +61,9 @@ public class RecordView extends View implements View.OnLongClickListener, View.O
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RecordView);
         mBgColor = typedArray.getColor(R.styleable.RecordView_bg_color, Color.WHITE);
         mStrokeColor = typedArray.getColor(R.styleable.RecordView_stroke_color, Color.RED);
-        mStrokeWidth = typedArray.getDimensionPixelOffset(R.styleable.RecordView_stroke_width, SizeUtils.dp2px(5));
+        mStrokeWidth = typedArray.getDimensionPixelOffset(R.styleable.RecordView_stroke_width, dp2px(5));
         mDuration = typedArray.getInteger(R.styleable.RecordView_duration, 10);
-        mRadius = typedArray.getDimensionPixelOffset(R.styleable.RecordView_radius, SizeUtils.dp2px(40));
+        mRadius = typedArray.getDimensionPixelOffset(R.styleable.RecordView_radius, dp2px(40));
         typedArray.recycle();
 
         mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

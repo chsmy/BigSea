@@ -3,15 +3,14 @@ package com.chs.module_wan.ui.project
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.webview.BaseWebActivity
-import com.chs.lib_core.imageloader.ImageLoader
+import com.chs.lib_core.extension.pauseRequest
+import com.chs.lib_core.extension.resumeRequest
 import com.chs.module_wan.R
-import com.chs.module_wan.model.Article
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
 
 /**
@@ -62,9 +61,9 @@ class ProjectFragment : BaseFragment(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    ImageLoader.resumeRequest(requireContext())
+                    resumeRequest()
                 } else {
-                    ImageLoader.pauseRequest(requireContext())
+                   pauseRequest()
                 }
             }
         })

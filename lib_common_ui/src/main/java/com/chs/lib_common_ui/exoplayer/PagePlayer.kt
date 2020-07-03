@@ -1,8 +1,8 @@
 package com.chs.lib_common_ui.exoplayer
 
 import android.view.LayoutInflater
-import com.blankj.utilcode.util.Utils
 import com.chs.lib_common_ui.R
+import com.chs.lib_core.utils.AppUtil
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerControlView
 import com.google.android.exoplayer2.ui.PlayerView
@@ -18,7 +18,7 @@ class PagePlayer {
     var controlView:PlayerControlView?
     var playUrl:String? = null
     init {
-        val app = Utils.getApp()
+        val app = AppUtil.getApp()
         //初始化exoplayer
         exoplayer = SimpleExoPlayer.Builder(app).build()
         //ExoPlayer库提供了一个PlayerView，其中封装了 PlayerControlView，

@@ -3,7 +3,7 @@ package com.chs.lib_core.room
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.blankj.utilcode.util.Utils
+import com.chs.lib_core.utils.AppUtil
 
 /**
  * author：chs
@@ -16,7 +16,7 @@ abstract class CacheDatabase : RoomDatabase() {
     companion object{
         private var db:CacheDatabase? = null
         init {
-             db = Room.databaseBuilder(Utils.getApp(), CacheDatabase::class.java, "bigsea_cache" )
+             db = Room.databaseBuilder(AppUtil.getApp(), CacheDatabase::class.java, "bigsea_cache" )
                 //是否允许在主线程进行查询
                 .allowMainThreadQueries()
                 .build()

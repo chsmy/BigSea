@@ -1,7 +1,7 @@
 package com.chs.lib_core.http
 
-import com.blankj.utilcode.util.Utils
 import com.chs.lib_core.BuildConfig
+import com.chs.lib_core.utils.AppUtil
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
@@ -30,7 +30,7 @@ abstract class RetrofitClient{
             builder.addInterceptor(logging)
         }
 
-        val cookieJar = PersistentCookieJar(SetCookieCache(),SharedPrefsCookiePersistor(Utils.getApp()))
+        val cookieJar = PersistentCookieJar(SetCookieCache(),SharedPrefsCookiePersistor(AppUtil.getApp()))
 
         okHttpClient = builder
             .writeTimeout(20,TimeUnit.SECONDS)

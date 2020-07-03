@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import com.chs.lib_common_ui.R
 import com.chs.lib_common_ui.model.Banner
-import com.chs.lib_core.imageloader.ImageLoader
+import com.chs.lib_core.extension.load
 import com.zhpan.bannerview.BaseViewHolder
 
 
@@ -16,6 +16,6 @@ import com.zhpan.bannerview.BaseViewHolder
 class NetViewHolder(itemView:View) : BaseViewHolder<Banner>(itemView) {
     override fun bindData(data: Banner?, position: Int, pageSize: Int) {
         val imageView: ImageView = itemView.findViewById(R.id.banner_image)
-        ImageLoader.url(data?.imagePath!!).into(imageView)
+        imageView.load(data?.imagePath!!)
     }
 }

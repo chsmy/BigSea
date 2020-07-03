@@ -5,7 +5,7 @@ import android.graphics.drawable.GradientDrawable;
 
 import androidx.core.content.ContextCompat;
 
-import com.blankj.utilcode.util.SizeUtils;
+import static com.chs.lib_core.extension.ScreenKt.dp2px;
 
 /**
  * @author chs
@@ -22,7 +22,7 @@ public class DrawableUtil {
      */
     public static GradientDrawable getRoundDrawable(Context context, int colorId, int radiusSize ) {
         GradientDrawable drawable = new GradientDrawable();
-        float radius = SizeUtils.dp2px( radiusSize);
+        float radius = dp2px( radiusSize);
         drawable.setCornerRadius(radius);
         drawable.setColor(ContextCompat.getColor(context, colorId));
         return drawable;
@@ -39,10 +39,10 @@ public class DrawableUtil {
     public static GradientDrawable getRoundStrokeDrawable(Context context,
                                                           int bgColorId, int strokeColor, int radiusSize, float strokeWidth) {
         GradientDrawable drawable = new GradientDrawable();
-        float radius = SizeUtils.dp2px( radiusSize);
+        float radius = dp2px( radiusSize);
         drawable.setCornerRadius(radius);
         drawable.setColor(ContextCompat.getColor(context, bgColorId));
-        drawable.setStroke(SizeUtils.dp2px(strokeWidth), ContextCompat.getColor(context,strokeColor));
+        drawable.setStroke(dp2px(strokeWidth), ContextCompat.getColor(context,strokeColor));
         return drawable;
     }
 
@@ -53,10 +53,10 @@ public class DrawableUtil {
      */
     public static GradientDrawable getEnergyDrawable(Context context, int colorId) {
         GradientDrawable drawable = new GradientDrawable();
-        float radius = SizeUtils.dp2px( 1);
+        float radius = dp2px( 1);
         drawable.setCornerRadius(radius);
         drawable.setColor(ContextCompat.getColor(context, colorId));
-        drawable.setSize(SizeUtils.dp2px(12), SizeUtils.dp2px(12));
+        drawable.setSize(dp2px(12), dp2px(12));
         return drawable;
     }
 
@@ -67,7 +67,7 @@ public class DrawableUtil {
      */
     public static GradientDrawable getDrawableLeftRadius(Context context, int colorId, float radiusDp){
         GradientDrawable drawable = new GradientDrawable();
-        float radiusPix = SizeUtils.dp2px(radiusDp);
+        float radiusPix = dp2px(radiusDp);
         drawable.setCornerRadii(new float[]{radiusPix,radiusPix,0,0,0,0,radiusPix,radiusPix});
         drawable.setColor(ContextCompat.getColor(context,colorId));
         return drawable;
@@ -81,7 +81,7 @@ public class DrawableUtil {
                                                                  int startColorId, int endColorId, float radiusDp){
         int[] colors = {ContextCompat.getColor(context,startColorId), ContextCompat.getColor(context,endColorId)};
         GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,colors);
-        float radiusPix = SizeUtils.dp2px(radiusDp);
+        float radiusPix = dp2px(radiusDp);
         drawable.setCornerRadii(new float[]{radiusPix,radiusPix,0,0,0,0,radiusPix,radiusPix});
         drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
         return drawable;
@@ -93,7 +93,7 @@ public class DrawableUtil {
      */
     public static GradientDrawable getDrawableBottom(Context context, int colorId, float radiusDp){
         GradientDrawable drawable = new GradientDrawable();
-        float radiusPix = SizeUtils.dp2px(radiusDp);
+        float radiusPix = dp2px(radiusDp);
         drawable.setCornerRadii(new float[]{0,0,0,0,radiusPix,radiusPix,radiusPix,radiusPix});
         drawable.setColor(ContextCompat.getColor(context,colorId));
         return drawable;

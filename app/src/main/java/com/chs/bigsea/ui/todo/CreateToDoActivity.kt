@@ -4,16 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
-import com.blankj.utilcode.util.KeyboardUtils
-import com.blankj.utilcode.util.PhoneUtils
-import com.blankj.utilcode.util.ToastUtils
 import com.chs.bigsea.R
 import com.chs.lib_common_ui.base.BaseActivity
+import com.chs.lib_core.utils.KeyboardUtils
 import kotlinx.android.synthetic.main.activity_create_todo.*
 import java.text.SimpleDateFormat
 import java.util.*

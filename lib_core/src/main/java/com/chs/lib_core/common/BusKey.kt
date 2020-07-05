@@ -3,7 +3,7 @@ package com.chs.lib_core.common
 /**
  * author：chs
  * date：2020/6/29
- * des：
+ * des： 发现部分的busKey
  */
 class BusKey {
 

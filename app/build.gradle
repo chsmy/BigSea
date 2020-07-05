@@ -25,7 +25,16 @@ android {
         }
     }
     buildTypes {
+        debug {
+            //自定义Gradle常量
+            buildConfigField("boolean","LOG_DEBUG","true")
+            buildConfigField("String","LOG_TAG","\"BigSea\"")
+            minifyEnabled false
+        }
         release {
+            //自定义Gradle常量
+            buildConfigField("boolean","LOG_DEBUG","false")
+            buildConfigField("String","LOG_TAG","\"BigSea\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

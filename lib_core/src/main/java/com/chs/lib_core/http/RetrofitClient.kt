@@ -40,6 +40,10 @@ abstract class RetrofitClient{
             .build()
     }
 
+    fun getOkHttpClient():OkHttpClient{
+        return okHttpClient
+    }
+
     fun<T> getService(serviceClass:Class<T>,baseUrl:String):T{
             return Retrofit.Builder()
                 .baseUrl(baseUrl)

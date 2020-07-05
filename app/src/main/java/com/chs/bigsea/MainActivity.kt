@@ -1,15 +1,22 @@
 package com.chs.bigsea
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.chs.lib_common_ui.base.BaseActivity
+import com.chs.lib_core.cloud.CloudService
+import com.chs.lib_core.constant.SpConstant
+import com.chs.lib_core.extension.logI
 import com.chs.lib_core.navigation.NavGraphBuilder
-import com.chs.lib_core.navigation.NavManager
+import com.chs.lib_core.utils.SPUtils
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
+
+    private val viewModel by lazy { getViewModel(MainViewModel::class.java) }
 
     override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.activity_main
 
@@ -27,6 +34,9 @@ class MainActivity : BaseActivity() {
         nav_view.setNavController(navController)
     }
 
+    /**
+     * 显示广告页面
+     */
     private fun showSplash() {
         val transaction = supportFragmentManager.beginTransaction()
         var splashFragment = supportFragmentManager.findFragmentByTag(SplashFragment::class.java.simpleName) as SplashFragment?
@@ -61,5 +71,43 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
+        checkToken()
+    }
+
+    /**
+     * 检查并获取im的token
+     */
+    private fun checkToken() {
+        val token = SPUtils.getInstance().getString(SpConstant.IM_TOKEN)
+        if(!TextUtils.isEmpty(token)){
+            //连接服务
+            startCloudService()
+        }else{
+            //创建token
+            createToken()
+        }
+    }
+
+    /**
+     * 通过融云的接口获取token
+     */
+    private fun createToken() {
+        viewModel.tokenData.observe(this, Observer {
+            if(it.code == 200){
+                if(!TextUtils.isEmpty(it.token)){
+                    SPUtils.getInstance().put(SpConstant.IM_TOKEN,it.token)
+                    //连接服务
+                    startCloudService()
+                }
+            }
+        })
+        //模拟用户 chs2018 id 1000
+        //模拟用户 chs2019 id 1001
+        viewModel.getCloudToken("1000","chs2018","https://pic3.zhimg.com/v2-e08df1d10ae9003a3d85972edaa04304_is.jpg")
+    }
+
+    private fun startCloudService() {
+        logI("startCloudService")
+        startService(Intent(this, CloudService::class.java))
     }
 }

@@ -4,6 +4,8 @@ import android.app.IntentService
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
+import com.chs.lib_core.cloud.CloudManager
+import com.chs.lib_core.utils.AppUtil
 
 /**
  * author：chs
@@ -11,8 +13,6 @@ import android.text.TextUtils
  * des： 初始化服务
  */
 class InitializeService : IntentService("InitializeService") {
-
-    private val DEMO_URL: String = "https://www.wanandroid.com/"
 
     companion object{
         private const val ACTION_INIT = "initApplication"
@@ -34,7 +34,7 @@ class InitializeService : IntentService("InitializeService") {
      * application中可以延时初始化的任务
      */
     private fun initApplication() {
-
+        CloudManager.initCloud(AppUtil.getApp())
     }
 
 }

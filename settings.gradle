@@ -1,3 +1,4 @@
+include ':IMLib'
 include ':module_eye'
 include ':module_video'
 include ':app', ':lib_core', ':lib_common_ui', ':module_wan'

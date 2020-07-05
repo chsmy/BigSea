@@ -37,6 +37,11 @@
         <activity android:name=".HomeDialogActivity"
             android:theme="@style/fullWindow" />
         <activity android:name=".ui.todo.CreateToDoActivity" />
+
+        <service android:name="com.chs.lib_core.InitializeService"/>
+
+        <!--云服务-->
+        <service android:name="com.chs.lib_core.cloud.CloudService" />
     </application>
 
 </manifest>

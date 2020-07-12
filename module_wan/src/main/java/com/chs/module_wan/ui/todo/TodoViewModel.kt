@@ -1,4 +1,4 @@
-package com.chs.module_wan.ui.rank
+package com.chs.module_wan.ui.todo
 
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
@@ -8,6 +8,7 @@ import com.chs.lib_core.http.WanBaseResponse
 import com.chs.module_wan.api.WanRetrofitClient
 import com.chs.module_wan.model.Rank
 import com.chs.module_wan.model.RankList
+import com.chs.module_wan.model.ToDoEntity
 import java.lang.Exception
 
 /**
@@ -15,21 +16,21 @@ import java.lang.Exception
  *  date: 2020-04-14 15:08
  *  des:
  */
-class RankViewModel: BaseListViewModel<Int,RankList>() {
+class TodoViewModel: BaseListViewModel<Int, ToDoEntity>() {
 
-    override fun createDataSource(): PagingSource<Int, RankList> {
-        return RankDataSource(this)
+    override fun createDataSource(): PagingSource<Int, ToDoEntity> {
+        return TodoDataSource(this)
     }
 
 }
 
-class RankDataSource(private val viewModel:BaseListViewModel<Int,RankList>):PagingSource<Int,RankList>(){
+class TodoDataSource(private val viewModel:BaseListViewModel<Int,ToDoEntity>):PagingSource<Int,ToDoEntity>(){
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RankList> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ToDoEntity> {
         return try {
             val page = params.key?:1
             val result =
-                WanRetrofitClient.service.getRank(page)
+                WanRetrofitClient.service.getTodoList(page)
             viewModel.mLoadService?.showSuccess()
             viewModel.isShowLoading = false
             LoadResult.Page(

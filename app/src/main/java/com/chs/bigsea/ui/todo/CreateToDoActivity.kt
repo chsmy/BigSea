@@ -4,13 +4,20 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils
+import android.view.View
 import android.widget.TextView
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
 import com.chs.bigsea.R
+import com.chs.bigsea.model.TypeBean
 import com.chs.lib_common_ui.base.BaseActivity
+import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_core.utils.KeyboardUtils
+import com.chs.lib_core.utils.ToastUtils
+import com.chs.module_wan.ui.login.UserManager
+import com.google.android.flexbox.*
 import kotlinx.android.synthetic.main.activity_create_todo.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,6 +30,9 @@ import java.util.*
 class CreateToDoActivity : BaseActivity() {
 
     private  var pvCustomLunar: TimePickerView? = null
+    private val mViewModel by lazy { getViewModel(CreateToDoModel::class.java) }
+    val types = listOf<TypeBean>(TypeBean("工作"), TypeBean("学习"), TypeBean("生活"))
+    private var mType = -1;
 
     companion object {
         fun start(context:Context){
@@ -35,6 +45,28 @@ class CreateToDoActivity : BaseActivity() {
 
     override fun initView() {
         initLunarPicker()
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView() {
+        val layoutManager = FlexboxLayoutManager(this)
+        layoutManager.flexWrap = FlexWrap.WRAP
+        layoutManager.alignItems = AlignItems.STRETCH
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.FLEX_START
+        rv_type.layoutManager = layoutManager
+        val adapter = TypeAdapter(types)
+        rv_type.adapter = adapter
+        adapter.onItemClickListener = object : OnItemClickListener {
+            override fun onItemClick(view: View, position: Int) {
+                mType = position+1;
+                for ((index) in types.withIndex()){
+                    val item = types[index]
+                    item.isClicked = index == position
+                }
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun initData() {
@@ -48,7 +80,40 @@ class CreateToDoActivity : BaseActivity() {
             pvCustomLunar?.show()
         }
         btn_cancel.setOnClickListener { finish() }
-        btn_confirm.setOnClickListener {  }
+        btn_confirm.setOnClickListener {
+            checkEmpty()
+            mViewModel.createRemoteToDo(et_title.text.toString(),et_content.text.toString(),
+            tv_time_res.text.toString(),mType)
+        }
+        mViewModel.createRes.observe(this, androidx.lifecycle.Observer {
+            when (it) {
+                0 -> {
+                    ToastUtils.showShort(getString(R.string.create_todo_success))
+                    finish()
+                }
+                -1001 -> {
+                    UserManager.get().gotoLogin(this)
+                }
+                else -> {
+                    ToastUtils.showShort(getString(R.string.create_todo_failed))
+                }
+            }
+        })
+    }
+
+    private fun checkEmpty() {
+        if(TextUtils.isEmpty(et_title.text.toString())){
+            ToastUtils.showShort(getString(R.string.home_create_todo_title_ness))
+            return
+        }
+        if(TextUtils.isEmpty(tv_time_res.text.toString())){
+            ToastUtils.showShort(getString(R.string.home_create_todo_time_ness))
+            return
+        }
+        if(mType == -1){
+            ToastUtils.showShort(getString(R.string.home_create_todo_type_ness))
+            return
+        }
     }
 
     /**

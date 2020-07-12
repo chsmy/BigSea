@@ -8,5 +8,6 @@
         <activity android:name=".ui.project.ProjectActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.rank.RankActivity" />
+        <activity android:name=".ui.todo.TodoListActivity" />
     </application>
 </manifest>

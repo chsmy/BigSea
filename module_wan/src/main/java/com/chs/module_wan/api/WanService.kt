@@ -89,4 +89,21 @@ interface WanService{
     @GET("coin/rank/{page}/json")
     suspend fun getRank(@Path("page")page:Int):WanBaseResponse<Rank>
 
+    /**
+     * 创建一条事物
+     */
+    @POST("lg/todo/add/json")
+    @FormUrlEncoded
+    suspend fun createToDo(@Field("title")title:String,
+                           @Field("content")content:String,
+                           @Field("date")date:String,
+                           @Field("type")type:Int,
+                           @Field("priority ")priority :Int):WanBaseResponse<ToDoEntity>
+
+    /**
+     * 待办事物列表
+     */
+    @GET("/lg/todo/v2/list/{page}/json")
+    suspend fun getTodoList(@Path("page")page:Int):WanBaseResponse<ToDoList>
+
 }

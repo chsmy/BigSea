@@ -64,7 +64,9 @@ class VideoFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        pagePlayerDetector.onResume()
+        if(!isHidden){
+            pagePlayerDetector.onResume()
+        }
     }
 
     override fun onPause() {

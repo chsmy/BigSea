@@ -3,4 +3,19 @@
     <string name="menu_wan">安</string>
     <string name="menu_gan">中</string>
     <string name="menu_mine">我</string>
+    <string name="home_mine_todo">待办事物</string>
+    <string name="home_mine_integral">积分</string>
+    <string name="home_mine_share">分享</string>
+    <string name="home_mine_collect">收藏</string>
+    <string name="home_create_todo_title">标题</string>
+    <string name="home_create_todo_content">内容</string>
+    <string name="home_create_todo_time">时间</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="home_create_todo_title_ness">title为必填项</string>
+    <string name="home_create_todo_time_ness">时间为必填项</string>
+    <string name="home_create_todo_type_ness">类别为必填项</string>
+    <string name="create_todo_success">创建成功</string>
+    <string name="create_todo_failed">出错啦</string>
+    <string name="create_todo_category">类别</string>
 </resources>

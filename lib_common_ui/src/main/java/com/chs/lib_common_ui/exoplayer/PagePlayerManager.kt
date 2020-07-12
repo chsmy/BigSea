@@ -4,6 +4,8 @@ import android.app.Application
 import android.net.Uri
 import com.chs.lib_core.utils.AppUtil
 import com.google.android.exoplayer2.database.ExoDatabaseProvider
+import com.google.android.exoplayer2.ext.rtmp.RtmpDataSource
+import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
@@ -34,11 +36,17 @@ class PagePlayerManager {
         private val cacheDataSourceFactory = CacheDataSourceFactory(cache,dataSourceFactory,
             FileDataSource.Factory(),cacheDataSinkFactory,
             CacheDataSource.FLAG_BLOCK_ON_CACHE,null)
+        private val rtmpDataSource = RtmpDataSourceFactory()
         //创建一个媒体资源MediaSource来加载工厂,由它创建的mediaSource可以实现边缓冲边播放的效果
         //如果需要播放hls,m3u8格式的视频，需要创建DashMediaSource.Factory()
         private val mediaSourceFactory = ProgressiveMediaSource.Factory(cacheDataSourceFactory)
+        //
+        private val rtmpDataSourceFactory = ProgressiveMediaSource.Factory(rtmpDataSource)
 
         fun createMediaSource(url:String): MediaSource {
+            if("rtmp" == url.substring(0,4)){
+               return rtmpDataSourceFactory.createMediaSource(Uri.parse(url))
+            }
             return mediaSourceFactory.createMediaSource(Uri.parse(url))
         }
 

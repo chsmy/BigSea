@@ -1,11 +1,14 @@
 package com.chs.bigsea
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.chs.bigsea.ui.todo.CreateToDoActivity
 import com.chs.lib_annotation.ActivityDestination
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.constant.WanRouterKey
 import com.chs.lib_core.navigation.NavManager
+import com.chs.module_wan.ui.CollectManager
+import com.chs.module_wan.ui.login.UserManager
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.dialog_fragment_add.*
 
@@ -34,7 +37,14 @@ class HomeDialogActivity : BaseActivity() {
     override fun initListener() {
         super.initListener()
         ivToDo.setOnClickListener {
-            CreateToDoActivity.start(this)
+            if (!UserManager.get().isNotLogin()) {
+                UserManager.get().gotoLogin(this).observe(this, Observer {
+                    //登录成功去执行原来要执行的操作
+                    CreateToDoActivity.start(this)
+                })
+            }else{
+                CreateToDoActivity.start(this)
+            }
         }
         ivVideo.setOnClickListener {
             NavManager.get()

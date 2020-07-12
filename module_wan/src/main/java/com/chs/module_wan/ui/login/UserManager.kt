@@ -36,7 +36,7 @@ class UserManager {
     }
 
     fun isNotLogin(): Boolean {
-        return mUser == null
+        return mUser != null
     }
 
     fun getUser():LoginEntity?{
@@ -46,7 +46,7 @@ class UserManager {
     fun save(user: LoginEntity) {
         mUser = user
         CacheManager.save(KEY_USER_CACHE, user)
-        userLiveData.postValue(user)
+        userLiveData.value = user
     }
 
     fun gotoLogin(context: Context): LiveData<LoginEntity> {

@@ -17,24 +17,25 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/dp_10"
             android:gravity="center"
-            android:text="标题"
+            android:text="@string/home_create_todo_title"
             android:textSize="@dimen/sp_14" />
 
         <TextView
-            android:id="@+id/tv_money_x"
+            android:id="@+id/tv_title_x"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/tv_title"
             android:text="@string/xing"
-            android:textColor="@color/color_f5f5f5"
+            android:textColor="@color/color_ff5151"
             android:textSize="@dimen/sp_14" />
 
         <EditText
+            android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/dp_10"
-            android:layout_toEndOf="@id/tv_money_x"
+            android:layout_toEndOf="@id/tv_title_x"
             android:background="@color/white"
             android:hint="@string/please_input"
             android:textSize="@dimen/sp_14" />
@@ -60,18 +61,20 @@
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:gravity="center"
-            android:text="内容"
+            android:text="@string/home_create_todo_content"
             android:textSize="@dimen/sp_14" />
 
         <EditText
+            android:id="@+id/et_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingTop="@dimen/dp_5"
             android:paddingStart="@dimen/dp_5"
+            android:paddingEnd="@dimen/dp_5"
             android:textSize="@dimen/sp_14"
             android:background="@color/white"
             android:hint="@string/please_input" />
@@ -95,7 +98,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/dp_10"
             android:gravity="center"
-            android:text="时间"
+            android:text="@string/home_create_todo_time"
             android:textSize="@dimen/sp_14" />
 
         <TextView
@@ -137,6 +140,23 @@
             android:background="@color/color_f0f2f5" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_todo_category"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -148,7 +168,7 @@
             android:layout_width="@dimen/dp_80"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:text="取消"
+            android:text="@string/cancel"
             android:textColor="@color/colorPrimary"
             app:strokeColor="@color/colorPrimary"
             app:strokeWidth="@dimen/dp_1" />
@@ -158,6 +178,6 @@
             android:layout_width="@dimen/dp_80"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_20"
-            android:text="确定" />
+            android:text="@string/confirm" />
     </LinearLayout>
 </LinearLayout>

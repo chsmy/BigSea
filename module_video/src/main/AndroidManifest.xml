@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chs.module_video">
 
-    /
     <application>
         <activity android:name=".publish.PublishVideoActivity" />
         <activity android:name=".live.LiveActivity" />
+        <activity android:name=".play.RtmpPlayActivity" />
     </application>
 </manifest>

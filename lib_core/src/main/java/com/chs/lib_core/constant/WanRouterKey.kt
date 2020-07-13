@@ -17,5 +17,6 @@ class WanRouterKey {
 
         const val ACTIVITY_VIDEO_PUBLISH = "main/video/PublishVideoActivity"
         const val ACTIVITY_VIDEO_LIVE = "main/video/LiveActivity"
+        const val ACTIVITY_VIDEO_PLAY = "main/video/RtmpPlayActivity"
     }
 }

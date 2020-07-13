@@ -10,6 +10,7 @@ import com.chs.lib_core.utils.ToastUtils
 import com.chs.module_video.R
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.video_activity_live.*
+import kotlinx.android.synthetic.main.video_layout_activity_live_ui.*
 import me.lake.librestreaming.core.listener.RESConnectionListener
 import me.lake.librestreaming.filter.hardvideofilter.BaseHardVideoFilter
 import me.lake.librestreaming.filter.hardvideofilter.HardVideoGroupFilter
@@ -23,6 +24,8 @@ import java.util.*
  *  @author chs
  *  date: 2020-07-13 17:00
  *  des:  直播界面
+ *  //测试直播可以在这个网址  该网址可以播放rtmp实时推流的视频
+ *  http://ossrs.net/srs.release/trunk/research/players/srs_player.html?vhost=__defaultVhost__&autostart=true&server=192.168.1.170&app=live&stream=livestream&port=1935
  */
 @ActivityDestination(pageUrl = WanRouterKey.ACTIVITY_VIDEO_LIVE)
 class LiveActivity:BaseActivity() {
@@ -46,8 +49,8 @@ class LiveActivity:BaseActivity() {
         stream_previewView.init(this,streamAVOption)
         stream_previewView.addStreamStateListener(resConnectionListener)
         val files = LinkedList<BaseHardVideoFilter>()
-//        files.add(GPUImageCompatibleFilter(GPUImageBeautyFilter()))
-//        files.add(WatermarkFilter(BitmapFactory.decodeResource(resources, R.drawable.icon_cell_comment), Rect(100, 100, 200, 200)))
+        files.add(GPUImageCompatibleFilter(GPUImageBeautyFilter()))
+        files.add(WatermarkFilter(BitmapFactory.decodeResource(resources, R.drawable.icon_cell_comment), Rect(100, 100, 200, 200)))
         stream_previewView.setHardVideoFilter(HardVideoGroupFilter(files))
     }
 
@@ -65,6 +68,15 @@ class LiveActivity:BaseActivity() {
             //result 0成功  1 失败
             ToastUtils.showLong("关闭推流连接 状态：$result")
             //result 0成功  1 失败
+        }
+    }
+
+    override fun initListener() {
+        super.initListener()
+        btn_startStreaming.setOnClickListener {
+            if (!stream_previewView.isStreaming) {
+                stream_previewView.startStreaming(rtmpUrl)
+            }
         }
     }
 

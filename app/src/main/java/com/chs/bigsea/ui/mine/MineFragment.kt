@@ -51,12 +51,15 @@ class MineFragment : BaseFragment() {
                 .build(WanRouterKey.ACTIVITY_VIDEO_LIVE)
                 .navigate()
         }
+        tv_see.setOnClickListener {
+            NavManager.get()
+                .build(WanRouterKey.ACTIVITY_VIDEO_PLAY)
+                .navigate()
+        }
     }
 
     override fun initData() {
-//        play_view.bindData("mine",1080,720,
-//            "http://a0.att.hudong.com/30/88/01100000000000144726882521407_s.jpg",
-//            "rtmp://203.170.59.43/live/livestream")
+
     }
 
 }

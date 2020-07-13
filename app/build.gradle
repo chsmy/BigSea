@@ -23,6 +23,9 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
     }
     buildTypes {
         debug {

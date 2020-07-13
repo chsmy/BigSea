@@ -16,6 +16,7 @@
 
 
         <ImageView
+            android:id="@+id/iv_scan"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
             android:layout_marginBottom="2dp"

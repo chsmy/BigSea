@@ -103,6 +103,20 @@
        android:drawableEnd="@drawable/icon_arrow"
        app:layout_constraintTop_toBottomOf="@id/cardview"
        />
+   <TextView
+       android:id="@+id/tv_live"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/dp_50"
+       android:text="@string/main_mine_goto_live"
+       android:gravity="center_vertical"
+       android:drawableStart="@drawable/icon_todo"
+       android:paddingStart="@dimen/dp_15"
+       android:paddingEnd="@dimen/dp_15"
+       android:drawablePadding="@dimen/dp_5"
+       android:layout_marginTop="@dimen/dp_10"
+       android:drawableEnd="@drawable/icon_arrow"
+       app:layout_constraintTop_toBottomOf="@id/tv_todo"
+       />
 
 <!--   <com.chs.lib_common_ui.widget.PlayerView-->
 <!--       android:id="@+id/play_view"-->

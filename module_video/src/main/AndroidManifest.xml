@@ -4,5 +4,6 @@
     /
     <application>
         <activity android:name=".publish.PublishVideoActivity" />
+        <activity android:name=".live.LiveActivity" />
     </application>
 </manifest>

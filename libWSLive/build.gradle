@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.WangShuo1143368701'
+
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs  'src/main/libs'
+            jni.srcDirs = []
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+}

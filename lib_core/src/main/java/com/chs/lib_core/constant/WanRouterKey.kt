@@ -16,5 +16,6 @@ class WanRouterKey {
         const val DIALOG_ACTIVITY_HOME = "main/tabs/HomeDialogActivity"
 
         const val ACTIVITY_VIDEO_PUBLISH = "main/video/PublishVideoActivity"
+        const val ACTIVITY_VIDEO_LIVE = "main/video/LiveActivity"
     }
 }

@@ -1,3 +1,4 @@
+include ':libWSLive'
 include ':IMLib'
 include ':module_eye'
 include ':module_video'

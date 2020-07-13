@@ -1,5 +1,6 @@
 package com.chs.module_wan.ui.home
 
+import android.Manifest
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +18,10 @@ import com.chs.lib_common_ui.base.OnItemChildClickListener
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.model.Banner
 import com.chs.lib_common_ui.webview.BaseWebActivity
+import com.chs.lib_core.constant.Constant
 import com.chs.lib_core.constant.WanRouterKey
 import com.chs.lib_core.extension.getStatusBarHeight
+import com.chs.lib_core.utils.ToastUtils
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import com.chs.module_wan.model.HomeOpt
@@ -30,12 +33,13 @@ import com.chs.module_wan.ui.navigation.NavigationActivity
 import com.chs.module_wan.ui.project.ProjectActivity
 import com.chs.module_wan.ui.system.SystemActivity
 import com.gyf.immersionbar.ImmersionBar
+import com.huawei.hms.hmsscankit.ScanUtil
+import com.huawei.hms.ml.scan.HmsScanAnalyzerOptions
+import com.permissionx.guolindev.PermissionX
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.constants.IndicatorGravity
-import com.zhpan.bannerview.constants.PageStyle
-import com.zhpan.bannerview.utils.BannerUtils
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
 import kotlinx.android.synthetic.main.wan_fragment_wan.*
@@ -43,7 +47,6 @@ import kotlinx.android.synthetic.main.wan_title_bar.*
 
 @FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_HOME, asStarter = true,isBelongTab = true)
 class HomeFragment : BaseFragment() {
-
     private val mHomeViewModel: HomeViewModel by lazy { getViewModel(HomeViewModel::class.java) }
     private val mCollectModel: CollectViewModel by lazy { getViewModel(CollectViewModel::class.java) }
     private val mAdapter: WanAdapter by lazy { WanAdapter() }
@@ -183,6 +186,17 @@ class HomeFragment : BaseFragment() {
                  UserManager.get().gotoLogin(requireContext())
             }
         })
+        iv_scan.setOnClickListener {
+            PermissionX.init(activity)
+                .permissions(Constant.QR_CODE_PERMISSION)
+                .request { allGranted, grantedList, deniedList ->
+                    if (allGranted) {
+                        ScanUtil.startScan(requireActivity(), Constant.REQUEST_CODE_SCAN_ONE, HmsScanAnalyzerOptions.Creator().create())
+                    } else {
+                        ToastUtils.showShort("没有相机权限权限")
+                    }
+                }
+        }
     }
 
     private fun handleCollect(article: Article) {
@@ -197,13 +211,15 @@ class HomeFragment : BaseFragment() {
         val bannerView = LayoutInflater.from(requireContext())
             .inflate(R.layout.wan_header_home, recyclerview, false)
         mBannerViewPager = bannerView.findViewById(R.id.banner)
+
         mHomeViewModel.mBanner.observe(this, Observer<List<Banner>> {
             mBannerViewPager.apply {
                 adapter = BannerAdapter()
                 setAutoPlay(true)
                 setIndicatorStyle(IndicatorStyle.ROUND_RECT)
                 setIndicatorSliderGap(getResources().getDimensionPixelOffset(R.dimen.dp_4))
-                setIndicatorMargin(0, 0, 0, resources.getDimension(R.dimen.dp_100).toInt())
+                setLifecycleRegistry(lifecycle)
+                setIndicatorMargin(0, 0, 0, resources.getDimension(R.dimen.dp_10).toInt())
                 setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
                 setIndicatorSliderRadius(resources.getDimension(R.dimen.dp_3).toInt(), resources.getDimension(R.dimen.dp_4_5).toInt())
                 setIndicatorSliderColor(ContextCompat.getColor(requireContext(), R.color.white_),
@@ -222,11 +238,6 @@ class HomeFragment : BaseFragment() {
         val bannerParams = mBannerViewPager.layoutParams
         val titleBarParams = toolbar.layoutParams
         bannerHeight = bannerParams.height - titleBarParams.height - getStatusBarHeight()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mBannerViewPager.stopLoop()
     }
 
     override fun initData() {

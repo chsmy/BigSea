@@ -46,6 +46,11 @@ class MineFragment : BaseFragment() {
                 .build(WanRouterKey.ACTIVITY_MAIN_MINE_TODO)
                 .navigate()
         }
+        tv_live.setOnClickListener {
+            NavManager.get()
+                .build(WanRouterKey.ACTIVITY_VIDEO_LIVE)
+                .navigate()
+        }
     }
 
     override fun initData() {

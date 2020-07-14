@@ -36,7 +36,7 @@ class HomeDialogActivity : BaseActivity() {
 
     override fun initListener() {
         super.initListener()
-        ivToDo.setOnClickListener {
+        tvToDo.setOnClickListener {
             if (!UserManager.get().isNotLogin()) {
                 UserManager.get().gotoLogin(this).observe(this, Observer {
                     //登录成功去执行原来要执行的操作
@@ -46,7 +46,7 @@ class HomeDialogActivity : BaseActivity() {
                 CreateToDoActivity.start(this)
             }
         }
-        ivVideo.setOnClickListener {
+        tvVideo.setOnClickListener {
             NavManager.get()
                 .build(WanRouterKey.ACTIVITY_VIDEO_PUBLISH)
                 .navigate()

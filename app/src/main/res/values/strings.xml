@@ -20,4 +20,6 @@
     <string name="create_todo_category">类别</string>
     <string name="main_mine_goto_live">去直播</string>
     <string name="main_mine_see_live">看直播</string>
+    <string name="main_dialog_add_event">添加代办</string>
+    <string name="main_dialog_publish">发布视频</string>
 </resources>

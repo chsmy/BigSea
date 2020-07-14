@@ -5,25 +5,31 @@
     android:background="@color/white_"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/ivToDo"
+    <TextView
+        android:id="@+id/tvToDo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_create_todo"
+        android:drawableTop="@drawable/icon_goto_todo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="@dimen/dp_80"
         android:layout_marginBottom="@dimen/dp_150"
+        android:drawablePadding="@dimen/dp_5"
+        android:text="@string/main_dialog_add_event"
+        android:textColor="@color/text_black"
         />
-    <ImageView
-        android:id="@+id/ivVideo"
+    <TextView
+        android:id="@+id/tvVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_video"
+        android:drawableTop="@drawable/icon_goto_publish"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="@dimen/dp_80"
         android:layout_marginBottom="@dimen/dp_150"
+        android:drawablePadding="@dimen/dp_5"
+        android:text="@string/main_dialog_publish"
+        android:textColor="@color/text_black"
         />
 
     <ImageView

@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/iv_close"
-        android:layout_width="@dimen/dp_30"
-        android:layout_height="@dimen/dp_30"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
         android:layout_marginStart="@dimen/dp_10"
         android:src="@drawable/icon_back_close"
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"

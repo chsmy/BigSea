@@ -2,13 +2,143 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/root"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
        <com.chs.lib_common_ui.widget.PlayerView
            android:id="@+id/play_view"
            android:layout_width="match_parent"
            android:layout_height="@dimen/dp_200"
-           android:layout_marginTop="@dimen/dp_10"
            />
+       <LinearLayout
+           android:id="@+id/action_layout"
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:orientation="horizontal"
+           android:gravity="center_vertical"
+           android:background="@android:color/white">
 
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="@dimen/dp_15"
+                  android:text="聊天"
+                  android:textStyle="bold"
+                  android:textColor="@android:color/black"
+                  android:textSize="15sp" />
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="@dimen/dp_40"
+                  android:text="主播"
+                  android:textColor="#666666"
+                  android:textSize="15sp" />
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="@dimen/dp_40"
+                  android:text="排行"
+                  android:textColor="#666666"
+                  android:textSize="15sp" />
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="@dimen/dp_40"
+                  android:text="贵宾"
+                  android:textColor="#666666"
+                  android:textSize="15sp" />
+       </LinearLayout>
+       <View
+           android:id="@+id/divider"
+           android:layout_width="match_parent"
+           android:layout_height="1px"
+           android:background="@color/line_gray" />
+       <com.effective.android.panel.view.PanelSwitchLayout
+           android:id="@+id/panel_root"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="1">
+
+              <com.effective.android.panel.view.content.RelativeContentContainer
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  app:relative_edit_view="@id/input">
+
+                     <com.chs.module_video.play.HookActionUpRecyclerView
+                         android:id="@+id/chat_list"
+                         android:layout_above="@+id/action"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent" />
+
+                     <RelativeLayout
+                         android:id="@+id/action"
+                         android:layout_alignParentBottom="true"
+                         android:layout_width="match_parent"
+                         android:layout_height="50dp">
+
+                            <EditText
+                                android:layout_centerVertical="true"
+                                android:id="@+id/input"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_toStartOf="@+id/send"
+                                android:background="@drawable/sh_wechat_comment_input"
+                                android:textCursorDrawable="@drawable/sh_huya_edit_cursor"
+                                android:gravity="start|center_vertical"
+                                android:paddingStart="@dimen/dp_45"
+                                android:paddingEnd="@dimen/dp_15"
+                                android:hint="说点什么吧～"
+                                android:textColorHint="#999999"
+                                android:textColor="#666666"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_marginStart="@dimen/dp_15"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/icon_emotion"
+                                android:id="@+id/emotion_btn"
+                                android:layout_width="@dimen/dp_30"
+                                android:layout_height="@dimen/dp_30"/>
+
+                            <TextView
+                                android:layout_marginEnd="@dimen/dp_10"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentEnd="true"
+                                android:id="@+id/send"
+                                android:layout_width="@dimen/dp_60"
+                                android:layout_height="@dimen/dp_30"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/se_huya_comment_send_p"
+                                android:enabled="false"
+                                android:gravity="center"
+                                android:text="发送"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/sp_15" />
+
+                     </RelativeLayout>
+
+              </com.effective.android.panel.view.content.RelativeContentContainer>
+
+              <!-- 面板区域，仅能包含PanelView-->
+              <com.effective.android.panel.view.panel.PanelContainer
+                  android:id="@+id/panel_container"
+                  android:layout_width="match_parent"
+                  android:background="#ebebeb"
+                  android:layout_height="wrap_content">
+                     <com.effective.android.panel.view.panel.PanelView
+
+                         android:id="@+id/panel_emotion"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         app:panel_layout="@layout/panel_emotion_layout"
+                         app:panel_trigger="@id/emotion_btn" />
+
+              </com.effective.android.panel.view.panel.PanelContainer>
+       </com.effective.android.panel.view.PanelSwitchLayout>
 </LinearLayout>

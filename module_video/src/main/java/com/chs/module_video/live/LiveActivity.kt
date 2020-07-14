@@ -49,8 +49,10 @@ class LiveActivity:BaseActivity() {
         stream_previewView.init(this,streamAVOption)
         stream_previewView.addStreamStateListener(resConnectionListener)
         val files = LinkedList<BaseHardVideoFilter>()
+        //设置滤镜
         files.add(GPUImageCompatibleFilter(GPUImageBeautyFilter()))
-        files.add(WatermarkFilter(BitmapFactory.decodeResource(resources, R.drawable.icon_cell_comment), Rect(100, 100, 200, 200)))
+        //添加图片
+//        files.add(WatermarkFilter(BitmapFactory.decodeResource(resources, R.drawable.icon_cell_comment), Rect(100, 100, 200, 200)))
         stream_previewView.setHardVideoFilter(HardVideoGroupFilter(files))
     }
 
@@ -73,9 +75,34 @@ class LiveActivity:BaseActivity() {
 
     override fun initListener() {
         super.initListener()
+        //开始推流
         btn_startStreaming.setOnClickListener {
             if (!stream_previewView.isStreaming) {
                 stream_previewView.startStreaming(rtmpUrl)
+            }
+        }
+        //停止推流
+        btn_stopStreaming.setOnClickListener {
+            if (stream_previewView.isStreaming) {
+                stream_previewView.stopStreaming()
+            }
+        }
+        //切换摄像头
+        btn_swapCamera.setOnClickListener {
+            stream_previewView.swapCamera()
+        }
+        //开始录制
+        btn_startRecord.setOnClickListener {
+            if(!stream_previewView.isRecord){
+                ToastUtils.showShort("开始录制视频")
+                stream_previewView.startRecord();
+            }
+        }
+       //停止录制
+        btn_stopRecord.setOnClickListener {
+            if(stream_previewView.isRecord){
+                stream_previewView.stopRecord();
+                ToastUtils.showShort("视频已成功保存至系统根目录的 Movies/WSLive文件夹中")
             }
         }
     }

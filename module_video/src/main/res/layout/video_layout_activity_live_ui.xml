@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="@dimen/dp_100"
+        android:layout_marginEnd="@dimen/dp_10"
         android:orientation="vertical">
 
         <Button
@@ -23,16 +24,19 @@
             android:id="@+id/btn_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
             android:text="滤镜"/>
         <Button
             android:id="@+id/btn_screenshot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
             android:text="截帧"/>
         <Button
             android:id="@+id/btn_mirror"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
             android:text="镜像"/>
 
     </LinearLayout>
@@ -43,28 +47,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_20"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_startStreaming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
             android:text="开始推流"/>
         <Button
             android:id="@+id/btn_stopStreaming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
             android:text="停止推流"/>
 
         <Button
             android:id="@+id/btn_startRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
             android:text="开始录制"/>
         <Button
             android:id="@+id/btn_stopRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
             android:text="保存录制"/>
 
 

@@ -7,17 +7,6 @@
     <string name="home_mine_integral">积分</string>
     <string name="home_mine_share">分享</string>
     <string name="home_mine_collect">收藏</string>
-    <string name="home_create_todo_title">标题</string>
-    <string name="home_create_todo_content">内容</string>
-    <string name="home_create_todo_time">时间</string>
-    <string name="cancel">取消</string>
-    <string name="confirm">确定</string>
-    <string name="home_create_todo_title_ness">title为必填项</string>
-    <string name="home_create_todo_time_ness">时间为必填项</string>
-    <string name="home_create_todo_type_ness">类别为必填项</string>
-    <string name="create_todo_success">创建成功</string>
-    <string name="create_todo_failed">出错啦</string>
-    <string name="create_todo_category">类别</string>
     <string name="main_mine_goto_live">去直播</string>
     <string name="main_mine_see_live">看直播</string>
     <string name="main_dialog_add_event">添加代办</string>

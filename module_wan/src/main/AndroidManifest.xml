@@ -9,5 +9,6 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.rank.RankActivity" />
         <activity android:name=".ui.todo.TodoListActivity" />
+        <activity android:name=".ui.todo.CreateToDoActivity" />
     </application>
 </manifest>

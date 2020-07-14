@@ -1,4 +1,4 @@
-package com.chs.bigsea.ui.todo
+package com.chs.module_wan.ui.todo
 
 import android.content.Context
 import android.content.Intent
@@ -10,16 +10,19 @@ import android.widget.TextView
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
-import com.chs.bigsea.R
-import com.chs.bigsea.model.TypeBean
+import com.chs.lib_annotation.ActivityDestination
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_common_ui.base.OnItemClickListener
+import com.chs.lib_core.constant.WanRouterKey
 import com.chs.lib_core.utils.KeyboardUtils
 import com.chs.lib_core.utils.ToastUtils
+import com.chs.module_wan.model.TypeBean
 import com.chs.module_wan.ui.login.UserManager
 import com.google.android.flexbox.*
-import kotlinx.android.synthetic.main.activity_create_todo.*
+import kotlinx.android.synthetic.main.wan_activity_create_todo.*
+import kotlinx.android.synthetic.main.wan_include_page_title.*
 import java.text.SimpleDateFormat
+import com.chs.module_wan.R
 import java.util.*
 
 /**
@@ -27,6 +30,7 @@ import java.util.*
  * date：2020/6/21
  * des：创建一条todo
  */
+@ActivityDestination(pageUrl = WanRouterKey.ACTIVITY_WAN_CREATE_TODO)
 class CreateToDoActivity : BaseActivity() {
 
     private  var pvCustomLunar: TimePickerView? = null
@@ -41,9 +45,10 @@ class CreateToDoActivity : BaseActivity() {
         }
     }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.activity_create_todo
+    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_create_todo
 
     override fun initView() {
+        tv_title_name.text = "创建待办"
         initLunarPicker()
         initRecyclerView()
     }

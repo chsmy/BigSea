@@ -1,4 +1,15 @@
 <resources>
     <string name="wan_my_integral">我的积分</string>
     <string name="wan_my_rank">我的排名</string>
+    <string name="home_create_todo_title">标题</string>
+    <string name="home_create_todo_content">内容</string>
+    <string name="home_create_todo_time">时间</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="home_create_todo_title_ness">title为必填项</string>
+    <string name="home_create_todo_time_ness">时间为必填项</string>
+    <string name="home_create_todo_type_ness">类别为必填项</string>
+    <string name="create_todo_success">创建成功</string>
+    <string name="create_todo_failed">出错啦</string>
+    <string name="create_todo_category">类别</string>
 </resources>

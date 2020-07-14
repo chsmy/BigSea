@@ -1,19 +1,19 @@
-package com.chs.bigsea.ui.todo
+package com.chs.module_wan.ui.todo
 
 import android.view.View
 import androidx.core.content.ContextCompat
-import com.chs.bigsea.R
-import com.chs.bigsea.model.TypeBean
 import com.chs.lib_common_ui.base.BaseAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
 import com.chs.lib_common_ui.utils.DrawableUtil
-import kotlinx.android.synthetic.main.item_todo_type.*
+import com.chs.module_wan.R
+import com.chs.module_wan.model.TypeBean
+import kotlinx.android.synthetic.main.wan_item_todo_type.*
 
 /**
  * 事物的类型 工作  生活  娱乐
  */
 class TypeAdapter(data:List<TypeBean>): BaseAdapter<TypeBean>(data){
-    override fun getLayoutId(): Int = R.layout.item_todo_type
+    override fun getLayoutId(): Int = R.layout.wan_item_todo_type
 
     override fun createCurrentViewHolder(view: View, viewType: Int): BaseViewHolder<TypeBean> {
         return TypeViewHolder(view)

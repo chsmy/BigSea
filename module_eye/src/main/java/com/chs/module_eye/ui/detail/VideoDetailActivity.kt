@@ -6,6 +6,9 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chs.lib_common_ui.base.BaseActivity
+import com.chs.lib_common_ui.base.BaseDetailActivity
+import com.chs.lib_common_ui.tran.TransformationCompat
+import com.chs.lib_common_ui.tran.TransformationLayout
 import com.chs.lib_core.extension.loadCircle
 import com.chs.module_eye.R
 import com.gyf.immersionbar.ImmersionBar
@@ -16,7 +19,7 @@ import kotlinx.android.synthetic.main.eye_video_detail.*
  * date：2020/6/28
  * des： 视频 图片详情
  */
-class VideoDetailActivity:BaseActivity() {
+class VideoDetailActivity: BaseDetailActivity() {
 
     private val mViewModel by lazy { getViewModel(VideoDetailViewModel::class.java) }
 
@@ -25,11 +28,12 @@ class VideoDetailActivity:BaseActivity() {
     companion object{
         private const val KEY_VIDEO_DETAIL = "VideoDetailActivity"
         private const val KEY_VIDEO_PLAY_KEY = "key_video_play_key"
-        fun start(context: Context,videoId:Long,videoPlayKey:String){
+        fun start(context: Context, videoId:Long, videoPlayKey:String, transformationLayout: TransformationLayout){
             val intent = Intent(context,VideoDetailActivity::class.java)
             intent.putExtra(KEY_VIDEO_DETAIL,videoId)
             intent.putExtra(KEY_VIDEO_PLAY_KEY,videoPlayKey)
-            context.startActivity(intent)
+//            context.startActivity(intent)
+            TransformationCompat.startActivity(transformationLayout, intent)
         }
     }
 

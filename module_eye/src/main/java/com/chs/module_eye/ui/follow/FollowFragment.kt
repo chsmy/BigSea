@@ -58,13 +58,13 @@ class FollowFragment : BaseFragment(){
                 pagePlayerDetector.onResume()
             }
         })
-        mAdapter.onItemClickListener = object : OnItemClickListener{
-            override fun onItemClick(view: View, position: Int) {
-                val currentItem = mAdapter.getCurrentItem(position)
-                val id = currentItem?.data?.header?.id?:0
-                VideoDetailActivity.start(requireContext(),id,KEY_FOLLOW_VIDEO_NAME)
-            }
-        }
+//        mAdapter.onItemClickListener = object : OnItemClickListener{
+//            override fun onItemClick(view: View, position: Int) {
+//                val currentItem = mAdapter.getCurrentItem(position)
+//                val id = currentItem?.data?.header?.id?:0
+//                VideoDetailActivity.start(requireContext(),id,KEY_FOLLOW_VIDEO_NAME)
+//            }
+//        }
     }
 
     override fun onResume() {

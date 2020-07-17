@@ -76,5 +76,4 @@ dependencies {
     //可以轻松控制键盘的组件
     api 'com.effective.android:panelSwitchHelper-androidx:1.3.4'
     api 'com.romandanylyk:pageindicatorview:1.0.3'
-
 }

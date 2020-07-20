@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="materialButtonStyle">@style/materialButton</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="splash" parent="AppTheme">

@@ -1,10 +1,9 @@
 package com.chs.module_eye.ui.follow
 
-import PostLoadStateAdapter
 import android.view.View
+import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chs.lib_common_ui.base.BaseFragment
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_common_ui.exoplayer.PagePlayerDetector
@@ -25,6 +24,10 @@ class FollowFragment : BaseFragment(){
     override fun layoutId(): Int = R.layout.eye_fragment_refresh
     private val mAdapter by lazy { FollowAdapter(pagePlayerDetector) }
     private lateinit var pagePlayerDetector: PagePlayerDetector
+    /**
+     * 如果是进入详情界面，播放器就不用暂停播放
+     */
+    private var shouldPause = true
     companion object{
         fun newInstance() = FollowFragment()
         const val KEY_FOLLOW_VIDEO_NAME = "FollowFragment"
@@ -58,23 +61,35 @@ class FollowFragment : BaseFragment(){
                 pagePlayerDetector.onResume()
             }
         })
-//        mAdapter.onItemClickListener = object : OnItemClickListener{
-//            override fun onItemClick(view: View, position: Int) {
-//                val currentItem = mAdapter.getCurrentItem(position)
-//                val id = currentItem?.data?.header?.id?:0
-//                VideoDetailActivity.start(requireContext(),id,KEY_FOLLOW_VIDEO_NAME)
-//            }
-//        }
+        mAdapter.onItemClickListener = object : OnItemClickListener{
+            override fun onItemClick(view: View, position: Int) {
+                val currentItem = mAdapter.getCurrentItem(position)
+                val id = currentItem?.data?.header?.id?:0
+                val videoUrl = currentItem?.data?.content?.data?.playUrl?:""
+                val videoCoverUrl = currentItem?.data?.content?.data?.cover?.feed?:""
+                val options =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        requireActivity(),
+                        view,
+                        "play_view"
+                    )
+                shouldPause = false
+                VideoDetailActivity.start(requireContext(),id,KEY_FOLLOW_VIDEO_NAME,videoUrl,videoCoverUrl,options.toBundle())
+            }
+        }
     }
 
     override fun onResume() {
         super.onResume()
+        shouldPause = true
         pagePlayerDetector.onResume()
     }
 
     override fun onPause() {
+        if(shouldPause){
+            pagePlayerDetector.onPause()
+        }
         super.onPause()
-        pagePlayerDetector.onPause()
     }
 
     override fun onDestroy() {

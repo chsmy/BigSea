@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.chs.lib_common_ui.tran.TransformationLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_poster_transformationLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:transformation_duration="500"
-    app:transformation_pathMode="arc">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    >
 
         <ImageView
             android:id="@+id/iv_head"
@@ -72,6 +66,7 @@
             android:layout_marginStart="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginEnd="@dimen/dp_10"
+            android:transitionName="play_view"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_des" />
 
@@ -139,5 +134,4 @@
                 app:iconTint="@color/black_60" />
 
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</com.chs.lib_common_ui.tran.TransformationLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

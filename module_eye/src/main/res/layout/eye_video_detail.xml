@@ -13,6 +13,7 @@
         android:layout_height="@dimen/dp_200"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:transitionName="play_view"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,20 +33,25 @@
             />
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@id/iv_head"
             app:layout_constraintTop_toTopOf="@id/iv_head"
+            android:maxLines="1"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintRight_toLeftOf="@+id/btn_keep"
             android:layout_marginStart="@dimen/dp_10"
             tools:text="灵魂洗练石"
             />
         <TextView
             android:id="@+id/tv_des"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@id/iv_head"
             app:layout_constraintBottom_toBottomOf="@id/iv_head"
             android:layout_marginStart="@dimen/dp_10"
+            app:layout_constraintHorizontal_weight="1"
+            android:maxLines="1"
             app:layout_constraintRight_toLeftOf="@+id/btn_keep"
             tools:text="48天前"
             />

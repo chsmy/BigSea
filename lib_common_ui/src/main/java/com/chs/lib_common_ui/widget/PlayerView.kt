@@ -184,8 +184,8 @@ open class PlayerView : FrameLayout,IPlayTarget, Player.EventListener,
         pagePlayer.controlView?.removeVisibilityListener(this)
         cover.visibility = View.VISIBLE
         playBtn.visibility = View.VISIBLE
-
         playBtn.setImageResource(R.drawable.icon_video_play)
+
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -230,5 +230,10 @@ open class PlayerView : FrameLayout,IPlayTarget, Player.EventListener,
         playBtn.visibility = visibility
         playBtn.setImageResource(if (isPlaying()) R.drawable.icon_video_pause else R.drawable.icon_video_play)
 
+    }
+
+    open fun getPlayController(): View? {
+        val pagePlayer = PagePlayerManager.getPagePlayer(targetKey!!)
+        return pagePlayer.controlView
     }
 }

@@ -1,6 +1,7 @@
 package com.chs.module_eye.ui.follow
 
 import android.view.View
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.DiffUtil
 import com.chs.lib_common_ui.base.AbsPageListAdapter
 import com.chs.lib_common_ui.base.BaseViewHolder
@@ -63,9 +64,9 @@ class FollowViewHolder(itemView: View,
 
         play_view.bindData(FollowFragment.KEY_FOLLOW_VIDEO_NAME,subData.content.data.width,subData.content.data.height,
         subData.content.data.cover.feed,subData.content.data.playUrl)
-        itemView.setOnClickListener {
-            val id = item?.data?.header?.id?:0
-            VideoDetailActivity.start(itemView.context,id, FollowFragment.KEY_FOLLOW_VIDEO_NAME,item_poster_transformationLayout)
-        }
+//        itemView.setOnClickListener {
+//            val id = item?.data?.header?.id?:0
+//            VideoDetailActivity.start(itemView.context,id, FollowFragment.KEY_FOLLOW_VIDEO_NAME,item_poster_transformationLayout)
+//        }
     }
 }

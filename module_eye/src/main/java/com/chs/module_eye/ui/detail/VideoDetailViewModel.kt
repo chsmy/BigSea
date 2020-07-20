@@ -21,13 +21,13 @@ class VideoDetailViewModel : BaseViewModel() {
         viewModelScope.launch {
             val detailResAsync = async { EyeRetrofitClient.service.getVideoDetail(id) }
             val detailRecommendAsync = async { EyeRetrofitClient.service.getDetailRecommend(id) }
-            val detailCommonAsync = async { EyeRetrofitClient.service.getDetailComm(id) }
+//            val detailCommonAsync = async { EyeRetrofitClient.service.getDetailComm(id) }
 
             val detailRes = detailResAsync.await()
             val detailRecommend = detailRecommendAsync.await()
-            val detailCommon = detailCommonAsync.await()
+//            val detailCommon = detailCommonAsync.await()
 
-            val detailData = DetailPageData(detailRes,detailRecommend.itemList,detailCommon.itemList)
+            val detailData = DetailPageData(detailRes,detailRecommend.itemList)
             detailPageData.postValue(detailData)
         }
     }

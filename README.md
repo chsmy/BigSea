@@ -16,7 +16,7 @@
     }
 ```
 
-####组件化开发
+#### 组件化开发
 - lib_core  核心库 引入各种第三方库，utils工具，extension，navigation的封装，room
 - lib_commom_ui 主要是UI相关的 CameraX视频录制的封装，全局loading，webview，自定义view，exoplayer的封装使用，各种Base类等
 - module_wan  业务模块 玩安卓的各种列表模块和ToDo模块
@@ -31,7 +31,9 @@
 - 使用Room数据库缓存对象
 - 使用cameraX完成拍照和视频录制的功能
 
-使用google的exoplayer来播放视频，并且自定义实现列表滑动播放
+使用google的exoplayer来播放视频，并且自定义实现列表滑动播放，列表与详情视频无缝切换
+
+使用SRS直播服务器开源库（服务器8月11号到期~~），[WSLiveDemo](https://github.com/WangShuo1143368701/WSLiveDemo)直播推流，exoplayer拉流播放
 
 ![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/home_page.png)
 ![home](https://raw.githubusercontent.com/chsmy/BigSea/master/screenshot/bigsea_1.gif)

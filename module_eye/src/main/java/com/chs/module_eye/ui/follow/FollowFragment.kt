@@ -82,7 +82,9 @@ class FollowFragment : BaseFragment(){
     override fun onResume() {
         super.onResume()
         shouldPause = true
-        pagePlayerDetector.onResume()
+        if(isVisible){
+            pagePlayerDetector.onResume()
+        }
     }
 
     override fun onPause() {

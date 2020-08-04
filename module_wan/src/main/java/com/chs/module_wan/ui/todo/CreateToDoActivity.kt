@@ -14,8 +14,8 @@ import com.chs.lib_annotation.ActivityDestination
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_common_ui.base.OnItemClickListener
 import com.chs.lib_core.constant.WanRouterKey
+import com.chs.lib_core.extension.showShort
 import com.chs.lib_core.utils.KeyboardUtils
-import com.chs.lib_core.utils.ToastUtils
 import com.chs.module_wan.model.TypeBean
 import com.chs.module_wan.ui.login.UserManager
 import com.google.android.flexbox.*
@@ -93,14 +93,14 @@ class CreateToDoActivity : BaseActivity() {
         mViewModel.createRes.observe(this, androidx.lifecycle.Observer {
             when (it) {
                 0 -> {
-                    ToastUtils.showShort(getString(R.string.create_todo_success))
+                    showShort(getString(R.string.create_todo_success))
                     finish()
                 }
                 -1001 -> {
                     UserManager.get().gotoLogin(this)
                 }
                 else -> {
-                    ToastUtils.showShort(getString(R.string.create_todo_failed))
+                    showShort(getString(R.string.create_todo_failed))
                 }
             }
         })
@@ -108,15 +108,15 @@ class CreateToDoActivity : BaseActivity() {
 
     private fun checkEmpty() {
         if(TextUtils.isEmpty(et_title.text.toString())){
-            ToastUtils.showShort(getString(R.string.home_create_todo_title_ness))
+            showShort(getString(R.string.home_create_todo_title_ness))
             return
         }
         if(TextUtils.isEmpty(tv_time_res.text.toString())){
-            ToastUtils.showShort(getString(R.string.home_create_todo_time_ness))
+            showShort(getString(R.string.home_create_todo_time_ness))
             return
         }
         if(mType == -1){
-            ToastUtils.showShort(getString(R.string.home_create_todo_type_ness))
+            showShort(getString(R.string.home_create_todo_type_ness))
             return
         }
     }

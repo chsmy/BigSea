@@ -15,17 +15,17 @@ fun Context.toast(@StringRes resId:Int,duration:Int){
     Toast.makeText(this,getString(resId),duration).show()
 }
 
-fun Context.shortToast(str:String){
+fun Context.showShort(str:String){
     toast(str,Toast.LENGTH_SHORT)
 }
 
-fun Context.shortToast(@StringRes resId:Int){
+fun Context.showShort(@StringRes resId:Int){
     toast(getString(resId),Toast.LENGTH_SHORT)
 }
 
-fun Context.longToast(str:String){
+fun Context.showLong(str:String){
     toast(str,Toast.LENGTH_LONG)
 }
-fun Context.longToast(@StringRes resId:Int){
+fun Context.showLong(@StringRes resId:Int){
     toast(getString(resId),Toast.LENGTH_LONG)
 }

@@ -11,9 +11,9 @@ import com.chs.lib_core.cloud.CloudService
 import com.chs.lib_core.constant.Constant
 import com.chs.lib_core.constant.SpConstant
 import com.chs.lib_core.extension.logI
+import com.chs.lib_core.extension.showLong
 import com.chs.lib_core.navigation.NavGraphBuilder
 import com.chs.lib_core.utils.SPUtils
-import com.chs.lib_core.utils.ToastUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.huawei.hms.hmsscankit.ScanUtil
 import com.huawei.hms.ml.scan.HmsScan
@@ -88,7 +88,7 @@ class MainActivity : BaseActivity() {
                 if(originalValue.contains("http")){
                     BaseWebActivity.start(this, originalValue)
                 }else{
-                    ToastUtils.showLong(originalValue)
+                    showLong(originalValue)
                 }
             }
         }

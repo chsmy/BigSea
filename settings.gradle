@@ -1,4 +1,9 @@
 include ':libWSLive'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  'module_flutter/.android/include_flutter.groovy'
+))
 include ':IMLib'
 include ':module_eye'
 include ':module_video'

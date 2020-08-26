@@ -34,7 +34,6 @@ import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.core.VideoCapture;
-import androidx.camera.core.impl.VideoCaptureConfig;
 import androidx.camera.extensions.AutoImageCaptureExtender;
 import androidx.camera.extensions.AutoPreviewExtender;
 import androidx.camera.extensions.BeautyImageCaptureExtender;
@@ -328,7 +327,7 @@ public class CameraActivity extends AppCompatActivity {
                 //设置初始的旋转角度
                 .setTargetRotation(rotation)
                 .build();
-        mVideoCapture = new VideoCaptureConfig.Builder()
+        mVideoCapture = new VideoCapture.Builder()
                 //设置当前旋转
                 .setTargetRotation(rotation)
                 //设置宽高比

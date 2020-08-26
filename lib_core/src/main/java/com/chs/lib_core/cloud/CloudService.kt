@@ -4,8 +4,8 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import com.chs.lib_core.constant.SpConstant
+import com.chs.lib_core.extension.getSpValue
 import com.chs.lib_core.extension.logI
-import com.chs.lib_core.utils.SPUtils
 import io.rong.imlib.RongIMClient
 import io.rong.imlib.model.Message
 
@@ -29,7 +29,7 @@ class CloudService: Service() {
      * 连接融云
      */
     private fun connectCloud() {
-        val token = SPUtils.getInstance().getString(SpConstant.IM_TOKEN,"")
+        val token = getSpValue(SpConstant.IM_TOKEN,"")
         logI(token)
         CloudManager.connect(token)
         /**

@@ -10,9 +10,10 @@ import com.chs.lib_common_ui.webview.BaseWebActivity
 import com.chs.lib_core.cloud.CloudService
 import com.chs.lib_core.constant.Constant
 import com.chs.lib_core.constant.SpConstant
+import com.chs.lib_core.extension.getSpValue
 import com.chs.lib_core.extension.logI
+import com.chs.lib_core.extension.putSpValue
 import com.chs.lib_core.navigation.NavGraphBuilder
-import com.chs.lib_core.utils.SPUtils
 import com.chs.lib_core.utils.ToastUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.huawei.hms.hmsscankit.ScanUtil
@@ -82,7 +83,7 @@ class MainActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Constant.REQUEST_CODE_SCAN_ONE) {
-            val obj = data?.getParcelableExtra(ScanUtil.RESULT) as HmsScan
+            val obj : HmsScan? = data?.getParcelableExtra(ScanUtil.RESULT)
             if(obj!=null){
                 val originalValue = obj.originalValue
                 if(originalValue.contains("http")){
@@ -97,7 +98,7 @@ class MainActivity : BaseActivity() {
      * 检查并获取im的token
      */
     private fun checkToken() {
-        val token = SPUtils.getInstance().getString(SpConstant.IM_TOKEN)
+        val token = getSpValue(SpConstant.IM_TOKEN,"")
         if(!TextUtils.isEmpty(token)){
             //连接服务
             startCloudService()
@@ -114,7 +115,7 @@ class MainActivity : BaseActivity() {
         viewModel.tokenData.observe(this, Observer {
             if(it.code == 200){
                 if(!TextUtils.isEmpty(it.token)){
-                    SPUtils.getInstance().put(SpConstant.IM_TOKEN,it.token)
+                    putSpValue(SpConstant.IM_TOKEN,it.token)
                     //连接服务
                     startCloudService()
                 }

@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap
 class LiveDataBus{
     companion object {
         fun <T>get(key: String): BusLiveData<T> {
-           return LiveDataEvent.instence.with(key) as BusLiveData<T>
+           return LiveDataEvent.instance.with(key) as BusLiveData<T>
         }
     }
 }
@@ -20,7 +20,7 @@ class LiveDataBus{
 class LiveDataEvent {
 
     companion object{
-        val instence = LiveDataEvent()
+        val instance = LiveDataEvent()
     }
 
     val mMap:ConcurrentHashMap<String,BusLiveData<Any>> by lazy { ConcurrentHashMap<String,BusLiveData<Any>>() }
@@ -28,7 +28,7 @@ class LiveDataEvent {
     fun with(key:String):BusLiveData<Any>{
        var busLiveData = mMap[key]
         if(busLiveData == null){
-            busLiveData = BusLiveData(key, instence)
+            busLiveData = BusLiveData(key, instance)
             mMap[key] = busLiveData
         }
         return busLiveData
@@ -36,7 +36,7 @@ class LiveDataEvent {
 
 }
 
-class BusLiveData<T>(val eventName:String,val instence:LiveDataEvent) : LiveData<T>(){
+class BusLiveData<T>(val eventName:String,val instance:LiveDataEvent) : LiveData<T>(){
 
     var mCurrentVersion = 0
 
@@ -71,21 +71,28 @@ class BusLiveData<T>(val eventName:String,val instence:LiveDataEvent) : LiveData
         owner.lifecycle.addObserver(object : LifecycleEventObserver{
             override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
                 if (event == Lifecycle.Event.ON_DESTROY) {
-                    instence.mMap.remove(eventName)
+                    //自动反注册
+                    instance.mMap.remove(eventName)
                 }
             }
         })
     }
 }
 
-class ObserverWrapper<T>(var mLastVersion:Int, private val mBusLiveData: BusLiveData<T>,
-                         private val mObserver: Observer<in T>, private val isSticky: Boolean):Observer<T>{
+class ObserverWrapper<T>(
+    private var mLastVersion:Int,
+    private val mBusLiveData: BusLiveData<T>,
+    private val mObserver: Observer<in T>,
+    private val isSticky: Boolean):Observer<T>{
 
     override fun onChanged(t: T) {
+        //刚new出来的时候 mLastVersion和mBusLiveData.mCurrentVersion是相等的
+        //经过一次setValue或者postValue的时候，mBusLiveData.mCurrentVersion会+1，这时候就需要分发事件了
         if (mLastVersion < mBusLiveData.mCurrentVersion) {
             mLastVersion = mBusLiveData.mCurrentVersion
             mObserver.onChanged(t)
         } else {
+            //如果是粘性事件 就分发事件
             if (isSticky && t != null) {
                 mObserver.onChanged(t)
             }

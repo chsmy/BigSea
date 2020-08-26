@@ -12,8 +12,10 @@ import com.chs.lib_core.constant.Constant
 import com.chs.lib_core.constant.SpConstant
 import com.chs.lib_core.extension.getSpValue
 import com.chs.lib_core.extension.logI
+import com.chs.lib_core.extension.showLong
 import com.chs.lib_core.extension.putSpValue
 import com.chs.lib_core.navigation.NavGraphBuilder
+import com.chs.lib_core.utils.SPUtils
 import com.chs.lib_core.utils.ToastUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.huawei.hms.hmsscankit.ScanUtil
@@ -89,7 +91,7 @@ class MainActivity : BaseActivity() {
                 if(originalValue.contains("http")){
                     BaseWebActivity.start(this, originalValue)
                 }else{
-                    ToastUtils.showLong(originalValue)
+                    showLong(originalValue)
                 }
             }
         }

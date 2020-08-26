@@ -58,5 +58,6 @@ dependencies {
     implementation project(':module_eye')
     implementation project(':lib_common_ui')
     implementation project(path: ':lib_annotation')
+    implementation project(path: ':flutter')
     kapt project(path: ':lib_compiler')
 }

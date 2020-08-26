@@ -1,12 +1,11 @@
 package com.chs.module_video.live
 
-import android.graphics.BitmapFactory
-import android.graphics.Rect
 import android.os.Bundle
 import com.chs.lib_annotation.ActivityDestination
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.constant.WanRouterKey
-import com.chs.lib_core.utils.ToastUtils
+import com.chs.lib_core.extension.showLong
+import com.chs.lib_core.extension.showShort
 import com.chs.module_video.R
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.video_activity_live.*
@@ -16,7 +15,6 @@ import me.lake.librestreaming.filter.hardvideofilter.BaseHardVideoFilter
 import me.lake.librestreaming.filter.hardvideofilter.HardVideoGroupFilter
 import me.lake.librestreaming.ws.StreamAVOption
 import me.lake.librestreaming.ws.filter.hardfilter.GPUImageBeautyFilter
-import me.lake.librestreaming.ws.filter.hardfilter.WatermarkFilter
 import me.lake.librestreaming.ws.filter.hardfilter.extra.GPUImageCompatibleFilter
 import java.util.*
 
@@ -59,16 +57,16 @@ class LiveActivity:BaseActivity() {
     private val resConnectionListener: RESConnectionListener = object : RESConnectionListener{
         override fun onOpenConnectionResult(result: Int) {
             //result 0成功  1 失败
-            ToastUtils.showLong("打开推流连接 状态：$result 推流地址：$rtmpUrl")
+            showLong("打开推流连接 状态：$result 推流地址：$rtmpUrl")
         }
 
         override fun onWriteError(errno: Int) {
-            ToastUtils.showLong("推流出错,请尝试重连")
+            showLong("推流出错,请尝试重连")
         }
 
         override fun onCloseConnectionResult(result: Int) {
             //result 0成功  1 失败
-            ToastUtils.showLong("关闭推流连接 状态：$result")
+            showLong("关闭推流连接 状态：$result")
             //result 0成功  1 失败
         }
     }
@@ -94,7 +92,7 @@ class LiveActivity:BaseActivity() {
         //开始录制
         btn_startRecord.setOnClickListener {
             if(!stream_previewView.isRecord){
-                ToastUtils.showShort("开始录制视频")
+                showShort("开始录制视频")
                 stream_previewView.startRecord();
             }
         }
@@ -102,7 +100,7 @@ class LiveActivity:BaseActivity() {
         btn_stopRecord.setOnClickListener {
             if(stream_previewView.isRecord){
                 stream_previewView.stopRecord();
-                ToastUtils.showShort("视频已成功保存至系统根目录的 Movies/WSLive文件夹中")
+                showShort("视频已成功保存至系统根目录的 Movies/WSLive文件夹中")
             }
         }
     }

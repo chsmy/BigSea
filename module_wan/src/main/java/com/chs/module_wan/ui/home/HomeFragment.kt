@@ -21,7 +21,7 @@ import com.chs.lib_common_ui.webview.BaseWebActivity
 import com.chs.lib_core.constant.Constant
 import com.chs.lib_core.constant.WanRouterKey
 import com.chs.lib_core.extension.getStatusBarHeight
-import com.chs.lib_core.utils.ToastUtils
+import com.chs.lib_core.extension.showShort
 import com.chs.module_wan.R
 import com.chs.module_wan.model.Article
 import com.chs.module_wan.model.HomeOpt
@@ -193,7 +193,7 @@ class HomeFragment : BaseFragment() {
                     if (allGranted) {
                         ScanUtil.startScan(requireActivity(), Constant.REQUEST_CODE_SCAN_ONE, HmsScanAnalyzerOptions.Creator().create())
                     } else {
-                        ToastUtils.showShort("没有相机权限权限")
+                        requireContext().showShort("没有相机权限权限")
                     }
                 }
         }

@@ -1,5 +1,6 @@
 package com.chs.bigsea.ui.mine
 
+import android.content.Intent
 import androidx.core.content.ContextCompat
 import com.chs.lib_core.navigation.NavManager
 import com.chs.bigsea.R
@@ -55,6 +56,9 @@ class MineFragment : BaseFragment() {
             NavManager.get()
                 .build(WanRouterKey.ACTIVITY_VIDEO_PLAY)
                 .navigate()
+        }
+        tv_flutter.setOnClickListener {
+              startActivity(Intent(requireContext(),FlutterActivity::class.java))
         }
     }
 

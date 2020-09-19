@@ -131,5 +131,19 @@
        android:drawableEnd="@drawable/icon_arrow"
        app:layout_constraintTop_toBottomOf="@id/tv_live"
        />
+   <TextView
+       android:id="@+id/tv_flutter"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/dp_50"
+       android:text="@string/go_to_flutter"
+       android:gravity="center_vertical"
+       android:drawableStart="@drawable/icon_see"
+       android:paddingStart="@dimen/dp_15"
+       android:paddingEnd="@dimen/dp_15"
+       android:drawablePadding="@dimen/dp_5"
+       android:layout_marginTop="@dimen/dp_10"
+       android:drawableEnd="@drawable/icon_arrow"
+       app:layout_constraintTop_toBottomOf="@id/tv_see"
+       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

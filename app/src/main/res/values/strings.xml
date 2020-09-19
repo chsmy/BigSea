@@ -11,4 +11,5 @@
     <string name="main_mine_see_live">看直播</string>
     <string name="main_dialog_add_event">添加代办</string>
     <string name="main_dialog_publish">发布视频</string>
+    <string name="go_to_flutter">去flutter模块</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.chs.module_wan.ui.project
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
@@ -18,7 +19,7 @@ import java.lang.Exception
  * date：2020/4/5
  * des：
  */
-class ProjectViewModel : BaseListViewModel<Int,Article>() {
+class ProjectViewModel  @ViewModelInject constructor(): BaseListViewModel<Int,Article>() {
     var projectId:Int = 0
     val mProjectKinds:MutableLiveData<List<ProjectEntity>> = MutableLiveData()
 

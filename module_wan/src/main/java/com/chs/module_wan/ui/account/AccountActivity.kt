@@ -3,6 +3,7 @@ package com.chs.module_wan.ui.account
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.wan_include_page_title.*
  */
 class AccountActivity : BaseActivity() {
 
-    private val mViewModel:AccountViewModel by lazy{getViewModel(AccountViewModel::class.java)}
+    private val mViewModel:AccountViewModel by viewModels()
 
     companion object{
         fun start(content: Context){

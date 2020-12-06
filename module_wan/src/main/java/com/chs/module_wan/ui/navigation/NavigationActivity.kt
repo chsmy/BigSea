@@ -3,6 +3,7 @@ package com.chs.module_wan.ui.navigation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +25,7 @@ import q.rorbin.verticaltablayout.widget.TabView
  */
 class NavigationActivity : BaseActivity() {
 
-    private val mViewModel: NavigationViewModel by lazy { getViewModel(NavigationViewModel::class.java) }
+    private val mViewModel: NavigationViewModel by viewModels()
     private val mLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(this) }
     private lateinit var mAdapter: NavAdapter
     private var mCurrentPosition = 0

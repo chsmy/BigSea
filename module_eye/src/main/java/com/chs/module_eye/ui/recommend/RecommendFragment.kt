@@ -1,5 +1,6 @@
 package com.chs.module_eye.ui.recommend
 
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.eye_fragment_refresh.*
  */
 class RecommendFragment:BaseFragment() {
 
-    private val mViewModel by lazy { getViewModel(RecommendViewModel::class.java) }
+    private val mViewModel:RecommendViewModel by viewModels()
     private val mAdapter by lazy { RecommendAdapter() }
     companion object{
         fun newInstance() = RecommendFragment()

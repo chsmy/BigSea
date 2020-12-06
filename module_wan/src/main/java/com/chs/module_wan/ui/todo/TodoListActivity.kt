@@ -1,6 +1,7 @@
 package com.chs.module_wan.ui.todo
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chs.lib_annotation.ActivityDestination
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.wan_include_page_title.*
 class TodoListActivity:BaseActivity() {
 
     private val mAdapter :ToDoAdapter by lazy { ToDoAdapter() }
-    private val mViewModel by lazy { getViewModel(TodoViewModel::class.java) }
+    private val mViewModel:TodoViewModel by viewModels()
 
     override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_todo
 

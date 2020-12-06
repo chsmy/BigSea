@@ -1,6 +1,7 @@
 package com.chs.module_wan.ui.login
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.constant.WanBusKey
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.wan_activity_login.*
  */
 class LoginActivity : BaseActivity() {
 
-    private val mViewModel:LoginViewModel by lazy { getViewModel(LoginViewModel::class.java) }
+    private val mViewModel:LoginViewModel by viewModels()
 
     override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_login
 

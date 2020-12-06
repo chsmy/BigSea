@@ -3,6 +3,7 @@ package com.chs.module_wan.ui.system
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chs.lib_common_ui.base.BaseActivity
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.wan_include_page_title.*
 class SystemActivity: BaseActivity() {
 
     private val mAdapter: SystemAdapter by lazy { SystemAdapter(arrayListOf()) }
-    private val mSystemViewModel:SystemViewModel by lazy { getViewModel(SystemViewModel::class.java) }
+    private val mSystemViewModel:SystemViewModel by viewModels()
 
     companion object{
         fun start(content:Context){

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
+import androidx.activity.viewModels
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
@@ -34,7 +35,7 @@ import java.util.*
 class CreateToDoActivity : BaseActivity() {
 
     private  var pvCustomLunar: TimePickerView? = null
-    private val mViewModel by lazy { getViewModel(CreateToDoModel::class.java) }
+    private val mViewModel:CreateToDoModel by viewModels()
     val types = listOf<TypeBean>(TypeBean("工作"), TypeBean("学习"), TypeBean("生活"))
     private var mType = -1;
 

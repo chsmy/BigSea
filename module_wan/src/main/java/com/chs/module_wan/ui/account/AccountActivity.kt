@@ -8,17 +8,16 @@ import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.module_wan.R
+import com.chs.module_wan.databinding.WanActivityProjectBinding
 import com.chs.module_wan.model.AccountNameEntity
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.wan_activity_project.*
-import kotlinx.android.synthetic.main.wan_include_page_title.*
 
 /**
  * author：chs
  * date：2020/4/5
  * des： 公众号
  */
-class AccountActivity : BaseActivity() {
+class AccountActivity : BaseActivity<WanActivityProjectBinding>() {
 
     private val mViewModel:AccountViewModel by lazy{getViewModel(AccountViewModel::class.java)}
 
@@ -29,21 +28,22 @@ class AccountActivity : BaseActivity() {
         }
     }
 
+    override fun onCreateBinding(savedInstanceState: Bundle?): WanActivityProjectBinding {
+       return WanActivityProjectBinding.inflate(layoutInflater)
+    }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_project
-
-    override fun initView() {
-        tv_title_name.text = "公众号"
+    override fun WanActivityProjectBinding.onViewCreated() {
+         includeHead.tvTitleName.text = "公众号"
     }
 
     override fun initListener() {
     }
 
     override fun initData() {
-        mViewModel.setLoadingViewWrap(viewpager)
+        mViewModel.setLoadingViewWrap(binding.viewpager)
         mViewModel.mAccountName.observe(this, Observer {
             setViewPagerAdapter(it)
-            TabLayoutMediator(tablayout, viewpager) { tab, position ->
+            TabLayoutMediator(binding.tablayout, binding.viewpager) { tab, position ->
                 tab.text = mViewModel.mAccountName.value?.get(position)?.name
             }.attach()
         })
@@ -51,7 +51,7 @@ class AccountActivity : BaseActivity() {
     }
 
     private fun setViewPagerAdapter(list: List<AccountNameEntity>) {
-        viewpager.adapter = object : FragmentStateAdapter(this){
+        binding.viewpager.adapter = object : FragmentStateAdapter(this){
             override fun getItemCount(): Int {
                 return list.size
             }
@@ -61,4 +61,6 @@ class AccountActivity : BaseActivity() {
             }
         }
     }
+
+
 }

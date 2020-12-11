@@ -2,6 +2,7 @@ package com.chs.bigsea
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.chs.bigsea.databinding.DialogFragmentAddBinding
 import com.chs.lib_annotation.ActivityDestination
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.constant.WanRouterKey
@@ -16,16 +17,22 @@ import kotlinx.android.synthetic.main.dialog_fragment_add.*
  * des： 首页中间点击添加图标后弹出的界面
  */
 @ActivityDestination(pageUrl = WanRouterKey.DIALOG_ACTIVITY_HOME, isBelongTab = true)
-class HomeDialogActivity : BaseActivity() {
+class HomeDialogActivity : BaseActivity<DialogFragmentAddBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(R.anim.bottom_in, 0)
         super.onCreate(savedInstanceState)
     }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.dialog_fragment_add
+    override fun onCreateBinding(savedInstanceState: Bundle?): DialogFragmentAddBinding {
+        return DialogFragmentAddBinding.inflate(layoutInflater)
+    }
 
-    override fun initView() {
+    override fun DialogFragmentAddBinding.onViewCreated() {
+        setStatusBar()
+    }
+
+    private fun setStatusBar() {
         ImmersionBar.with(this).transparentStatusBar().fitsSystemWindows(false).init()
     }
 
@@ -67,4 +74,5 @@ class HomeDialogActivity : BaseActivity() {
         super.finish()
         overridePendingTransition(0, R.anim.bottom_out)
     }
+
 }

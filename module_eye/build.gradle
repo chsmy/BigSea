@@ -50,6 +50,9 @@ android {
             }
         }
     }
+    viewBinding {
+        enabled = true
+    }
 }
 //adapter中使用kotlinx.android.extensions
 androidExtensions {

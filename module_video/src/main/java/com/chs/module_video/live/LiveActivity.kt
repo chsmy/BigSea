@@ -7,6 +7,7 @@ import com.chs.lib_core.constant.WanRouterKey
 import com.chs.lib_core.extension.showLong
 import com.chs.lib_core.extension.showShort
 import com.chs.module_video.R
+import com.chs.module_video.databinding.VideoActivityLiveBinding
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.video_activity_live.*
 import kotlinx.android.synthetic.main.video_layout_activity_live_ui.*
@@ -26,16 +27,22 @@ import java.util.*
  *  http://ossrs.net/srs.release/trunk/research/players/srs_player.html?vhost=__defaultVhost__&autostart=true&server=192.168.1.170&app=live&stream=livestream&port=1935
  */
 @ActivityDestination(pageUrl = WanRouterKey.ACTIVITY_VIDEO_LIVE)
-class LiveActivity:BaseActivity() {
+class LiveActivity:BaseActivity<VideoActivityLiveBinding>() {
 
     private val rtmpUrl = "rtmp://203.170.59.43/live/livestream"
     private val streamAVOption: StreamAVOption by lazy { StreamAVOption() }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.video_activity_live
+    override fun onCreateBinding(savedInstanceState: Bundle?): VideoActivityLiveBinding {
+        return VideoActivityLiveBinding.inflate(layoutInflater)
+    }
 
-    override fun initView() {
-        ImmersionBar.with(this).transparentBar()
+    override fun VideoActivityLiveBinding.onViewCreated() {
+        setStatusBar()
         initConfig()
+    }
+
+    private fun setStatusBar() {
+        ImmersionBar.with(this).transparentBar()
     }
 
     /**

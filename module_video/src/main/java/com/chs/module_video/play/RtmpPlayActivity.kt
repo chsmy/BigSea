@@ -10,6 +10,7 @@ import com.chs.lib_common_ui.emotion.EmotionPagerView
 import com.chs.lib_common_ui.emotion.Emotions
 import com.chs.lib_core.constant.WanRouterKey
 import com.chs.module_video.R
+import com.chs.module_video.databinding.VideoActivityPlayBinding
 import com.effective.android.panel.PanelSwitchHelper
 import com.effective.android.panel.interfaces.listener.OnEditFocusChangeListener
 import com.effective.android.panel.interfaces.listener.OnKeyboardStateListener
@@ -26,12 +27,16 @@ import kotlinx.android.synthetic.main.video_activity_play.*
  * des： 观看直播的页面
  */
 @ActivityDestination(pageUrl = WanRouterKey.ACTIVITY_VIDEO_PLAY)
-class RtmpPlayActivity:BaseActivity() {
+class RtmpPlayActivity:BaseActivity<VideoActivityPlayBinding>() {
     private var mHelper: PanelSwitchHelper? = null
     val videoPopWindow:PcHuyaCommentPopWindow by lazy { PcHuyaCommentPopWindow(this) }
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.video_activity_play
 
-    override fun initView() {
+    override fun onCreateBinding(savedInstanceState: Bundle?): VideoActivityPlayBinding {
+        return VideoActivityPlayBinding.inflate(layoutInflater)
+    }
+
+    override fun VideoActivityPlayBinding.onViewCreated() {
+        TODO("Not yet implemented")
     }
 
     override fun initData() {

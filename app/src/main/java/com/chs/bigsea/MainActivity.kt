@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import com.chs.bigsea.databinding.ActivityMainBinding
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_common_ui.webview.BaseWebActivity
 import com.chs.lib_core.cloud.CloudService
@@ -20,11 +21,25 @@ import com.huawei.hms.hmsscankit.ScanUtil
 import com.huawei.hms.ml.scan.HmsScan
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val viewModel by lazy { getViewModel(MainViewModel::class.java) }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.activity_main
+    override fun onCreateBinding(savedInstanceState: Bundle?): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    override fun ActivityMainBinding.onViewCreated() {
+        setStatusBar()
+        showSplash()
+        setNavBar()
+    }
+
+    private fun setNavBar() {
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        NavGraphBuilder.build(navController,this,R.id.nav_host_fragment)
+        nav_view.setNavController(navController)
+    }
 
     override fun setContentView(layoutResID: Int) {
         //由于 启动时style中设置了 windowBackground属性，所以要在进入主页后,把窗口背景清理掉
@@ -32,12 +47,8 @@ class MainActivity : BaseActivity() {
         super.setContentView(layoutResID)
     }
 
-    override fun initView() {
+    private fun setStatusBar() {
         ImmersionBar.with(this).transparentStatusBar().fitsSystemWindows(false).init()
-        showSplash()
-        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        NavGraphBuilder.build(navController,this,R.id.nav_host_fragment)
-        nav_view.setNavController(navController)
     }
 
     /**
@@ -130,4 +141,5 @@ class MainActivity : BaseActivity() {
         logI("startCloudService")
         startService(Intent(this, CloudService::class.java))
     }
+
 }

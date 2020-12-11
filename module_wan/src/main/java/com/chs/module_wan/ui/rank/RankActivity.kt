@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_annotation.ActivityDestination
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.constant.WanRouterKey
 import com.chs.module_wan.R
+import com.chs.module_wan.databinding.WanActivityRankBinding
 import kotlinx.android.synthetic.main.wan_activity_rank.*
 import kotlinx.android.synthetic.main.wan_activity_rank.recyclerview
 import kotlinx.android.synthetic.main.wan_activity_rank.refreshview
@@ -20,15 +22,21 @@ import kotlinx.android.synthetic.main.wan_include_page_title.*
  * des：
  */
 @ActivityDestination(pageUrl = WanRouterKey.ACTIVITY_MAIN_MINE_RANK)
-class RankActivity : BaseActivity() {
+class RankActivity : BaseActivity<WanActivityRankBinding>() {
 
     private val mAdapter by lazy { RankAdapter() }
     private val mViewModel by lazy { getViewModel(RankViewModel::class.java) }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_rank
+    override fun onCreateBinding(savedInstanceState: Bundle?): WanActivityRankBinding {
+        return WanActivityRankBinding.inflate(layoutInflater)
+    }
 
-    override fun initView() {
+    override fun WanActivityRankBinding.onViewCreated() {
         tv_title_name.text = "排名"
+        setRecyclerView(recyclerview);
+    }
+
+    private fun setRecyclerView(recyclerview: RecyclerView) {
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.adapter = mAdapter.getLoadStateAdapter(mAdapter)
     }
@@ -47,4 +55,5 @@ class RankActivity : BaseActivity() {
             mAdapter.submitData(lifecycle,it)
         })
     }
+
 }

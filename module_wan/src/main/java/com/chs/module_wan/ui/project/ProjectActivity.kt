@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.module_wan.R
+import com.chs.module_wan.databinding.WanActivityProjectBinding
 import com.chs.module_wan.model.ProjectEntity
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.wan_activity_project.*
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.wan_include_page_title.*
  * date：2020/4/5
  * des： 项目
  */
-class ProjectActivity : BaseActivity() {
+class ProjectActivity : BaseActivity<WanActivityProjectBinding>() {
 
     private val mViewModel: ProjectViewModel by lazy { getViewModel(ProjectViewModel::class.java) }
 
@@ -29,9 +30,11 @@ class ProjectActivity : BaseActivity() {
         }
     }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_project
+    override fun onCreateBinding(savedInstanceState: Bundle?): WanActivityProjectBinding {
+        return WanActivityProjectBinding.inflate(layoutInflater)
+    }
 
-    override fun initView() {
+    override fun WanActivityProjectBinding.onViewCreated() {
         tv_title_name.text = "项目"
     }
 

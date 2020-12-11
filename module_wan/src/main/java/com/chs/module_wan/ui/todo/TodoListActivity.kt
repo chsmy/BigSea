@@ -3,10 +3,12 @@ package com.chs.module_wan.ui.todo
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_annotation.ActivityDestination
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.constant.WanRouterKey
 import com.chs.module_wan.R
+import com.chs.module_wan.databinding.WanActivityTodoBinding
 import kotlinx.android.synthetic.main.wan_activity_rank.*
 import kotlinx.android.synthetic.main.wan_include_page_title.*
 
@@ -16,15 +18,21 @@ import kotlinx.android.synthetic.main.wan_include_page_title.*
  * des： 待办事物列表
  */
 @ActivityDestination(pageUrl = WanRouterKey.ACTIVITY_MAIN_MINE_TODO)
-class TodoListActivity:BaseActivity() {
+class TodoListActivity:BaseActivity<WanActivityTodoBinding>() {
 
     private val mAdapter :ToDoAdapter by lazy { ToDoAdapter() }
     private val mViewModel by lazy { getViewModel(TodoViewModel::class.java) }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_todo
+    override fun onCreateBinding(savedInstanceState: Bundle?): WanActivityTodoBinding {
+        return WanActivityTodoBinding.inflate(layoutInflater)
+    }
 
-    override fun initView() {
+    override fun WanActivityTodoBinding.onViewCreated() {
         tv_title_name.text = "待办事项"
+        setRecyclerView(recyclerview)
+    }
+
+    private fun setRecyclerView(recyclerview: RecyclerView) {
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.adapter = mAdapter.getLoadStateAdapter(mAdapter)
     }

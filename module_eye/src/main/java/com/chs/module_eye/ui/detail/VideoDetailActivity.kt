@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.extension.loadCircle
 import com.chs.lib_core.extension.logI
 import com.chs.module_eye.R
+import com.chs.module_eye.databinding.EyeVideoDetailBinding
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.eye_video_detail.*
 
@@ -17,7 +19,7 @@ import kotlinx.android.synthetic.main.eye_video_detail.*
  * date：2020/6/28
  * des： 视频 图片详情
  */
-class VideoDetailActivity: BaseActivity() {
+class VideoDetailActivity: BaseActivity<EyeVideoDetailBinding>() {
 
     private val mViewModel by lazy { getViewModel(VideoDetailViewModel::class.java) }
 
@@ -38,14 +40,21 @@ class VideoDetailActivity: BaseActivity() {
         }
     }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.eye_video_detail
+    override fun onCreateBinding(savedInstanceState: Bundle?): EyeVideoDetailBinding {
+        return EyeVideoDetailBinding.inflate(layoutInflater)
+    }
 
-    override fun initView() {
+    override fun EyeVideoDetailBinding.onViewCreated() {
+       setRecyclerView(recyclerView)
+    }
+
+    private fun setRecyclerView(recyclerView: RecyclerView) {
         ImmersionBar.with(this).transparentStatusBar()
             .init()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = mAdapter
     }
+
     override fun initData() {
         val videoId = intent.getLongExtra(KEY_VIDEO_DETAIL,0)
         val videoPlayKey = intent.getStringExtra(KEY_VIDEO_PLAY_KEY)?:""

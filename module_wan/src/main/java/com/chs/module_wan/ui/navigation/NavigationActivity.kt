@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.module_wan.R
 import kotlinx.android.synthetic.main.wan_activity_navigation.*
-import kotlinx.android.synthetic.main.wan_fragment_wan.*
 import kotlinx.android.synthetic.main.wan_include_page_title.*
 import q.rorbin.verticaltablayout.VerticalTabLayout
 import q.rorbin.verticaltablayout.widget.ITabView

@@ -23,6 +23,8 @@ import kotlinx.android.synthetic.main.wan_activity_create_todo.*
 import kotlinx.android.synthetic.main.wan_include_page_title.*
 import java.text.SimpleDateFormat
 import com.chs.module_wan.R
+import com.chs.module_wan.databinding.WanActivityCreateTodoBinding
+import kotlinx.android.synthetic.main.wan_activity_project.*
 import java.util.*
 
 /**
@@ -31,7 +33,7 @@ import java.util.*
  * des：创建一条todo
  */
 @ActivityDestination(pageUrl = WanRouterKey.ACTIVITY_WAN_CREATE_TODO)
-class CreateToDoActivity : BaseActivity() {
+class CreateToDoActivity : BaseActivity<WanActivityCreateTodoBinding>() {
 
     private  var pvCustomLunar: TimePickerView? = null
     private val mViewModel by lazy { getViewModel(CreateToDoModel::class.java) }
@@ -45,13 +47,16 @@ class CreateToDoActivity : BaseActivity() {
         }
     }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_create_todo
+    override fun onCreateBinding(savedInstanceState: Bundle?): WanActivityCreateTodoBinding {
+        return WanActivityCreateTodoBinding.inflate(layoutInflater)
+    }
 
-    override fun initView() {
-        tv_title_name.text = "创建待办"
+    override fun WanActivityCreateTodoBinding.onViewCreated() {
+        includeHead.tvTitleName.text = "创建待办"
         initLunarPicker()
         initRecyclerView()
     }
+
 
     private fun initRecyclerView() {
         val layoutManager = FlexboxLayoutManager(this)

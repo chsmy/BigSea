@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/wan_include_page_title" />
+    <include
+        android:id="@+id/includeHead"
+        layout="@layout/wan_include_page_title" />
 
     <RelativeLayout
         android:layout_width="match_parent"

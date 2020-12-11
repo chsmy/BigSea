@@ -1,6 +1,7 @@
 package com.chs.lib_common_ui.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.viewbinding.ViewBinding
 import com.chs.lib_common_ui.R
 import com.gyf.immersionbar.ImmersionBar
 
@@ -16,21 +18,26 @@ import com.gyf.immersionbar.ImmersionBar
  * date：2020/3/29
  * des：
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<T: ViewBinding> : AppCompatActivity() {
+
+    private var _binding: T? = null
+
+    val binding: T
+        get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getContentView(savedInstanceState))
-//        ImmersionBar.with(this)
-//            .statusBarColor(R.color.colorPrimary)
-//            .autoStatusBarDarkModeEnable(true)
-//            .fitsSystemWindows(true)
-//            .init()
-
-        initView()
+        onCreateBinding(savedInstanceState).also { _binding = it }
+        val view = binding.root
+        setContentView(view)
+        binding.onViewCreated()
         initListener()
         initData()
     }
+
+    abstract fun onCreateBinding(savedInstanceState: Bundle?): T
+
+    abstract fun T.onViewCreated()
 
      private fun getStatusBarView(): View{
          val view  = View(this)
@@ -38,18 +45,6 @@ abstract class BaseActivity : AppCompatActivity() {
          view.layoutParams = paramas
          return view
      }
-
-    /**
-     * 返回一个用于显示界面的布局id
-     *
-     * @return 视图id
-     */
-    abstract fun getContentView(savedInstanceState: Bundle?): Int
-
-    /**
-     * 初始化View的代码写在这个方法中
-     */
-    abstract fun initView()
 
     /**
      * 初始化监听器的代码写在这个方法中

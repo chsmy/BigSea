@@ -6,6 +6,7 @@ import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.lib_core.constant.WanBusKey
 import com.chs.lib_core.event.LiveDataBus
 import com.chs.module_wan.R
+import com.chs.module_wan.databinding.WanActivityLoginBinding
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.wan_activity_login.*
 
@@ -14,13 +15,19 @@ import kotlinx.android.synthetic.main.wan_activity_login.*
  * date：2020/4/11
  * des：
  */
-class LoginActivity : BaseActivity() {
+class LoginActivity : BaseActivity<WanActivityLoginBinding>() {
 
     private val mViewModel:LoginViewModel by lazy { getViewModel(LoginViewModel::class.java) }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_login
+    override fun onCreateBinding(savedInstanceState: Bundle?): WanActivityLoginBinding {
+        return WanActivityLoginBinding.inflate(layoutInflater)
+    }
 
-    override fun initView() {
+    override fun WanActivityLoginBinding.onViewCreated() {
+        setStatusBar()
+    }
+
+    private fun setStatusBar() {
         ImmersionBar.with(this).transparentStatusBar().init()
     }
 
@@ -56,4 +63,6 @@ class LoginActivity : BaseActivity() {
 
     override fun initData() {
     }
+
+
 }

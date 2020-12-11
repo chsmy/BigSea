@@ -18,7 +18,7 @@ abstract class BaseAdapter<T>(var data:List<T>) : RecyclerView.Adapter<BaseViewH
         val view = LayoutInflater.from(parent.context).inflate(getLayoutId(),parent,false)
         val createCurrentViewHolder = createCurrentViewHolder(view, viewType)
         view.setOnClickListener {
-            onItemClickListener?.onItemClick(view,createCurrentViewHolder.adapterPosition)
+            onItemClickListener?.onItemClick(view,createCurrentViewHolder.absoluteAdapterPosition)
         }
         return createCurrentViewHolder
     }

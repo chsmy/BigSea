@@ -2,6 +2,7 @@ package com.chs.module_wan.ui.rank
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,7 @@ import kotlinx.android.synthetic.main.wan_include_page_title.*
 class RankActivity : BaseActivity<WanActivityRankBinding>() {
 
     private val mAdapter by lazy { RankAdapter() }
-    private val mViewModel by lazy { getViewModel(RankViewModel::class.java) }
+    private val mViewModel:RankViewModel by viewModels()
 
     override fun onCreateBinding(savedInstanceState: Bundle?): WanActivityRankBinding {
         return WanActivityRankBinding.inflate(layoutInflater)

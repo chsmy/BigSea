@@ -1,6 +1,7 @@
 package com.chs.module_wan.ui.todo
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.wan_include_page_title.*
 class TodoListActivity:BaseActivity<WanActivityTodoBinding>() {
 
     private val mAdapter :ToDoAdapter by lazy { ToDoAdapter() }
-    private val mViewModel by lazy { getViewModel(TodoViewModel::class.java) }
+    private val mViewModel:TodoViewModel by viewModels()
 
     override fun onCreateBinding(savedInstanceState: Bundle?): WanActivityTodoBinding {
         return WanActivityTodoBinding.inflate(layoutInflater)

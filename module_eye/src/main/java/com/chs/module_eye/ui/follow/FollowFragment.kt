@@ -2,6 +2,7 @@ package com.chs.module_eye.ui.follow
 
 import android.view.View
 import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chs.lib_common_ui.base.BaseFragment
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.eye_fragment_refresh.*
  * des：
  */
 class FollowFragment : BaseFragment(){
-    private val mViewModel by lazy { getViewModel(FollowViewModel::class.java) }
+    private val mViewModel:FollowViewModel by viewModels()
     override fun layoutId(): Int = R.layout.eye_fragment_refresh
     private val mAdapter by lazy { FollowAdapter(pagePlayerDetector) }
     private lateinit var pagePlayerDetector: PagePlayerDetector

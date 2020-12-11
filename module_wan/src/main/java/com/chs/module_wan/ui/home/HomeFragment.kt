@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,8 +48,8 @@ import kotlinx.android.synthetic.main.wan_title_bar.*
 
 @FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_HOME, asStarter = true,isBelongTab = true)
 class HomeFragment : BaseFragment() {
-    private val mHomeViewModel: HomeViewModel by lazy { getViewModel(HomeViewModel::class.java) }
-    private val mCollectModel: CollectViewModel by lazy { getViewModel(CollectViewModel::class.java) }
+    private val mHomeViewModel: HomeViewModel by viewModels()
+    private val mCollectModel: CollectViewModel by viewModels()
     private val mAdapter: WanAdapter by lazy { WanAdapter() }
     private lateinit var mBannerViewPager: BannerViewPager<Banner, NetViewHolder>
     private var bannerHeight: Int = 0

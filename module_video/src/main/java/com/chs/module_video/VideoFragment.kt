@@ -1,5 +1,6 @@
 package com.chs.module_video
 
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chs.lib_annotation.FragmentDestination
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.video_fragment_video.*
 @FragmentDestination(pageUrl = WanRouterKey.FRAGMENT_MAIN_TABLES_APPLY, isBelongTab = true)
 class VideoFragment : BaseFragment() {
 
-    private val mViewModel by lazy { getViewModel(VideoViewModel::class.java) }
+    private val mViewModel:VideoViewModel by viewModels()
     private val mAdapter: VideoListAdapter by lazy { VideoListAdapter(pagePlayerDetector) }
     private lateinit var pagePlayerDetector: PagePlayerDetector
     private lateinit var linearLayoutManager: LinearLayoutManager

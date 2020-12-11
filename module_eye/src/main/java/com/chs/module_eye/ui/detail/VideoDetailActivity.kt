@@ -3,6 +3,7 @@ package com.chs.module_eye.ui.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.eye_video_detail.*
  */
 class VideoDetailActivity: BaseActivity<EyeVideoDetailBinding>() {
 
-    private val mViewModel by lazy { getViewModel(VideoDetailViewModel::class.java) }
+    private val mViewModel:VideoDetailViewModel by viewModels()
 
     private val mAdapter by lazy { DetailCommAdapter(ArrayList()) }
 

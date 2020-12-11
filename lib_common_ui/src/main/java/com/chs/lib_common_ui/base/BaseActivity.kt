@@ -63,11 +63,4 @@ abstract class BaseActivity<T: ViewBinding> : AppCompatActivity() {
         onBackPressed()
     }
 
-    open fun <T : ViewModel?> getViewModel(clazz: Class<T>): T {
-        return ViewModelProvider(this).get(clazz)
-    }
-
-    open fun <T : ViewModel?> getViewModel(owner: ViewModelStoreOwner?, clazz: Class<T>): T {
-        return ViewModelProvider(owner!!).get(clazz)
-    }
 }

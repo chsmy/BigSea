@@ -3,6 +3,7 @@ package com.chs.bigsea
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.chs.bigsea.databinding.ActivityMainBinding
@@ -23,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private val viewModel by lazy { getViewModel(MainViewModel::class.java) }
+    private val viewModel:MainViewModel by viewModels()
 
     override fun onCreateBinding(savedInstanceState: Bundle?): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)

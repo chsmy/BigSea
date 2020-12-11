@@ -3,6 +3,7 @@ package com.chs.module_wan.ui.account
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -19,7 +20,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  */
 class AccountActivity : BaseActivity<WanActivityProjectBinding>() {
 
-    private val mViewModel:AccountViewModel by lazy{getViewModel(AccountViewModel::class.java)}
+    private val mViewModel:AccountViewModel by viewModels()
 
     companion object{
         fun start(content: Context){

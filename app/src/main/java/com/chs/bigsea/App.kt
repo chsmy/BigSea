@@ -11,6 +11,7 @@ import com.kingja.loadsir.core.LoadSir
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import dagger.hilt.android.HiltAndroidApp
 
 
 /**
@@ -18,6 +19,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
  *  date: 2019-12-13 17:26
  *  des:  application
  */
+@HiltAndroidApp
 class App : BaseApp() {
 
     companion object{

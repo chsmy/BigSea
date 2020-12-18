@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <com.effective.android.panel.view.PanelSwitchLayout
-        android:id="@+id/panel_switch_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<com.effective.android.panel.view.PanelSwitchLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/panel_switch_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
         <!-- 内容区域  -->
         <com.effective.android.panel.view.content.RelativeContentContainer
@@ -80,7 +80,4 @@
 
         </com.effective.android.panel.view.panel.PanelContainer>
 
-    </com.effective.android.panel.view.PanelSwitchLayout>
-
-
-</layout>
+</com.effective.android.panel.view.PanelSwitchLayout>

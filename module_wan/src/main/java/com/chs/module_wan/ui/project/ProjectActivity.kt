@@ -3,6 +3,7 @@ package com.chs.module_wan.ui.project
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.wan_include_page_title.*
  */
 class ProjectActivity : BaseActivity<WanActivityProjectBinding>() {
 
-    private val mViewModel: ProjectViewModel by lazy { getViewModel(ProjectViewModel::class.java) }
+    private val mViewModel: ProjectViewModel by viewModels()
 
     companion object{
         fun start(content: Context){

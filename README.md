@@ -32,6 +32,7 @@
 - 使用cameraX完成拍照和视频录制的功能
 - 使用hilt
 - 添加Flutter模块
+- Kotlin synthetic突然宣布被弃用了，所以开始改成ViewBing
 
 使用google的exoplayer来播放视频，并且自定义实现列表滑动播放，列表与详情视频无缝切换
 

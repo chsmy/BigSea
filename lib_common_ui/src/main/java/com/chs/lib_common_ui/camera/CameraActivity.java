@@ -33,6 +33,7 @@ import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
+import androidx.camera.core.SurfaceRequest;
 import androidx.camera.core.VideoCapture;
 import androidx.camera.extensions.AutoImageCaptureExtender;
 import androidx.camera.extensions.AutoPreviewExtender;
@@ -177,10 +178,10 @@ public class CameraActivity extends AppCompatActivity {
                 //创建视频保存的文件地址
                 File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath(),
                         System.currentTimeMillis() + ".mp4");
-                VideoCapture.OutputFileOptions options = new VideoCapture.OutputFileOptions.Builder(file).build();
-                mVideoCapture.startRecording(options, Executors.newSingleThreadExecutor(), new VideoCapture.OnVideoSavedCallback() {
+//                VideoCapture.OutputFileOptions options = new VideoCapture.OutputFileOptions.Builder(file).build();
+                mVideoCapture.startRecording(file, Executors.newSingleThreadExecutor(), new VideoCapture.OnVideoSavedCallback() {
                     @Override
-                    public void onVideoSaved(@NonNull VideoCapture.OutputFileResults outputFileResults) {
+                    public void onVideoSaved(@NonNull File file) {
                         outputFilePath = file.getAbsolutePath();
                         onFileSaved(Uri.fromFile(file));
                     }
@@ -357,7 +358,12 @@ public class CameraActivity extends AppCompatActivity {
 
         mCamera = cameraProvider.bindToLifecycle(CameraActivity.this,
                 cameraSelector,mPreview,mImageCapture,mVideoCapture);
-        mPreview.setSurfaceProvider(mPreviewView.getSurfaceProvider());
+        mPreview.setSurfaceProvider(new Preview.SurfaceProvider() {
+            @Override
+            public void onSurfaceRequested(@NonNull SurfaceRequest request) {
+
+            }
+        });
     }
 
     /**

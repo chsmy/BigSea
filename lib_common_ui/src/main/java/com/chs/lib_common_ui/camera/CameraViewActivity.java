@@ -20,8 +20,6 @@ import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.VideoCapture;
 import androidx.camera.view.CameraView;
-import androidx.camera.view.video.OnVideoSavedCallback;
-import androidx.camera.view.video.OutputFileResults;
 import androidx.core.app.ActivityCompat;
 
 import com.chs.lib_common_ui.R;
@@ -143,9 +141,9 @@ public class CameraViewActivity extends AppCompatActivity {
         File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath(),
                 System.currentTimeMillis() + ".mp4");
         mCameraView.setCaptureMode(CameraView.CaptureMode.VIDEO);
-        mCameraView.startRecording(file, Executors.newSingleThreadExecutor(), new OnVideoSavedCallback() {
+        mCameraView.startRecording(file, Executors.newSingleThreadExecutor(), new VideoCapture.OnVideoSavedCallback() {
             @Override
-            public void onVideoSaved(@NonNull OutputFileResults outputFileResults) {
+            public void onVideoSaved(@NonNull File file) {
                 outputFilePath = file.getAbsolutePath();
                 ToastUtils.showShort("录制完毕存储在："+outputFilePath);
                 onFileSaved(Uri.fromFile(file));

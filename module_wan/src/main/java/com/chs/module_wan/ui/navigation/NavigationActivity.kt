@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chs.lib_common_ui.base.BaseActivity
 import com.chs.module_wan.R
+import com.chs.module_wan.databinding.WanActivityNavigationBinding
 import kotlinx.android.synthetic.main.wan_activity_navigation.*
 import kotlinx.android.synthetic.main.wan_include_page_title.*
 import q.rorbin.verticaltablayout.VerticalTabLayout
@@ -22,7 +23,7 @@ import q.rorbin.verticaltablayout.widget.TabView
  * date：2020/4/5
  * des： 导航
  */
-class NavigationActivity : BaseActivity() {
+class NavigationActivity : BaseActivity<WanActivityNavigationBinding>() {
 
     private val mViewModel: NavigationViewModel by viewModels()
     private val mLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(this) }
@@ -36,9 +37,11 @@ class NavigationActivity : BaseActivity() {
         }
     }
 
-    override fun getContentView(savedInstanceState: Bundle?): Int = R.layout.wan_activity_navigation
+    override fun onCreateBinding(savedInstanceState: Bundle?): WanActivityNavigationBinding {
+        return WanActivityNavigationBinding.inflate(layoutInflater)
+    }
 
-    override fun initView() {
+    override fun WanActivityNavigationBinding.onViewCreated() {
         tv_title_name.text = "导航"
         recycler_view.layoutManager = mLayoutManager
     }
@@ -88,4 +91,5 @@ class NavigationActivity : BaseActivity() {
             }
         })
     }
+
 }

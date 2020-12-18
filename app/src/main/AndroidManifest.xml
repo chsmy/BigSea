@@ -30,7 +30,7 @@
             android:value="portrait|landscape" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/splash">
             <intent-filter>
@@ -38,6 +38,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
             android:name=".HomeDialogActivity"
